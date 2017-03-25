@@ -46,1122 +46,1123 @@
     font-weight: bold;
 }
 </style>
-<h1>api-documentation for
+<h1>api documentation for
     <a
-        
+
         href="https://github.com/winstonjs/winston#readme"
-        
+
     >winston (v2.3.1)</a>
 </h1>
+<h4>A multi-transport async logging library for Node.js</h4>
 <div class="apidocSectionDiv"><a
     href="#apidoc.tableOfContents"
     id="apidoc.tableOfContents"
 ><h1>table of contents</h1></a><ol>
-    
+
     <li class="apidocModuleLi"><a href="#apidoc.module.winston">module winston</a><ol>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Container">
             function <span class="apidocSignatureSpan">winston.</span>Container
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Logger">
             function <span class="apidocSignatureSpan">winston.</span>Logger
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Transport">
             function <span class="apidocSignatureSpan">winston.</span>Transport
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.add">
             function <span class="apidocSignatureSpan">winston.</span>add
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.addColors">
             function <span class="apidocSignatureSpan">winston.</span>addColors
             <span class="apidocSignatureSpan">(colors)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.clear">
             function <span class="apidocSignatureSpan">winston.</span>clear
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.cli">
             function <span class="apidocSignatureSpan">winston.</span>cli
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.clone">
             function <span class="apidocSignatureSpan">winston.</span>clone
             <span class="apidocSignatureSpan">(obj)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.configure">
             function <span class="apidocSignatureSpan">winston.</span>configure
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.debug">
             function <span class="apidocSignatureSpan">winston.</span>debug
             <span class="apidocSignatureSpan">(msg)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.error">
             function <span class="apidocSignatureSpan">winston.</span>error
             <span class="apidocSignatureSpan">(msg)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.extend">
             function <span class="apidocSignatureSpan">winston.</span>extend
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.handleExceptions">
             function <span class="apidocSignatureSpan">winston.</span>handleExceptions
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.hash">
             function <span class="apidocSignatureSpan">winston.</span>hash
             <span class="apidocSignatureSpan">(str)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.info">
             function <span class="apidocSignatureSpan">winston.</span>info
             <span class="apidocSignatureSpan">(msg)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.log">
             function <span class="apidocSignatureSpan">winston.</span>log
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.longestElement">
             function <span class="apidocSignatureSpan">winston.</span>longestElement
             <span class="apidocSignatureSpan">(xs)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.profile">
             function <span class="apidocSignatureSpan">winston.</span>profile
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.query">
             function <span class="apidocSignatureSpan">winston.</span>query
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.remove">
             function <span class="apidocSignatureSpan">winston.</span>remove
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.setLevels">
             function <span class="apidocSignatureSpan">winston.</span>setLevels
             <span class="apidocSignatureSpan">(target)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.silly">
             function <span class="apidocSignatureSpan">winston.</span>silly
             <span class="apidocSignatureSpan">(msg)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.startTimer">
             function <span class="apidocSignatureSpan">winston.</span>startTimer
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.stream">
             function <span class="apidocSignatureSpan">winston.</span>stream
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.Console">
             function <span class="apidocSignatureSpan">winston.</span>transports.Console
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.File">
             function <span class="apidocSignatureSpan">winston.</span>transports.File
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.Http">
             function <span class="apidocSignatureSpan">winston.</span>transports.Http
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.Memory">
             function <span class="apidocSignatureSpan">winston.</span>transports.Memory
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.unhandleExceptions">
             function <span class="apidocSignatureSpan">winston.</span>unhandleExceptions
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.verbose">
             function <span class="apidocSignatureSpan">winston.</span>verbose
             <span class="apidocSignatureSpan">(msg)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.warn">
             function <span class="apidocSignatureSpan">winston.</span>warn
             <span class="apidocSignatureSpan">(msg)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">winston.</span>Container.prototype</span>
-            
+
         </li>
-        
+
         <li>
-            
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">winston.</span>Logger.prototype</span>
-            
+
         </li>
-        
+
         <li>
-            
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">winston.</span>Transport.prototype</span>
-            
+
         </li>
-        
+
         <li>
-            
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">winston.</span>config</span>
-            
+
         </li>
-        
+
         <li>
-            
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">winston.</span>exception</span>
-            
+
         </li>
-        
+
         <li>
-            
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">winston.</span>levels</span>
-            
+
         </li>
-        
+
         <li>
-            
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">winston.</span>loggers</span>
-            
+
         </li>
-        
+
         <li>
-            
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">winston.</span>transports</span>
-            
+
         </li>
-        
+
         <li>
-            
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">winston.</span>transports.Console.prototype</span>
-            
+
         </li>
-        
+
         <li>
-            
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">winston.</span>transports.File.prototype</span>
-            
+
         </li>
-        
+
         <li>
-            
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">winston.</span>transports.Http.prototype</span>
-            
+
         </li>
-        
+
         <li>
-            
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">winston.</span>transports.Memory.prototype</span>
-            
+
         </li>
-        
+
         <li>
-            
+
             <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">winston.</span>version</span>
-            
+
         </li>
-        
+
     </ol></li>
-    
+
     <li class="apidocModuleLi"><a href="#apidoc.module.winston.Container">module winston.Container</a><ol>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Container.Container">
             function <span class="apidocSignatureSpan">winston.</span>Container
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
     </ol></li>
-    
+
     <li class="apidocModuleLi"><a href="#apidoc.module.winston.Container.prototype">module winston.Container.prototype</a><ol>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Container.prototype._delete">
             function <span class="apidocSignatureSpan">winston.Container.prototype.</span>_delete
             <span class="apidocSignatureSpan">(id)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Container.prototype.add">
             function <span class="apidocSignatureSpan">winston.Container.prototype.</span>add
             <span class="apidocSignatureSpan">(id, options)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Container.prototype.close">
             function <span class="apidocSignatureSpan">winston.Container.prototype.</span>close
             <span class="apidocSignatureSpan">(id)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Container.prototype.get">
             function <span class="apidocSignatureSpan">winston.Container.prototype.</span>get
             <span class="apidocSignatureSpan">(id, options)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Container.prototype.has">
             function <span class="apidocSignatureSpan">winston.Container.prototype.</span>has
             <span class="apidocSignatureSpan">(id)</span>
             </a>
-            
+
         </li>
-        
+
     </ol></li>
-    
+
     <li class="apidocModuleLi"><a href="#apidoc.module.winston.Logger">module winston.Logger</a><ol>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Logger.Logger">
             function <span class="apidocSignatureSpan">winston.</span>Logger
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Logger.super_">
             function <span class="apidocSignatureSpan">winston.Logger.</span>super_
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
     </ol></li>
-    
+
     <li class="apidocModuleLi"><a href="#apidoc.module.winston.Logger.prototype">module winston.Logger.prototype</a><ol>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Logger.prototype._getExceptionHandlers">
             function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>_getExceptionHandlers
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Logger.prototype._onError">
             function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>_onError
             <span class="apidocSignatureSpan">(transport, err)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Logger.prototype._uncaughtException">
             function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>_uncaughtException
             <span class="apidocSignatureSpan">(err)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Logger.prototype.add">
             function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>add
             <span class="apidocSignatureSpan">(transport, options, created)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Logger.prototype.clear">
             function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>clear
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Logger.prototype.cli">
             function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>cli
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Logger.prototype.close">
             function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>close
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Logger.prototype.configure">
             function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>configure
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Logger.prototype.handleExceptions">
             function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>handleExceptions
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Logger.prototype.log">
             function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>log
             <span class="apidocSignatureSpan">(level)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Logger.prototype.profile">
             function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>profile
             <span class="apidocSignatureSpan">(id)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Logger.prototype.query">
             function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>query
             <span class="apidocSignatureSpan">(options, callback)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Logger.prototype.remove">
             function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>remove
             <span class="apidocSignatureSpan">(transport)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Logger.prototype.setLevels">
             function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>setLevels
             <span class="apidocSignatureSpan">(target)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Logger.prototype.startTimer">
             function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>startTimer
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Logger.prototype.stream">
             function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>stream
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Logger.prototype.unhandleExceptions">
             function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>unhandleExceptions
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
     </ol></li>
-    
+
     <li class="apidocModuleLi"><a href="#apidoc.module.winston.Transport">module winston.Transport</a><ol>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Transport.Transport">
             function <span class="apidocSignatureSpan">winston.</span>Transport
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Transport.super_">
             function <span class="apidocSignatureSpan">winston.Transport.</span>super_
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
     </ol></li>
-    
+
     <li class="apidocModuleLi"><a href="#apidoc.module.winston.Transport.prototype">module winston.Transport.prototype</a><ol>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Transport.prototype.formatQuery">
             function <span class="apidocSignatureSpan">winston.Transport.prototype.</span>formatQuery
             <span class="apidocSignatureSpan">(query)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Transport.prototype.formatResults">
             function <span class="apidocSignatureSpan">winston.Transport.prototype.</span>formatResults
             <span class="apidocSignatureSpan">(results, options)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Transport.prototype.logException">
             function <span class="apidocSignatureSpan">winston.Transport.prototype.</span>logException
             <span class="apidocSignatureSpan">(msg, meta, callback)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.Transport.prototype.normalizeQuery">
             function <span class="apidocSignatureSpan">winston.Transport.prototype.</span>normalizeQuery
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
     </ol></li>
-    
+
     <li class="apidocModuleLi"><a href="#apidoc.module.winston.config">module winston.config</a><ol>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.config.addColors">
             function <span class="apidocSignatureSpan">winston.config.</span>addColors
             <span class="apidocSignatureSpan">(colors)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.config.colorize">
             function <span class="apidocSignatureSpan">winston.config.</span>colorize
             <span class="apidocSignatureSpan">(level, message)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">winston.config.</span>allColors</span>
-            
+
         </li>
-        
+
         <li>
-            
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">winston.config.</span>cli</span>
-            
+
         </li>
-        
+
         <li>
-            
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">winston.config.</span>npm</span>
-            
+
         </li>
-        
+
         <li>
-            
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">winston.config.</span>syslog</span>
-            
+
         </li>
-        
+
     </ol></li>
-    
+
     <li class="apidocModuleLi"><a href="#apidoc.module.winston.exception">module winston.exception</a><ol>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.exception.getAllInfo">
             function <span class="apidocSignatureSpan">winston.exception.</span>getAllInfo
             <span class="apidocSignatureSpan">(err)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.exception.getOsInfo">
             function <span class="apidocSignatureSpan">winston.exception.</span>getOsInfo
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.exception.getProcessInfo">
             function <span class="apidocSignatureSpan">winston.exception.</span>getProcessInfo
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.exception.getTrace">
             function <span class="apidocSignatureSpan">winston.exception.</span>getTrace
             <span class="apidocSignatureSpan">(err)</span>
             </a>
-            
+
         </li>
-        
+
     </ol></li>
-    
+
     <li class="apidocModuleLi"><a href="#apidoc.module.winston.transports">module winston.transports</a><ol>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.Console">
             function <span class="apidocSignatureSpan">winston.transports.</span>Console
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.File">
             function <span class="apidocSignatureSpan">winston.transports.</span>File
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.Http">
             function <span class="apidocSignatureSpan">winston.transports.</span>Http
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.Memory">
             function <span class="apidocSignatureSpan">winston.transports.</span>Memory
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
     </ol></li>
-    
+
     <li class="apidocModuleLi"><a href="#apidoc.module.winston.transports.Console">module winston.transports.Console</a><ol>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.Console.Console">
             function <span class="apidocSignatureSpan">winston.transports.</span>Console
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.Console.super_">
             function <span class="apidocSignatureSpan">winston.transports.Console.</span>super_
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
     </ol></li>
-    
+
     <li class="apidocModuleLi"><a href="#apidoc.module.winston.transports.Console.prototype">module winston.transports.Console.prototype</a><ol>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.Console.prototype.log">
             function <span class="apidocSignatureSpan">winston.transports.Console.prototype.</span>log
             <span class="apidocSignatureSpan">(level, msg, meta, callback)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">winston.transports.Console.prototype.</span>name</span>
-            
+
         </li>
-        
+
     </ol></li>
-    
+
     <li class="apidocModuleLi"><a href="#apidoc.module.winston.transports.File">module winston.transports.File</a><ol>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.File.File">
             function <span class="apidocSignatureSpan">winston.transports.</span>File
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.File.super_">
             function <span class="apidocSignatureSpan">winston.transports.File.</span>super_
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
     </ol></li>
-    
+
     <li class="apidocModuleLi"><a href="#apidoc.module.winston.transports.File.prototype">module winston.transports.File.prototype</a><ol>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.File.prototype._checkMaxFilesIncrementing">
             function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>_checkMaxFilesIncrementing
             <span class="apidocSignatureSpan">(ext, basename, callback)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.File.prototype._checkMaxFilesTailable">
             function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>_checkMaxFilesTailable
             <span class="apidocSignatureSpan">(ext, basename, callback)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.File.prototype._createStream">
             function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>_createStream
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.File.prototype._getFile">
             function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>_getFile
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.File.prototype._incFile">
             function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>_incFile
             <span class="apidocSignatureSpan">(callback)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.File.prototype._lazyDrain">
             function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>_lazyDrain
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.File.prototype._write">
             function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>_write
             <span class="apidocSignatureSpan">(data, callback)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.File.prototype.close">
             function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>close
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.File.prototype.flush">
             function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>flush
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.File.prototype.log">
             function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>log
             <span class="apidocSignatureSpan">(level, msg, meta, callback)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.File.prototype.open">
             function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>open
             <span class="apidocSignatureSpan">(callback)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.File.prototype.query">
             function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>query
             <span class="apidocSignatureSpan">(options, callback)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.File.prototype.stream">
             function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>stream
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>name</span>
-            
+
         </li>
-        
+
     </ol></li>
-    
+
     <li class="apidocModuleLi"><a href="#apidoc.module.winston.transports.Http">module winston.transports.Http</a><ol>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.Http.Http">
             function <span class="apidocSignatureSpan">winston.transports.</span>Http
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.Http.super_">
             function <span class="apidocSignatureSpan">winston.transports.Http.</span>super_
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
     </ol></li>
-    
+
     <li class="apidocModuleLi"><a href="#apidoc.module.winston.transports.Http.prototype">module winston.transports.Http.prototype</a><ol>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.Http.prototype._request">
             function <span class="apidocSignatureSpan">winston.transports.Http.prototype.</span>_request
             <span class="apidocSignatureSpan">(options, callback)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.Http.prototype.log">
             function <span class="apidocSignatureSpan">winston.transports.Http.prototype.</span>log
             <span class="apidocSignatureSpan">(level, msg, meta, callback)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.Http.prototype.query">
             function <span class="apidocSignatureSpan">winston.transports.Http.prototype.</span>query
             <span class="apidocSignatureSpan">(options, callback)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.Http.prototype.stream">
             function <span class="apidocSignatureSpan">winston.transports.Http.prototype.</span>stream
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">winston.transports.Http.prototype.</span>name</span>
-            
+
         </li>
-        
+
     </ol></li>
-    
+
     <li class="apidocModuleLi"><a href="#apidoc.module.winston.transports.Memory">module winston.transports.Memory</a><ol>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.Memory.Memory">
             function <span class="apidocSignatureSpan">winston.transports.</span>Memory
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.Memory.super_">
             function <span class="apidocSignatureSpan">winston.transports.Memory.</span>super_
             <span class="apidocSignatureSpan">(options)</span>
             </a>
-            
+
         </li>
-        
+
     </ol></li>
-    
+
     <li class="apidocModuleLi"><a href="#apidoc.module.winston.transports.Memory.prototype">module winston.transports.Memory.prototype</a><ol>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.Memory.prototype.clearLogs">
             function <span class="apidocSignatureSpan">winston.transports.Memory.prototype.</span>clearLogs
             <span class="apidocSignatureSpan">()</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.winston.transports.Memory.prototype.log">
             function <span class="apidocSignatureSpan">winston.transports.Memory.prototype.</span>log
             <span class="apidocSignatureSpan">(level, msg, meta, callback)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">winston.transports.Memory.prototype.</span>name</span>
-            
+
         </li>
-        
+
     </ol></li>
-    
+
 </ol></div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.winston" id="apidoc.module.winston">module winston</a></h1>
-    
-    
+
+
     <h2>
         <a href="#apidoc.element.winston.Container" id="apidoc.element.winston.Container">
         function <span class="apidocSignatureSpan">winston.</span>Container
@@ -1199,9 +1200,9 @@ container.add(&#x27;category1&#x27;, {
   file: {
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Logger" id="apidoc.element.winston.Logger">
         function <span class="apidocSignatureSpan">winston.</span>Logger
@@ -1230,9 +1231,9 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
 });
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Transport" id="apidoc.element.winston.Transport">
         function <span class="apidocSignatureSpan">winston.</span>Transport
@@ -1262,9 +1263,9 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.add" id="apidoc.element.winston.add">
         function <span class="apidocSignatureSpan">winston.</span>add
@@ -1280,8 +1281,8 @@ winston.level = &#x27;debug&#x27;;
 winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
 ```
 
-By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()\
- methods:
+By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
+methods:
 
 ``` js
 winston.<span class="apidocCodeKeywordSpan">add</span>(winston.transports.File, { filename: &#x27;somefile.log&#x27; });
@@ -1294,9 +1295,9 @@ Or do it with one call to configure():
 winston.configure({
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.addColors" id="apidoc.element.winston.addColors">
         function <span class="apidocSignatureSpan">winston.</span>addColors
@@ -1309,8 +1310,8 @@ winston.configure({
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-Although there is slight repetition in this data structure, it enables simple encapsulation if you do not want to have colors. I\
-f you do wish to have colors, in addition to passing the levels to the Logger itself, you must make winston aware of them:
+Although there is slight repetition in this data structure, it enables simple encapsulation if you do not want to have colors. If
+ you do wish to have colors, in addition to passing the levels to the Logger itself, you must make winston aware of them:
 
 ``` js
   //
@@ -1326,9 +1327,9 @@ This enables transports with the &#x27;colorize&#x27; option set to appropriatel
 ### Events and Callbacks in Winston
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.clear" id="apidoc.element.winston.clear">
         function <span class="apidocSignatureSpan">winston.</span>clear
@@ -1341,9 +1342,9 @@ This enables transports with the &#x27;colorize&#x27; option set to appropriatel
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.cli" id="apidoc.element.winston.cli">
         function <span class="apidocSignatureSpan">winston.</span>cli
@@ -1372,7 +1373,7 @@ info:   Retrieved packages from npm
 warn:   No additional dependencies found
 ```
 
-Configuring output for this style is easy, just use the `.<span class="apidocCodeKeywordSpan">cli</span>()` method on `winston` \
+Configuring output for this style is easy, just use the `.<span class="apidocCodeKeywordSpan">cli</span>()` method on `winston`
 or an instance of `winston.Logger`:
 
 ``` js
@@ -1383,9 +1384,9 @@ var winston = require(&#x27;winston&#x27;);
 //
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.clone" id="apidoc.element.winston.clone">
         function <span class="apidocSignatureSpan">winston.</span>clone
@@ -1435,9 +1436,9 @@ var winston = require(&#x27;winston&#x27;);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.configure" id="apidoc.element.winston.configure">
         function <span class="apidocSignatureSpan">winston.</span>configure
@@ -1463,13 +1464,13 @@ Or do it with one call to configure():
   });
 ```
 
-For more documentation about working with each individual transport supported by Winston see the [Winston Transports](docs/trans\
-ports.md) document.
+For more documentation about working with each individual transport supported by Winston see the [Winston Transports](docs/transports
+.md) document.
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.debug" id="apidoc.element.winston.debug">
         function <span class="apidocSignatureSpan">winston.</span>debug
@@ -1496,13 +1497,13 @@ ports.md) document.
   logger.verbose(&#x22;Will be logged in both transports!&#x22;);
 ```
 
-As of 0.2.0, winston supports customizable logging levels, defaulting to [npm][0] style logging levels. Changing logging levels \
+As of 0.2.0, winston supports customizable logging levels, defaulting to [npm][0] style logging levels. Changing logging levels
 is easy:
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.error" id="apidoc.element.winston.error">
         function <span class="apidocSignatureSpan">winston.</span>error
@@ -1533,9 +1534,9 @@ is easy:
 ```
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.extend" id="apidoc.element.winston.extend">
         function <span class="apidocSignatureSpan">winston.</span>extend
@@ -1548,9 +1549,9 @@ is easy:
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.handleExceptions" id="apidoc.element.winston.handleExceptions">
         function <span class="apidocSignatureSpan">winston.</span>handleExceptions
@@ -1567,10 +1568,10 @@ is easy:
 
 ### Handling Uncaught Exceptions with winston
 
-With `winston`, it is possible to catch and log `uncaughtException` events from your process. There are two distinct ways of ena\
-bling this functionality either through the default winston logger or your own logger instance.
+With `winston`, it is possible to catch and log `uncaughtException` events from your process. There are two distinct ways of enabling
+ this functionality either through the default winston logger or your own logger instance.
 
-If you want to use this feature with the default logger simply call `.<span class="apidocCodeKeywordSpan">handleExceptions</span\
+If you want to use this feature with the default logger simply call `.<span class="apidocCodeKeywordSpan">handleExceptions</span
 >()` with a transport instance.
 
 ``` js
@@ -1580,9 +1581,9 @@ If you want to use this feature with the default logger simply call `.<span clas
 winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/exceptions.log&#x27; }))
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.hash" id="apidoc.element.winston.hash">
         function <span class="apidocSignatureSpan">winston.</span>hash
@@ -1595,9 +1596,9 @@ winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/e
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.info" id="apidoc.element.winston.info">
         function <span class="apidocSignatureSpan">winston.</span>info
@@ -1612,7 +1613,7 @@ winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/e
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 ### Using the Default Logger
-The default logger is accessible through the winston module directly. Any method that you could call on an instance of a logger \
+The default logger is accessible through the winston module directly. Any method that you could call on an instance of a logger
 is available on the default logger:
 
 ``` js
@@ -1625,13 +1626,13 @@ is available on the default logger:
   winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
 ```
 
-By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()\
- methods:
+By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
+methods:
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.log" id="apidoc.element.winston.log">
         function <span class="apidocSignatureSpan">winston.</span>log
@@ -1645,7 +1646,7 @@ By default, only the Console transport is set on the default logger. You can add
     <li>example usage<pre class="apidocCodePre">...
 
 ### Using the Default Logger
-The default logger is accessible through the winston module directly. Any method that you could call on an instance of a logger \
+The default logger is accessible through the winston module directly. Any method that you could call on an instance of a logger
 is available on the default logger:
 
 ``` js
@@ -1658,13 +1659,13 @@ is available on the default logger:
   winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
 ```
 
-By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()\
- methods:
+By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
+methods:
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.longestElement" id="apidoc.element.winston.longestElement">
         function <span class="apidocSignatureSpan">winston.</span>longestElement
@@ -1680,9 +1681,9 @@ By default, only the Console transport is set on the default logger. You can add
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.profile" id="apidoc.element.winston.profile">
         function <span class="apidocSignatureSpan">winston.</span>profile
@@ -1711,9 +1712,9 @@ setTimeout(function () {
   winston.profile(&#x27;test&#x27;);
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.query" id="apidoc.element.winston.query">
         function <span class="apidocSignatureSpan">winston.</span>query
@@ -1742,9 +1743,9 @@ setTimeout(function () {
 ```
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.remove" id="apidoc.element.winston.remove">
         function <span class="apidocSignatureSpan">winston.</span>remove
@@ -1759,8 +1760,8 @@ setTimeout(function () {
 winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
 ```
 
-By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()\
- methods:
+By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
+methods:
 
 ``` js
 winston.add(winston.transports.File, { filename: &#x27;somefile.log&#x27; });
@@ -1774,9 +1775,9 @@ winston.configure({
   transports: [
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.setLevels" id="apidoc.element.winston.setLevels">
         function <span class="apidocSignatureSpan">winston.</span>setLevels
@@ -1790,7 +1791,7 @@ winston.configure({
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-As of 0.2.0, winston supports customizable logging levels, defaulting to [npm][0] style logging levels. Changing logging levels \
+As of 0.2.0, winston supports customizable logging levels, defaulting to [npm][0] style logging levels. Changing logging levels
 is easy:
 
 ``` js
@@ -1806,9 +1807,9 @@ is easy:
 ```
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.silly" id="apidoc.element.winston.silly">
         function <span class="apidocSignatureSpan">winston.</span>silly
@@ -1823,8 +1824,8 @@ is easy:
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-Calling `.setLevels` on a logger will remove all of the previous helper methods for the old levels and define helper methods for\
- the new levels. Thus, you should be careful about the logging statements you use when changing levels. For example, if you ran \
+Calling `.setLevels` on a logger will remove all of the previous helper methods for the old levels and define helper methods for
+ the new levels. Thus, you should be careful about the logging statements you use when changing levels. For example, if you ran
 this code after changing to the syslog levels:
 
 ``` js
@@ -1841,9 +1842,9 @@ In addition to the predefined `npm` and `syslog` levels available in Winston, yo
 var myCustomLevels = {
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.startTimer" id="apidoc.element.winston.startTimer">
         function <span class="apidocSignatureSpan">winston.</span>startTimer
@@ -1856,9 +1857,9 @@ var myCustomLevels = {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.stream" id="apidoc.element.winston.stream">
         function <span class="apidocSignatureSpan">winston.</span>stream
@@ -1887,9 +1888,9 @@ Streaming allows you to stream your logs back from your chosen transport.
 ### Handling Uncaught Exceptions with winston
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.Console" id="apidoc.element.winston.transports.Console">
         function <span class="apidocSignatureSpan">winston.</span>transports.Console
@@ -1966,9 +1967,9 @@ var logger = new winston.Logger({
 ```
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.File" id="apidoc.element.winston.transports.File">
         function <span class="apidocSignatureSpan">winston.</span>transports.File
@@ -2065,8 +2066,8 @@ If you want to use this feature with the default logger simply call `.handleExce
 //
 // You can add a separate exception logger by passing it to `.handleExceptions`
 //
-winston.handleExceptions(new winston.<span class="apidocCodeKeywordSpan">transports.File</span>({ filename: &#x27;path/to/except\
-ions.log&#x27; }))
+winston.handleExceptions(new winston.<span class="apidocCodeKeywordSpan">transports.File</span>({ filename: &#x27;path/to/exceptions
+.log&#x27; }))
 
 //
 // Alternatively you can set `.handleExceptions` to true when adding transports to winston.
@@ -2076,9 +2077,9 @@ winston.add(winston.transports.File, {
   filename: &#x27;path/to/all-logs.log&#x27;,
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.Http" id="apidoc.element.winston.transports.Http">
         function <span class="apidocSignatureSpan">winston.</span>transports.Http
@@ -2104,9 +2105,9 @@ winston.add(winston.transports.File, {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.Memory" id="apidoc.element.winston.transports.Memory">
         function <span class="apidocSignatureSpan">winston.</span>transports.Memory
@@ -2137,9 +2138,9 @@ winston.add(winston.transports.File, {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.unhandleExceptions" id="apidoc.element.winston.unhandleExceptions">
         function <span class="apidocSignatureSpan">winston.</span>unhandleExceptions
@@ -2152,9 +2153,9 @@ winston.add(winston.transports.File, {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.verbose" id="apidoc.element.winston.verbose">
         function <span class="apidocSignatureSpan">winston.</span>verbose
@@ -2178,7 +2179,7 @@ logger.transports.file.level = &#x27;verbose&#x27;;
 logger.<span class="apidocCodeKeywordSpan">verbose</span>(&#x22;Will be logged in both transports!&#x22;);
 ```
 
-As of 0.2.0, winston supports customizable logging levels, defaulting to [npm][0] style logging levels. Changing logging levels \
+As of 0.2.0, winston supports customizable logging levels, defaulting to [npm][0] style logging levels. Changing logging levels
 is easy:
 
 ``` js
@@ -2186,9 +2187,9 @@ is easy:
 // Change levels on the default winston logger
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.warn" id="apidoc.element.winston.warn">
         function <span class="apidocSignatureSpan">winston.</span>warn
@@ -2219,40 +2220,40 @@ winston.log(&#x27;info&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&
 winston.info(&#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
 ...</pre></li>
     </ul>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.winston.Container" id="apidoc.module.winston.Container">module winston.Container</a></h1>
-    
-    
+
+
     <h2>
         <a href="#apidoc.element.winston.Container.Container" id="apidoc.element.winston.Container.Container">
         function <span class="apidocSignatureSpan">winston.</span>Container
@@ -2290,14 +2291,14 @@ container.add(&#x27;category1&#x27;, {
   file: {
 ...</pre></li>
     </ul>
-    
-    
+
+
 </div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.winston.Container.prototype" id="apidoc.module.winston.Container.prototype">module winston.Container.prototype</a></h1>
-    
-    
+
+
     <h2>
         <a href="#apidoc.element.winston.Container.prototype._delete" id="apidoc.element.winston.Container.prototype._delete">
         function <span class="apidocSignatureSpan">winston.Container.prototype.</span>_delete
@@ -2310,9 +2311,9 @@ container.add(&#x27;category1&#x27;, {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Container.prototype.add" id="apidoc.element.winston.Container.prototype.add">
         function <span class="apidocSignatureSpan">winston.Container.prototype.</span>add
@@ -2372,8 +2373,8 @@ winston.level = &#x27;debug&#x27;;
 winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
 ```
 
-By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()\
- methods:
+By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
+methods:
 
 ``` js
 winston.<span class="apidocCodeKeywordSpan">add</span>(winston.transports.File, { filename: &#x27;somefile.log&#x27; });
@@ -2386,9 +2387,9 @@ Or do it with one call to configure():
 winston.configure({
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Container.prototype.close" id="apidoc.element.winston.Container.prototype.close">
         function <span class="apidocSignatureSpan">winston.Container.prototype.</span>close
@@ -2414,9 +2415,9 @@ winston.configure({
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Container.prototype.get" id="apidoc.element.winston.Container.prototype.get">
         function <span class="apidocSignatureSpan">winston.Container.prototype.</span>get
@@ -2489,9 +2490,9 @@ If you prefer to manage the `Container` yourself you can simply instantiate one:
 ``` js
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Container.prototype.has" id="apidoc.element.winston.Container.prototype.has">
         function <span class="apidocSignatureSpan">winston.Container.prototype.</span>has
@@ -2504,14 +2505,14 @@ If you prefer to manage the `Container` yourself you can simply instantiate one:
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
+
+
 </div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.winston.Logger" id="apidoc.module.winston.Logger">module winston.Logger</a></h1>
-    
-    
+
+
     <h2>
         <a href="#apidoc.element.winston.Logger.Logger" id="apidoc.element.winston.Logger.Logger">
         function <span class="apidocSignatureSpan">winston.</span>Logger
@@ -2540,9 +2541,9 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
 });
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Logger.super_" id="apidoc.element.winston.Logger.super_">
         function <span class="apidocSignatureSpan">winston.Logger.</span>super_
@@ -2555,14 +2556,14 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
+
+
 </div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.winston.Logger.prototype" id="apidoc.module.winston.Logger.prototype">module winston.Logger.prototype</a></h1>
-    
-    
+
+
     <h2>
         <a href="#apidoc.element.winston.Logger.prototype._getExceptionHandlers" id="apidoc.element.winston.Logger.prototype._getExceptionHandlers">
         function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>_getExceptionHandlers
@@ -2581,9 +2582,9 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Logger.prototype._onError" id="apidoc.element.winston.Logger.prototype._onError">
         function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>_onError
@@ -2598,9 +2599,9 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Logger.prototype._uncaughtException" id="apidoc.element.winston.Logger.prototype._uncaughtException">
         function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>_uncaughtException
@@ -2654,9 +2655,9 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Logger.prototype.add" id="apidoc.element.winston.Logger.prototype.add">
         function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>add
@@ -2700,8 +2701,8 @@ winston.level = &#x27;debug&#x27;;
 winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
 ```
 
-By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()\
- methods:
+By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
+methods:
 
 ``` js
 winston.<span class="apidocCodeKeywordSpan">add</span>(winston.transports.File, { filename: &#x27;somefile.log&#x27; });
@@ -2714,9 +2715,9 @@ Or do it with one call to configure():
 winston.configure({
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Logger.prototype.clear" id="apidoc.element.winston.Logger.prototype.clear">
         function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>clear
@@ -2731,9 +2732,9 @@ winston.configure({
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Logger.prototype.cli" id="apidoc.element.winston.Logger.prototype.cli">
         function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>cli
@@ -2761,7 +2762,7 @@ info:   Retrieved packages from npm
 warn:   No additional dependencies found
 ```
 
-Configuring output for this style is easy, just use the `.<span class="apidocCodeKeywordSpan">cli</span>()` method on `winston` \
+Configuring output for this style is easy, just use the `.<span class="apidocCodeKeywordSpan">cli</span>()` method on `winston`
 or an instance of `winston.Logger`:
 
 ``` js
@@ -2772,9 +2773,9 @@ var winston = require(&#x27;winston&#x27;);
 //
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Logger.prototype.close" id="apidoc.element.winston.Logger.prototype.close">
         function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>close
@@ -2796,9 +2797,9 @@ var winston = require(&#x27;winston&#x27;);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Logger.prototype.configure" id="apidoc.element.winston.Logger.prototype.configure">
         function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>configure
@@ -2879,13 +2880,13 @@ Or do it with one call to configure():
   });
 ```
 
-For more documentation about working with each individual transport supported by Winston see the [Winston Transports](docs/trans\
-ports.md) document.
+For more documentation about working with each individual transport supported by Winston see the [Winston Transports](docs/transports
+.md) document.
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Logger.prototype.handleExceptions" id="apidoc.element.winston.Logger.prototype.handleExceptions">
         function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>handleExceptions
@@ -2925,10 +2926,10 @@ ports.md) document.
 
 ### Handling Uncaught Exceptions with winston
 
-With `winston`, it is possible to catch and log `uncaughtException` events from your process. There are two distinct ways of ena\
-bling this functionality either through the default winston logger or your own logger instance.
+With `winston`, it is possible to catch and log `uncaughtException` events from your process. There are two distinct ways of enabling
+ this functionality either through the default winston logger or your own logger instance.
 
-If you want to use this feature with the default logger simply call `.<span class="apidocCodeKeywordSpan">handleExceptions</span\
+If you want to use this feature with the default logger simply call `.<span class="apidocCodeKeywordSpan">handleExceptions</span
 >()` with a transport instance.
 
 ``` js
@@ -2938,9 +2939,9 @@ If you want to use this feature with the default logger simply call `.<span clas
 winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/exceptions.log&#x27; }))
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Logger.prototype.log" id="apidoc.element.winston.Logger.prototype.log">
         function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>log
@@ -3091,7 +3092,7 @@ winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/e
     <li>example usage<pre class="apidocCodePre">...
 
 ### Using the Default Logger
-The default logger is accessible through the winston module directly. Any method that you could call on an instance of a logger \
+The default logger is accessible through the winston module directly. Any method that you could call on an instance of a logger
 is available on the default logger:
 
 ``` js
@@ -3104,13 +3105,13 @@ is available on the default logger:
   winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
 ```
 
-By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()\
- methods:
+By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
+methods:
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Logger.prototype.profile" id="apidoc.element.winston.Logger.prototype.profile">
         function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>profile
@@ -3160,9 +3161,9 @@ setTimeout(function () {
   winston.profile(&#x27;test&#x27;);
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Logger.prototype.query" id="apidoc.element.winston.Logger.prototype.query">
         function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>query
@@ -3266,9 +3267,9 @@ setTimeout(function () {
 ```
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Logger.prototype.remove" id="apidoc.element.winston.Logger.prototype.remove">
         function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>remove
@@ -3302,8 +3303,8 @@ setTimeout(function () {
 winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
 ```
 
-By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()\
- methods:
+By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
+methods:
 
 ``` js
 winston.add(winston.transports.File, { filename: &#x27;somefile.log&#x27; });
@@ -3317,9 +3318,9 @@ winston.configure({
   transports: [
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Logger.prototype.setLevels" id="apidoc.element.winston.Logger.prototype.setLevels">
         function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>setLevels
@@ -3332,7 +3333,7 @@ winston.configure({
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-As of 0.2.0, winston supports customizable logging levels, defaulting to [npm][0] style logging levels. Changing logging levels \
+As of 0.2.0, winston supports customizable logging levels, defaulting to [npm][0] style logging levels. Changing logging levels
 is easy:
 
 ``` js
@@ -3348,9 +3349,9 @@ is easy:
 ```
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Logger.prototype.startTimer" id="apidoc.element.winston.Logger.prototype.startTimer">
         function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>startTimer
@@ -3363,9 +3364,9 @@ is easy:
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Logger.prototype.stream" id="apidoc.element.winston.Logger.prototype.stream">
         function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>stream
@@ -3442,9 +3443,9 @@ Streaming allows you to stream your logs back from your chosen transport.
 ### Handling Uncaught Exceptions with winston
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Logger.prototype.unhandleExceptions" id="apidoc.element.winston.Logger.prototype.unhandleExceptions">
         function <span class="apidocSignatureSpan">winston.Logger.prototype.</span>unhandleExceptions
@@ -3477,14 +3478,14 @@ Streaming allows you to stream your logs back from your chosen transport.
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
+
+
 </div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.winston.Transport" id="apidoc.module.winston.Transport">module winston.Transport</a></h1>
-    
-    
+
+
     <h2>
         <a href="#apidoc.element.winston.Transport.Transport" id="apidoc.element.winston.Transport.Transport">
         function <span class="apidocSignatureSpan">winston.</span>Transport
@@ -3514,9 +3515,9 @@ Streaming allows you to stream your logs back from your chosen transport.
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Transport.super_" id="apidoc.element.winston.Transport.super_">
         function <span class="apidocSignatureSpan">winston.Transport.</span>super_
@@ -3529,14 +3530,14 @@ Streaming allows you to stream your logs back from your chosen transport.
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
+
+
 </div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.winston.Transport.prototype" id="apidoc.module.winston.Transport.prototype">module winston.Transport.prototype</a></h1>
-    
-    
+
+
     <h2>
         <a href="#apidoc.element.winston.Transport.prototype.formatQuery" id="apidoc.element.winston.Transport.prototype.formatQuery">
         function <span class="apidocSignatureSpan">winston.Transport.prototype.</span>formatQuery
@@ -3549,9 +3550,9 @@ Streaming allows you to stream your logs back from your chosen transport.
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Transport.prototype.formatResults" id="apidoc.element.winston.Transport.prototype.formatResults">
         function <span class="apidocSignatureSpan">winston.Transport.prototype.</span>formatResults
@@ -3564,9 +3565,9 @@ Streaming allows you to stream your logs back from your chosen transport.
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Transport.prototype.logException" id="apidoc.element.winston.Transport.prototype.logException">
         function <span class="apidocSignatureSpan">winston.Transport.prototype.</span>logException
@@ -3597,9 +3598,9 @@ Streaming allows you to stream your logs back from your chosen transport.
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.Transport.prototype.normalizeQuery" id="apidoc.element.winston.Transport.prototype.normalizeQuery">
         function <span class="apidocSignatureSpan">winston.Transport.prototype.</span>normalizeQuery
@@ -3644,14 +3645,14 @@ Streaming allows you to stream your logs back from your chosen transport.
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
+
+
 </div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.winston.config" id="apidoc.module.winston.config">module winston.config</a></h1>
-    
-    
+
+
     <h2>
         <a href="#apidoc.element.winston.config.addColors" id="apidoc.element.winston.config.addColors">
         function <span class="apidocSignatureSpan">winston.config.</span>addColors
@@ -3664,8 +3665,8 @@ Streaming allows you to stream your logs back from your chosen transport.
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-Although there is slight repetition in this data structure, it enables simple encapsulation if you do not want to have colors. I\
-f you do wish to have colors, in addition to passing the levels to the Logger itself, you must make winston aware of them:
+Although there is slight repetition in this data structure, it enables simple encapsulation if you do not want to have colors. If
+ you do wish to have colors, in addition to passing the levels to the Logger itself, you must make winston aware of them:
 
 ``` js
   //
@@ -3681,9 +3682,9 @@ This enables transports with the &#x27;colorize&#x27; option set to appropriatel
 ### Events and Callbacks in Winston
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.config.colorize" id="apidoc.element.winston.config.colorize">
         function <span class="apidocSignatureSpan">winston.config.</span>colorize
@@ -3715,22 +3716,22 @@ This enables transports with the &#x27;colorize&#x27; option set to appropriatel
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
 </div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.winston.exception" id="apidoc.module.winston.exception">module winston.exception</a></h1>
-    
-    
+
+
     <h2>
         <a href="#apidoc.element.winston.exception.getAllInfo" id="apidoc.element.winston.exception.getAllInfo">
         function <span class="apidocSignatureSpan">winston.exception.</span>getAllInfo
@@ -3749,9 +3750,9 @@ This enables transports with the &#x27;colorize&#x27; option set to appropriatel
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.exception.getOsInfo" id="apidoc.element.winston.exception.getOsInfo">
         function <span class="apidocSignatureSpan">winston.exception.</span>getOsInfo
@@ -3767,9 +3768,9 @@ This enables transports with the &#x27;colorize&#x27; option set to appropriatel
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.exception.getProcessInfo" id="apidoc.element.winston.exception.getProcessInfo">
         function <span class="apidocSignatureSpan">winston.exception.</span>getProcessInfo
@@ -3791,9 +3792,9 @@ This enables transports with the &#x27;colorize&#x27; option set to appropriatel
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.exception.getTrace" id="apidoc.element.winston.exception.getTrace">
         function <span class="apidocSignatureSpan">winston.exception.</span>getTrace
@@ -3816,14 +3817,14 @@ This enables transports with the &#x27;colorize&#x27; option set to appropriatel
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
+
+
 </div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.winston.transports" id="apidoc.module.winston.transports">module winston.transports</a></h1>
-    
-    
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.Console" id="apidoc.element.winston.transports.Console">
         function <span class="apidocSignatureSpan">winston.transports.</span>Console
@@ -3900,9 +3901,9 @@ var logger = new winston.Logger({
 ```
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.File" id="apidoc.element.winston.transports.File">
         function <span class="apidocSignatureSpan">winston.transports.</span>File
@@ -3999,8 +4000,8 @@ If you want to use this feature with the default logger simply call `.handleExce
 //
 // You can add a separate exception logger by passing it to `.handleExceptions`
 //
-winston.handleExceptions(new winston.transports.<span class="apidocCodeKeywordSpan">File</span>({ filename: &#x27;path/to/except\
-ions.log&#x27; }))
+winston.handleExceptions(new winston.transports.<span class="apidocCodeKeywordSpan">File</span>({ filename: &#x27;path/to/exceptions
+.log&#x27; }))
 
 //
 // Alternatively you can set `.handleExceptions` to true when adding transports to winston.
@@ -4010,9 +4011,9 @@ winston.add(winston.transports.File, {
   filename: &#x27;path/to/all-logs.log&#x27;,
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.Http" id="apidoc.element.winston.transports.Http">
         function <span class="apidocSignatureSpan">winston.transports.</span>Http
@@ -4038,9 +4039,9 @@ winston.add(winston.transports.File, {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.Memory" id="apidoc.element.winston.transports.Memory">
         function <span class="apidocSignatureSpan">winston.transports.</span>Memory
@@ -4071,14 +4072,14 @@ winston.add(winston.transports.File, {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
+
+
 </div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.winston.transports.Console" id="apidoc.module.winston.transports.Console">module winston.transports.Console</a></h1>
-    
-    
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.Console.Console" id="apidoc.element.winston.transports.Console.Console">
         function <span class="apidocSignatureSpan">winston.transports.</span>Console
@@ -4155,9 +4156,9 @@ var logger = new winston.Logger({
 ```
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.Console.super_" id="apidoc.element.winston.transports.Console.super_">
         function <span class="apidocSignatureSpan">winston.transports.Console.</span>super_
@@ -4187,14 +4188,14 @@ var logger = new winston.Logger({
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
+
+
 </div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.winston.transports.Console.prototype" id="apidoc.module.winston.transports.Console.prototype">module winston.transports.Console.prototype</a></h1>
-    
-    
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.Console.prototype.log" id="apidoc.element.winston.transports.Console.prototype.log">
         function <span class="apidocSignatureSpan">winston.transports.Console.prototype.</span>log
@@ -4245,7 +4246,7 @@ var logger = new winston.Logger({
     <li>example usage<pre class="apidocCodePre">...
 
 ### Using the Default Logger
-The default logger is accessible through the winston module directly. Any method that you could call on an instance of a logger \
+The default logger is accessible through the winston module directly. Any method that you could call on an instance of a logger
 is available on the default logger:
 
 ``` js
@@ -4258,20 +4259,20 @@ is available on the default logger:
   winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
 ```
 
-By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()\
- methods:
+By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
+methods:
 ...</pre></li>
     </ul>
-    
-    
-    
-    
+
+
+
+
 </div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.winston.transports.File" id="apidoc.module.winston.transports.File">module winston.transports.File</a></h1>
-    
-    
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.File.File" id="apidoc.element.winston.transports.File.File">
         function <span class="apidocSignatureSpan">winston.transports.</span>File
@@ -4368,8 +4369,8 @@ If you want to use this feature with the default logger simply call `.handleExce
 //
 // You can add a separate exception logger by passing it to `.handleExceptions`
 //
-winston.handleExceptions(new winston.transports.<span class="apidocCodeKeywordSpan">File</span>({ filename: &#x27;path/to/except\
-ions.log&#x27; }))
+winston.handleExceptions(new winston.transports.<span class="apidocCodeKeywordSpan">File</span>({ filename: &#x27;path/to/exceptions
+.log&#x27; }))
 
 //
 // Alternatively you can set `.handleExceptions` to true when adding transports to winston.
@@ -4379,9 +4380,9 @@ winston.add(winston.transports.File, {
   filename: &#x27;path/to/all-logs.log&#x27;,
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.File.super_" id="apidoc.element.winston.transports.File.super_">
         function <span class="apidocSignatureSpan">winston.transports.File.</span>super_
@@ -4411,14 +4412,14 @@ winston.add(winston.transports.File, {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
+
+
 </div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.winston.transports.File.prototype" id="apidoc.module.winston.transports.File.prototype">module winston.transports.File.prototype</a></h1>
-    
-    
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.File.prototype._checkMaxFilesIncrementing" id="apidoc.element.winston.transports.File.prototype._checkMaxFilesIncrementing">
         function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>_checkMaxFilesIncrementing
@@ -4449,9 +4450,9 @@ winston.add(winston.transports.File, {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.File.prototype._checkMaxFilesTailable" id="apidoc.element.winston.transports.File.prototype._checkMaxFilesTailable">
         function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>_checkMaxFilesTailable
@@ -4496,9 +4497,9 @@ winston.add(winston.transports.File, {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.File.prototype._createStream" id="apidoc.element.winston.transports.File.prototype._createStream">
         function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>_createStream
@@ -4605,9 +4606,9 @@ winston.add(winston.transports.File, {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.File.prototype._getFile" id="apidoc.element.winston.transports.File.prototype._getFile">
         function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>_getFile
@@ -4630,9 +4631,9 @@ winston.add(winston.transports.File, {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.File.prototype._incFile" id="apidoc.element.winston.transports.File.prototype._incFile">
         function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>_incFile
@@ -4656,9 +4657,9 @@ winston.add(winston.transports.File, {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.File.prototype._lazyDrain" id="apidoc.element.winston.transports.File.prototype._lazyDrain">
         function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>_lazyDrain
@@ -4680,9 +4681,9 @@ winston.add(winston.transports.File, {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.File.prototype._write" id="apidoc.element.winston.transports.File.prototype._write">
         function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>_write
@@ -4714,9 +4715,9 @@ winston.add(winston.transports.File, {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.File.prototype.close" id="apidoc.element.winston.transports.File.prototype.close">
         function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>close
@@ -4739,9 +4740,9 @@ winston.add(winston.transports.File, {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.File.prototype.flush" id="apidoc.element.winston.transports.File.prototype.flush">
         function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>flush
@@ -4790,9 +4791,9 @@ winston.add(winston.transports.File, {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.File.prototype.log" id="apidoc.element.winston.transports.File.prototype.log">
         function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>log
@@ -4869,7 +4870,7 @@ winston.add(winston.transports.File, {
     <li>example usage<pre class="apidocCodePre">...
 
 ### Using the Default Logger
-The default logger is accessible through the winston module directly. Any method that you could call on an instance of a logger \
+The default logger is accessible through the winston module directly. Any method that you could call on an instance of a logger
 is available on the default logger:
 
 ``` js
@@ -4882,13 +4883,13 @@ is available on the default logger:
   winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
 ```
 
-By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()\
- methods:
+By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
+methods:
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.File.prototype.open" id="apidoc.element.winston.transports.File.prototype.open">
         function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>open
@@ -4924,9 +4925,9 @@ By default, only the Console transport is set on the default logger. You can add
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.File.prototype.query" id="apidoc.element.winston.transports.File.prototype.query">
         function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>query
@@ -5051,9 +5052,9 @@ By default, only the Console transport is set on the default logger. You can add
 ```
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.File.prototype.stream" id="apidoc.element.winston.transports.File.prototype.stream">
         function <span class="apidocSignatureSpan">winston.transports.File.prototype.</span>stream
@@ -5106,16 +5107,16 @@ Streaming allows you to stream your logs back from your chosen transport.
 ### Handling Uncaught Exceptions with winston
 ...</pre></li>
     </ul>
-    
-    
-    
-    
+
+
+
+
 </div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.winston.transports.Http" id="apidoc.module.winston.transports.Http">module winston.transports.Http</a></h1>
-    
-    
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.Http.Http" id="apidoc.element.winston.transports.Http.Http">
         function <span class="apidocSignatureSpan">winston.transports.</span>Http
@@ -5141,9 +5142,9 @@ Streaming allows you to stream your logs back from your chosen transport.
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.Http.super_" id="apidoc.element.winston.transports.Http.super_">
         function <span class="apidocSignatureSpan">winston.transports.Http.</span>super_
@@ -5173,14 +5174,14 @@ Streaming allows you to stream your logs back from your chosen transport.
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
+
+
 </div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.winston.transports.Http.prototype" id="apidoc.module.winston.transports.Http.prototype">module winston.transports.Http.prototype</a></h1>
-    
-    
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.Http.prototype._request" id="apidoc.element.winston.transports.Http.prototype._request">
         function <span class="apidocSignatureSpan">winston.transports.Http.prototype.</span>_request
@@ -5228,9 +5229,9 @@ Streaming allows you to stream your logs back from your chosen transport.
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.Http.prototype.log" id="apidoc.element.winston.transports.Http.prototype.log">
         function <span class="apidocSignatureSpan">winston.transports.Http.prototype.</span>log
@@ -5284,7 +5285,7 @@ Streaming allows you to stream your logs back from your chosen transport.
     <li>example usage<pre class="apidocCodePre">...
 
 ### Using the Default Logger
-The default logger is accessible through the winston module directly. Any method that you could call on an instance of a logger \
+The default logger is accessible through the winston module directly. Any method that you could call on an instance of a logger
 is available on the default logger:
 
 ``` js
@@ -5297,13 +5298,13 @@ is available on the default logger:
   winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
 ```
 
-By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()\
- methods:
+By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
+methods:
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.Http.prototype.query" id="apidoc.element.winston.transports.Http.prototype.query">
         function <span class="apidocSignatureSpan">winston.transports.Http.prototype.</span>query
@@ -5371,9 +5372,9 @@ By default, only the Console transport is set on the default logger. You can add
 ```
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.Http.prototype.stream" id="apidoc.element.winston.transports.Http.prototype.stream">
         function <span class="apidocSignatureSpan">winston.transports.Http.prototype.</span>stream
@@ -5383,7 +5384,7 @@ By default, only the Console transport is set on the default logger. You can add
     <ul>
     <li>description and source-code<pre class="apidocCodePre">stream = function (options) {
   options = options || {};
-  
+
   var self = this,
       stream = new Stream,
       req,
@@ -5451,16 +5452,16 @@ Streaming allows you to stream your logs back from your chosen transport.
 ### Handling Uncaught Exceptions with winston
 ...</pre></li>
     </ul>
-    
-    
-    
-    
+
+
+
+
 </div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.winston.transports.Memory" id="apidoc.module.winston.transports.Memory">module winston.transports.Memory</a></h1>
-    
-    
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.Memory.Memory" id="apidoc.element.winston.transports.Memory.Memory">
         function <span class="apidocSignatureSpan">winston.transports.</span>Memory
@@ -5491,9 +5492,9 @@ Streaming allows you to stream your logs back from your chosen transport.
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.Memory.super_" id="apidoc.element.winston.transports.Memory.super_">
         function <span class="apidocSignatureSpan">winston.transports.Memory.</span>super_
@@ -5523,14 +5524,14 @@ Streaming allows you to stream your logs back from your chosen transport.
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
+
+
 </div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.winston.transports.Memory.prototype" id="apidoc.module.winston.transports.Memory.prototype">module winston.transports.Memory.prototype</a></h1>
-    
-    
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.Memory.prototype.clearLogs" id="apidoc.element.winston.transports.Memory.prototype.clearLogs">
         function <span class="apidocSignatureSpan">winston.transports.Memory.prototype.</span>clearLogs
@@ -5544,9 +5545,9 @@ Streaming allows you to stream your logs back from your chosen transport.
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.winston.transports.Memory.prototype.log" id="apidoc.element.winston.transports.Memory.prototype.log">
         function <span class="apidocSignatureSpan">winston.transports.Memory.prototype.</span>log
@@ -5590,7 +5591,7 @@ Streaming allows you to stream your logs back from your chosen transport.
     <li>example usage<pre class="apidocCodePre">...
 
 ### Using the Default Logger
-The default logger is accessible through the winston module directly. Any method that you could call on an instance of a logger \
+The default logger is accessible through the winston module directly. Any method that you could call on an instance of a logger
 is available on the default logger:
 
 ``` js
@@ -5603,14 +5604,14 @@ is available on the default logger:
   winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
 ```
 
-By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()\
- methods:
+By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
+methods:
 ...</pre></li>
     </ul>
-    
-    
-    
-    
+
+
+
+
 </div>
 
 <div class="apidocFooterDiv">
