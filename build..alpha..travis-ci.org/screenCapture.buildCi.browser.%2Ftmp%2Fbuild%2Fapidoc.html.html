@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/winstonjs/winston#readme"
-
-    >winston (v2.3.1)</a>
+    <a href="https://github.com/winstonjs/winston#readme">winston (v2.3.1)</a>
 </h1>
 <h4>A multi-transport async logging library for Node.js</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.winston">module winston</a><ol>
 
@@ -2588,25 +2581,25 @@
   this.default = {
     transports: [
       new winston.transports.Console({
-        level: &#x27;silly&#x27;,
+        level: 'silly',
         colorize: false
       })
     ]
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-category1.info(&#x27;logging from your IoC container-based logger&#x27;);
+category1.info('logging from your IoC container-based logger');
 ```
 
 If you prefer to manage the `Container` yourself you can simply instantiate one:
 
 ``` js
-var winston = require(&#x27;winston&#x27;),
+var winston = require('winston'),
     container = new winston.<span class="apidocCodeKeywordSpan">Container</span>();
 
-container.add(&#x27;category1&#x27;, {
+container.add('category1', {
   console: {
-    level: &#x27;silly&#x27;,
+    level: 'silly',
     colorize: true
   },
   file: {
@@ -2654,19 +2647,19 @@ container.add(&#x27;category1&#x27;, {
     //
     options.transports = existing ? existing.slice() : [];
 
-    if (options.transports.length === 0 &#x26;&#x26; (!options || !options[&#x27;console&#x27;])) {
+    if (options.transports.length === 0 &amp;&amp; (!options || !options['console'])) {
       options.transports.push(this.default.transports[0]);
     }
 
     Object.keys(options).forEach(function (key) {
-      if (key === &#x27;transports&#x27;) {
+      if (key === 'transports') {
         return;
       }
 
       var name = common.capitalize(key);
 
       if (!winston.transports[name]) {
-        throw new Error(&#x27;Cannot add unknown transport: &#x27; + name);
+        throw new Error('Cannot add unknown transport: ' + name);
       }
 
       var namedOptions = options[key];
@@ -2677,7 +2670,7 @@ container.add(&#x27;category1&#x27;, {
     options.id = id;
     this.loggers[id] = new winston.Logger(options);
 
-    this.loggers[id].on(&#x27;close&#x27;, function () {
+    this.loggers[id].on('close', function () {
         self._delete(id);
     });
   }
@@ -2752,10 +2745,10 @@ You can also wholesale reconfigure a `winston.Logger` instance using the `config
 
 ``` js
 var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
-  level: &#x27;info&#x27;,
+  level: 'info',
   transports: [
     new (winston.transports.Console)(),
-    new (winston.transports.File)({ filename: &#x27;somefile.log&#x27; })
+    new (winston.transports.File)({ filename: 'somefile.log' })
   ]
 });
 ...</pre></li>
@@ -2776,7 +2769,7 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
   return this._hnames.map(function (name) {
     return self.exceptionHandlers[name];
   }).concat(this._names.map(function (name) {
-    return self.transports[name].handleExceptions &#x26;&#x26; self.transports[name];
+    return self.transports[name].handleExceptions &amp;&amp; self.transports[name];
   })).filter(Boolean);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -2793,7 +2786,7 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
     <ul>
     <li>description and source-code<pre class="apidocCodePre">Logger.prototype._onError = function (transport, err) {
   if (this.emitErrs) {
-    this.emit(&#x27;error&#x27;, err, transport);
+    this.emit('error', err, transport);
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -2819,16 +2812,16 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
   //
   // Calculate if we should exit on this error
   //
-  doExit = typeof this.exitOnError === &#x27;function&#x27;
+  doExit = typeof this.exitOnError === 'function'
     ? this.exitOnError(err)
     : this.exitOnError;
 
   function logAndWait(transport, next) {
-    transport.logException(&#x27;uncaughtException: &#x27; + (err.message || err), info, next, err);
+    transport.logException('uncaughtException: ' + (err.message || err), info, next, err);
   }
 
   function gracefulExit() {
-    if (doExit &#x26;&#x26; !responded) {
+    if (doExit &amp;&amp; !responded) {
       //
       // Remark: Currently ignoring any exceptions from transports
       //         when catching uncaught exceptions.
@@ -2867,11 +2860,11 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
     <li>description and source-code<pre class="apidocCodePre">Logger.prototype.add = function (transport, options, created) {
   var instance = created ? transport : (new (transport)(options));
 
-  if (!instance.name &#x26;&#x26; !instance.log) {
-    throw new Error(&#x27;Unknown transport with no log() method&#x27;);
+  if (!instance.name &amp;&amp; !instance.log) {
+    throw new Error('Unknown transport with no log() method');
   }
   else if (this.transports[instance.name]) {
-    throw new Error(&#x27;Transport already attached: &#x27; + instance.name + &#x22;, assign a different name&#x22;);
+    throw new Error('Transport already attached: ' + instance.name + ", assign a different name");
   }
 
   this.transports[instance.name] = instance;
@@ -2882,14 +2875,14 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
   //
   instance._onError = this._onError.bind(this, instance)
   if (!created) {
-    instance.on(&#x27;error&#x27;, instance._onError);
+    instance.on('error', instance._onError);
   }
 
   //
   // If this transport has `handleExceptions` set to `true`
   // and we are not already handling exceptions, do so.
   //
-  if (instance.handleExceptions &#x26;&#x26; !this.catchExceptions) {
+  if (instance.handleExceptions &amp;&amp; !this.catchExceptions) {
     this.handleExceptions();
   }
 
@@ -2953,12 +2946,12 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
 
   this._names.forEach(function (name) {
     var transport = self.transports[name];
-    if (transport &#x26;&#x26; transport.close) {
+    if (transport &amp;&amp; transport.close) {
       transport.close();
     }
   });
 
-  this.emit(&#x27;close&#x27;);
+  this.emit('close');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -2979,7 +2972,7 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
   // If we have already been setup with transports
   // then remove them before proceeding.
   //
-  if (Array.isArray(this._names) &#x26;&#x26; this._names.length) {
+  if (Array.isArray(this._names) &amp;&amp; this._names.length) {
     this.clear();
   }
 
@@ -3006,10 +2999,10 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
   // Hoist other options onto this instance.
   //
   this.id          = options.id || null;
-  this.level       = options.level || &#x27;info&#x27;;
+  this.level       = options.level || 'info';
   this.emitErrs    = options.emitErrs || false;
   this.stripColors = options.stripColors || false;
-  this.exitOnError = typeof options.exitOnError !== &#x27;undefined&#x27;
+  this.exitOnError = typeof options.exitOnError !== 'undefined'
     ? options.exitOnError
     : true;
 
@@ -3020,7 +3013,7 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
   this.exceptionHandlers = {};
   this.profilers         = {};
 
-  [&#x27;rewriters&#x27;, &#x27;filters&#x27;].forEach(function (kind) {
+  ['rewriters', 'filters'].forEach(function (kind) {
     self[kind] = Array.isArray(options[kind])
       ? options[kind]
       : [];
@@ -3065,7 +3058,7 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
 
   if (!this.catchExceptions) {
     this.catchExceptions = this._uncaughtException.bind(this);
-    process.on(&#x27;uncaughtException&#x27;, this.catchExceptions);
+    process.on('uncaughtException', this.catchExceptions);
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -3093,9 +3086,9 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
   // Determining what is `meta` and what are arguments for string interpolation
   // turns out to be VERY tricky. e.g. in the cases like this:
   //
-  //    logger.info(&#x27;No interpolation symbols&#x27;, &#x27;ok&#x27;, &#x27;why&#x27;, { meta: &#x27;is-this&#x27; });
+  //    logger.info('No interpolation symbols', 'ok', 'why', { meta: 'is-this' });
   //
-  var callback  = typeof args[args.length - 1] === &#x27;function&#x27;
+  var callback  = typeof args[args.length - 1] === 'function'
     ? args.pop()
     : null;
 
@@ -3107,15 +3100,15 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
       callback(err);
     }
     else if (self.emitErrs) {
-      self.emit(&#x27;error&#x27;, err);
+      self.emit('error', err);
     }
   }
 
   if (this._names.length === 0) {
-    return onError(new Error(&#x27;Cannot log with no transports.&#x27;));
+    return onError(new Error('Cannot log with no transports.'));
   }
-  else if (typeof self.levels[level] === &#x27;undefined&#x27;) {
-    return onError(new Error(&#x27;Unknown log level: &#x27; + level));
+  else if (typeof self.levels[level] === 'undefined') {
+    return onError(new Error('Unknown log level: ' + level));
   }
 
   //
@@ -3125,8 +3118,8 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
   //
   var targets = this._names.filter(function (name) {
     var transport = self.transports[name];
-    return (transport.level &#x26;&#x26; self.levels[transport.level] &#x3e;= self.levels[level])
-      || (!transport.level &#x26;&#x26; self.levels[self.level] &#x3e;= self.levels[level]);
+    return (transport.level &amp;&amp; self.levels[transport.level] &gt;= self.levels[level])
+      || (!transport.level &amp;&amp; self.levels[self.level] &gt;= self.levels[level]);
   });
 
   if (!targets.length) {
@@ -3138,18 +3131,18 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
   // Determining what is `meta` and what are arguments for string interpolation
   // turns out to be VERY tricky. e.g. in the cases like this:
   //
-  //    logger.info(&#x27;No interpolation symbols&#x27;, &#x27;ok&#x27;, &#x27;why&#x27;, { meta: &#x27;is-this&#x27; });
+  //    logger.info('No interpolation symbols', 'ok', 'why', { meta: 'is-this' });
   //
   var msg, meta = {}, validMeta = false;
-  var hasFormat = args &#x26;&#x26; args[0] &#x26;&#x26; args[0].match &#x26;&#x26; args[0].match(formatRegExp) !== null;
+  var hasFormat = args &amp;&amp; args[0] &amp;&amp; args[0].match &amp;&amp; args[0].match(formatRegExp) !== null;
   var tokens = (hasFormat) ? args[0].match(formatRegExp) : [];
-  var ptokens = tokens.filter(function(t) { return t === &#x27;%%&#x27; });
-  if (((args.length - 1) - (tokens.length - ptokens.length)) &#x3e; 0 || args.length === 1) {
+  var ptokens = tokens.filter(function(t) { return t === '%%' });
+  if (((args.length - 1) - (tokens.length - ptokens.length)) &gt; 0 || args.length === 1) {
     // last arg is meta
     meta = args[args.length - 1] || args;
     var metaType = Object.prototype.toString.call(meta);
-    validMeta = metaType === &#x27;[object Object]&#x27; ||
-      metaType === &#x27;[object Error]&#x27; || metaType === &#x27;[object Array]&#x27;;
+    validMeta = metaType === '[object Object]' ||
+      metaType === '[object Error]' || metaType === '[object Array]';
     meta = validMeta ? args.pop() : {};
   }
   msg = util.format.apply(null, args);
@@ -3165,13 +3158,13 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
 
     callback = null;
     if (!err) {
-      self.emit(&#x27;logged&#x27;, level, msg, meta);
+      self.emit('logged', level, msg, meta);
     }
   }
 
   // If we should pad for levels, do so
   if (this.padLevels) {
-    msg = new Array(this.levelLength - level.length + 1).join(&#x27; &#x27;) + msg;
+    msg = new Array(this.levelLength - level.length + 1).join(' ') + msg;
   }
 
   this.rewriters.forEach(function (rewriter) {
@@ -3180,7 +3173,7 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
 
   this.filters.forEach(function(filter) {
     var filtered = filter(level, msg, meta, self);
-    if (typeof filtered === &#x27;string&#x27;)
+    if (typeof filtered === 'string')
       msg = filtered;
     else {
       msg = filtered.msg;
@@ -3189,7 +3182,7 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
   });
 
   //
-  // For consideration of terminal &#x27;color&#x22; programs like colors.js,
+  // For consideration of terminal 'color" programs like colors.js,
   // which can add ANSI escape color codes to strings, we destyle the
   // ANSI color escape codes when `this.stripColors` is set.
   //
@@ -3197,11 +3190,11 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
   //
   if (this.stripColors) {
     var code = /\u001b\[(\d+(;\d+)*)?m/g;
-    msg = (&#x27;&#x27; + msg).replace(code, &#x27;&#x27;);
+    msg = ('' + msg).replace(code, '');
   }
 
   //
-  // Log for each transport and emit &#x27;logging&#x27; event
+  // Log for each transport and emit 'logging' event
   //
   function transportLog(name, next) {
     var transport = self.transports[name];
@@ -3212,7 +3205,7 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
         return next();
       }
 
-      self.emit(&#x27;logging&#x27;, transport, level, msg, meta);
+      self.emit('logging', transport, level, msg, meta);
       next();
     });
   }
@@ -3242,8 +3235,8 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
 
     // Support variable arguments: msg, meta, callback
     args     = Array.prototype.slice.call(arguments);
-    callback = typeof args[args.length - 1] === &#x27;function&#x27; ? args.pop() : null;
-    meta     = typeof args[args.length - 1] === &#x27;object&#x27; ? args.pop() : {};
+    callback = typeof args[args.length - 1] === 'function' ? args.pop() : null;
+    meta     = typeof args[args.length - 1] === 'object' ? args.pop() : {};
     msg      = args.length === 2 ? args[1] : id;
 
     // Set the duration property of the metadata
@@ -3269,7 +3262,7 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">Logger.prototype.query = function (options, callback) {
-  if (typeof options === &#x27;function&#x27;) {
+  if (typeof options === 'function') {
     callback = options;
     options = {};
   }
@@ -3359,12 +3352,12 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">Logger.prototype.remove = function (transport) {
-  var name = typeof transport !== &#x27;string&#x27;
+  var name = typeof transport !== 'string'
     ? transport.name || transport.prototype.name
     : transport;
 
   if (!this.transports[name]) {
-    throw new Error(&#x27;Transport &#x27; + name + &#x27; not attached to this instance&#x27;);
+    throw new Error('Transport ' + name + ' not attached to this instance');
   }
 
   var instance = this.transports[name];
@@ -3376,7 +3369,7 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
   }
 
   if (instance._onError) {
-    instance.removeListener(&#x27;error&#x27;, instance._onError);
+    instance.removeListener('error', instance._onError);
   }
   return this;
 }</pre></li>
@@ -3432,7 +3425,7 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
   if (options.transport) {
     var transport = this.transports[options.transport];
     delete options.transport;
-    if (transport &#x26;&#x26; transport.stream) {
+    if (transport &amp;&amp; transport.stream) {
       return transport.stream(options);
     }
   }
@@ -3458,16 +3451,16 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
 
     streams.push(stream);
 
-    stream.on(&#x27;log&#x27;, function (log) {
+    stream.on('log', function (log) {
       log.transport = log.transport || [];
       log.transport.push(transport.name);
-      out.emit(&#x27;log&#x27;, log);
+      out.emit('log', log);
     });
 
-    stream.on(&#x27;error&#x27;, function (err) {
+    stream.on('error', function (err) {
       err.transport = err.transport || [];
       err.transport.push(transport.name);
-      out.emit(&#x27;error&#x27;, err);
+      out.emit('error', err);
     });
   });
 
@@ -3504,7 +3497,7 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
       }
     })
 
-    process.removeListener(&#x27;uncaughtException&#x27;, this.catchExceptions);
+    process.removeListener('uncaughtException', this.catchExceptions);
     this.catchExceptions = false;
   }
 }</pre></li>
@@ -3537,7 +3530,7 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
   this.level = options.level;
 
   this.handleExceptions = options.handleExceptions || false;
-  this.exceptionsLevel  = options.exceptionsLevel || &#x27;error&#x27;;
+  this.exceptionsLevel  = options.exceptionsLevel || 'error';
   this.humanReadableUnhandledException = options.humanReadableUnhandledException || false;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -3593,14 +3586,14 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
   function onComplete () {
     if (!called) {
       called = true;
-      self.removeListener(&#x27;logged&#x27;, onComplete);
-      self.removeListener(&#x27;error&#x27;, onComplete);
+      self.removeListener('logged', onComplete);
+      self.removeListener('error', onComplete);
       callback();
     }
   }
 
-  this.once(&#x27;logged&#x27;, onComplete);
-  this.once(&#x27;error&#x27;, onComplete);
+  this.once('logged', onComplete);
+  this.once('error', onComplete);
   this.log(self.exceptionsLevel, msg, meta, function () { });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -3631,19 +3624,19 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
 
   // now
   options.until = options.until || new Date;
-  if (typeof options.until !== &#x27;object&#x27;) {
+  if (typeof options.until !== 'object') {
     options.until = new Date(options.until);
   }
 
   // now - 24
   options.from = options.from || (options.until - (24 * 60 * 60 * 1000));
-  if (typeof options.from !== &#x27;object&#x27;) {
+  if (typeof options.from !== 'object') {
     options.from = new Date(options.from);
   }
 
 
-  // &#x27;asc&#x27; or &#x27;desc&#x27;
-  options.order = options.order || &#x27;desc&#x27;;
+  // 'asc' or 'desc'
+  options.order = options.order || 'desc';
 
   // which fields to select
   options.fields = options.fields;
@@ -3666,15 +3659,15 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
   return defaultLogger[method].apply(defaultLogger, arguments);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-winston.level = &#x27;debug&#x27;;
-winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
+winston.level = 'debug';
+winston.log('debug', 'Now my debug messages are written to console!');
 ```
 
 By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
 methods:
 
 ``` js
-winston.<span class="apidocCodeKeywordSpan">add</span>(winston.transports.File, { filename: &#x27;somefile.log&#x27; });
+winston.<span class="apidocCodeKeywordSpan">add</span>(winston.transports.File, { filename: 'somefile.log' });
 winston.remove(winston.transports.Console);
 ```
 
@@ -3709,7 +3702,7 @@ Although there is slight repetition in this data structure, it enables simple en
   winston.<span class="apidocCodeKeywordSpan">addColors</span>(myCustomLevels.colors);
 ```
 
-This enables transports with the &#x27;colorize&#x27; option set to appropriately color the output of custom levels.
+This enables transports with the 'colorize' option set to appropriately color the output of custom levels.
 
 ## Further Reading
 
@@ -3766,7 +3759,7 @@ Configuring output for this style is easy, just use the `.<span class="apidocCod
 or an instance of `winston.Logger`:
 
 ``` js
-var winston = require(&#x27;winston&#x27;);
+var winston = require('winston');
 
 //
 // Configure CLI output on the default logger
@@ -3813,10 +3806,10 @@ var winston = require(&#x27;winston&#x27;);
     else if (obj[i] instanceof Buffer) {
         copy[i] = obj[i].slice(0);
     }
-    else if (typeof obj[i] != &#x27;function&#x27;) {
+    else if (typeof obj[i] != 'function') {
       copy[i] = obj[i] instanceof Object ? exports.clone(obj[i]) : obj[i];
     }
-    else if (typeof obj[i] === &#x27;function&#x27;) {
+    else if (typeof obj[i] === 'function') {
       copy[i] = obj[i];
     }
   }
@@ -3836,17 +3829,17 @@ var winston = require(&#x27;winston&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">config.colorize = function (level, message) {
-  if (typeof message === &#x27;undefined&#x27;) message = level;
+  if (typeof message === 'undefined') message = level;
 
   var colorized = message;
   if (allColors[level] instanceof Array) {
-    for (var i = 0, l = allColors[level].length; i &#x3c; l; ++i) {
+    for (var i = 0, l = allColors[level].length; i &lt; l; ++i) {
       colorized = colors[allColors[level][i]](colorized);
     }
   }
   else if (allColors[level].match(/\s/)) {
     var colorArr = allColors[level].split(/\s+/);
-    for (var i = 0; i &#x3c; colorArr.length; ++i) {
+    for (var i = 0; i &lt; colorArr.length; ++i) {
       colorized = colors[colorArr[i]](colorized);
     }
     allColors[level] = colorArr;
@@ -3873,7 +3866,7 @@ var winston = require(&#x27;winston&#x27;);
   return defaultLogger[method].apply(defaultLogger, arguments);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  winston.add(winston.transports.File, { filename: &#x27;somefile.log&#x27; });
+  winston.add(winston.transports.File, { filename: 'somefile.log' });
   winston.remove(winston.transports.Console);
 ```
 
@@ -3882,7 +3875,7 @@ Or do it with one call to configure():
 ``` js
   winston.<span class="apidocCodeKeywordSpan">configure</span>({
     transports: [
-      new (winston.transports.File)({ filename: &#x27;somefile.log&#x27; })
+      new (winston.transports.File)({ filename: 'somefile.log' })
     ]
   });
 ```
@@ -3910,14 +3903,14 @@ For more documentation about working with each individual transport supported by
 ``` js
   var logger = new (winston.Logger)({
     transports: [
-      new (winston.transports.Console)({ level: &#x27;warn&#x27; }),
-      new (winston.transports.File)({ filename: &#x27;somefile.log&#x27;, level: &#x27;error&#x27; })
+      new (winston.transports.Console)({ level: 'warn' }),
+      new (winston.transports.File)({ filename: 'somefile.log', level: 'error' })
     ]
   });
-  logger.<span class="apidocCodeKeywordSpan">debug</span>(&#x22;Will not be logged in either transport!&#x22;);
-  logger.transports.console.level = &#x27;debug&#x27;;
-  logger.transports.file.level = &#x27;verbose&#x27;;
-  logger.verbose(&#x22;Will be logged in both transports!&#x22;);
+  logger.<span class="apidocCodeKeywordSpan">debug</span>("Will not be logged in either transport!");
+  logger.transports.console.level = 'debug';
+  logger.transports.file.level = 'verbose';
+  logger.verbose("Will be logged in both transports!");
 ```
 
 As of 0.2.0, winston supports customizable logging levels, defaulting to [npm][0] style logging levels. Changing logging levels
@@ -3940,20 +3933,20 @@ is easy:
   target.log.apply(target, args);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  logger.log(&#x27;debug&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-  logger.log(&#x27;verbose&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-  logger.log(&#x27;info&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-  logger.log(&#x27;warn&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-  logger.log(&#x27;error&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-  logger.info(&#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-  logger.warn(&#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-  logger.<span class="apidocCodeKeywordSpan">error</span>(&#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
+  logger.log('debug', "127.0.0.1 - there's no place like home");
+  logger.log('verbose', "127.0.0.1 - there's no place like home");
+  logger.log('info', "127.0.0.1 - there's no place like home");
+  logger.log('warn', "127.0.0.1 - there's no place like home");
+  logger.log('error', "127.0.0.1 - there's no place like home");
+  logger.info("127.0.0.1 - there's no place like home");
+  logger.warn("127.0.0.1 - there's no place like home");
+  logger.<span class="apidocCodeKeywordSpan">error</span>("127.0.0.1 - there's no place like home");
 
   //
   // Default logger
   //
-  winston.log(&#x27;info&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-  winston.info(&#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
+  winston.log('info', "127.0.0.1 - there's no place like home");
+  winston.info("127.0.0.1 - there's no place like home");
 ```
 ...</pre></li>
     </ul>
@@ -3973,7 +3966,7 @@ is easy:
     process: exception.getProcessInfo(),
     os:      exception.getOsInfo(),
     trace:   exception.getTrace(err),
-    stack:   err.stack &#x26;&#x26; err.stack.split(&#x27;\n&#x27;)
+    stack:   err.stack &amp;&amp; err.stack.split('\n')
   };
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -4082,14 +4075,13 @@ is easy:
 With `winston`, it is possible to catch and log `uncaughtException` events from your process. There are two distinct ways of enabling
  this functionality either through the default winston logger or your own logger instance.
 
-If you want to use this feature with the default logger simply call `.<span class="apidocCodeKeywordSpan">handleExceptions</span
->()` with a transport instance.
+If you want to use this feature with the default logger simply call `.<span class="apidocCodeKeywordSpan">handleExceptions</span>()` with a transport instance.
 
 ``` js
 //
 // You can add a separate exception logger by passing it to `.handleExceptions`
 //
-winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/exceptions.log&#x27; }))
+winston.handleExceptions(new winston.transports.File({ filename: 'path/to/exceptions.log' }))
 ...</pre></li>
     </ul>
 
@@ -4103,7 +4095,7 @@ winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/e
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">hash = function (str) {
-  return crypto.createHash(&#x27;sha1&#x27;).update(str).digest(&#x27;hex&#x27;);
+  return crypto.createHash('sha1').update(str).digest('hex');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -4128,13 +4120,13 @@ The default logger is accessible through the winston module directly. Any method
 is available on the default logger:
 
 ``` js
-  var winston = require(&#x27;winston&#x27;);
+  var winston = require('winston');
 
-  winston.log(&#x27;info&#x27;, &#x27;Hello distributed log files!&#x27;);
-  winston.<span class="apidocCodeKeywordSpan">info</span>(&#x27;Hello again distributed logs&#x27;);
+  winston.log('info', 'Hello distributed log files!');
+  winston.<span class="apidocCodeKeywordSpan">info</span>('Hello again distributed logs');
 
-  winston.level = &#x27;debug&#x27;;
-  winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
+  winston.level = 'debug';
+  winston.log('debug', 'Now my debug messages are written to console!');
 ```
 
 By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
@@ -4161,13 +4153,13 @@ The default logger is accessible through the winston module directly. Any method
 is available on the default logger:
 
 ``` js
-  var winston = require(&#x27;winston&#x27;);
+  var winston = require('winston');
 
-  winston.<span class="apidocCodeKeywordSpan">log</span>(&#x27;info&#x27;, &#x27;Hello distributed log files!&#x27;);
-  winston.info(&#x27;Hello again distributed logs&#x27;);
+  winston.<span class="apidocCodeKeywordSpan">log</span>('info', 'Hello distributed log files!');
+  winston.info('Hello again distributed logs');
 
-  winston.level = &#x27;debug&#x27;;
-  winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
+  winston.level = 'debug';
+  winston.log('debug', 'Now my debug messages are written to console!');
 ```
 
 By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
@@ -4210,17 +4202,17 @@ In addition to logging messages and metadata, winston also has a simple profilin
 
 ``` js
 //
-// Start profile of &#x27;test&#x27;
+// Start profile of 'test'
 // Remark: Consider using Date.now() with async operations
 //
-winston.<span class="apidocCodeKeywordSpan">profile</span>(&#x27;test&#x27;);
+winston.<span class="apidocCodeKeywordSpan">profile</span>('test');
 
 setTimeout(function () {
   //
-  // Stop profile of &#x27;test&#x27;. Logging will now take place:
-  //   &#x22;17 Jan 21:00:00 - info: test duration=1000ms&#x22;
+  // Stop profile of 'test'. Logging will now take place:
+  //   "17 Jan 21:00:00 - info: test duration=1000ms"
   //
-  winston.profile(&#x27;test&#x27;);
+  winston.profile('test');
 ...</pre></li>
     </ul>
 
@@ -4237,8 +4229,8 @@ setTimeout(function () {
   return defaultLogger[method].apply(defaultLogger, arguments);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    order: &#x27;desc&#x27;,
-    fields: [&#x27;message&#x27;]
+    order: 'desc',
+    fields: ['message']
   };
 
   //
@@ -4268,14 +4260,14 @@ setTimeout(function () {
   return defaultLogger[method].apply(defaultLogger, arguments);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
+winston.log('debug', 'Now my debug messages are written to console!');
 ```
 
 By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
 methods:
 
 ``` js
-winston.add(winston.transports.File, { filename: &#x27;somefile.log&#x27; });
+winston.add(winston.transports.File, { filename: 'somefile.log' });
 winston.<span class="apidocCodeKeywordSpan">remove</span>(winston.transports.Console);
 ```
 
@@ -4341,9 +4333,9 @@ this code after changing to the syslog levels:
 
 ``` js
 //
-// Logger does not have &#x27;silly&#x27; defined since that level is not in the syslog levels
+// Logger does not have 'silly' defined since that level is not in the syslog levels
 //
-logger.<span class="apidocCodeKeywordSpan">silly</span>(&#x27;some silly message&#x27;);
+logger.<span class="apidocCodeKeywordSpan">silly</span>('some silly message');
 ```
 
 ### Using Custom Logging Levels
@@ -4389,7 +4381,7 @@ Streaming allows you to stream your logs back from your chosen transport.
   //
   // Start at the end.
   //
-  winston.<span class="apidocCodeKeywordSpan">stream</span>({ start: -1 }).on(&#x27;log&#x27;, function(log) {
+  winston.<span class="apidocCodeKeywordSpan">stream</span>({ start: -1 }).on('log', function(log) {
     console.log(log);
   });
 ```
@@ -4416,7 +4408,7 @@ Streaming allows you to stream your logs back from your chosen transport.
   this.json         = options.json        || false;
   this.colorize     = options.colorize    || false;
   this.prettyPrint  = options.prettyPrint || false;
-  this.timestamp    = typeof options.timestamp !== &#x27;undefined&#x27; ? options.timestamp : false;
+  this.timestamp    = typeof options.timestamp !== 'undefined' ? options.timestamp : false;
   this.showLevel    = options.showLevel === undefined ? true : options.showLevel;
   this.label        = options.label       || null;
   this.logstash     = options.logstash    || false;
@@ -4434,27 +4426,27 @@ Streaming allows you to stream your logs back from your chosen transport.
   //
   // Convert stderrLevels into an Object for faster key-lookup times than an Array.
   //
-  // For backwards compatibility, stderrLevels defaults to [&#x27;error&#x27;, &#x27;debug&#x27;]
-  // or [&#x27;error&#x27;] depending on whether options.debugStdout is true.
+  // For backwards compatibility, stderrLevels defaults to ['error', 'debug']
+  // or ['error'] depending on whether options.debugStdout is true.
   //
   function setStderrLevels (levels, debugStdout) {
-    var defaultMsg = &#x27;Cannot have non-string elements in stderrLevels Array&#x27;;
+    var defaultMsg = 'Cannot have non-string elements in stderrLevels Array';
     if (debugStdout) {
       if (levels) {
         //
-        // Don&#x27;t allow setting both debugStdout and stderrLevels together,
+        // Don't allow setting both debugStdout and stderrLevels together,
         // since this could cause behaviour a programmer might not expect.
         //
-        throw new Error(&#x27;Cannot set debugStdout and stderrLevels together&#x27;);
+        throw new Error('Cannot set debugStdout and stderrLevels together');
       }
 
-      return common.stringArrayToSet([&#x27;error&#x27;], defaultMsg);
+      return common.stringArrayToSet(['error'], defaultMsg);
     }
 
     if (!levels) {
-      return common.stringArrayToSet([&#x27;error&#x27;, &#x27;debug&#x27;], defaultMsg);
+      return common.stringArrayToSet(['error', 'debug'], defaultMsg);
     } else if (!(Array.isArray(levels))) {
-      throw new Error(&#x27;Cannot set stderrLevels to type other than Array&#x27;);
+      throw new Error('Cannot set stderrLevels to type other than Array');
     }
 
     return common.stringArrayToSet(levels, defaultMsg);
@@ -4525,7 +4517,7 @@ var logger = new winston.Logger({
   // Emit the `logged` event immediately because the event loop
   // will not exit until `process.stdout` has drained anyway.
   //
-  self.emit(&#x27;logged&#x27;);
+  self.emit('logged');
   callback(null, true);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -4551,31 +4543,31 @@ var logger = new winston.Logger({
   function throwIf (target /*, illegal... */) {
     Array.prototype.slice.call(arguments, 1).forEach(function (name) {
       if (options[name]) {
-        throw new Error(&#x27;Cannot set &#x27; + name + &#x27; and &#x27; + target + &#x27;together&#x27;);
+        throw new Error('Cannot set ' + name + ' and ' + target + 'together');
       }
     });
   }
 
   if (options.filename || options.dirname) {
-    throwIf(&#x27;filename or dirname&#x27;, &#x27;stream&#x27;);
+    throwIf('filename or dirname', 'stream');
     this._basename = this.filename = options.filename
       ? path.basename(options.filename)
-      : &#x27;winston.log&#x27;;
+      : 'winston.log';
 
     this.dirname = options.dirname || path.dirname(options.filename);
-    this.options = options.options || { flags: &#x27;a&#x27; };
+    this.options = options.options || { flags: 'a' };
 
     //
-    // &#x22;24 bytes&#x22; is maybe a good value for logging lines.
+    // "24 bytes" is maybe a good value for logging lines.
     //
     this.options.highWaterMark = this.options.highWaterMark || 24;
   }
   else if (options.stream) {
-    throwIf(&#x27;stream&#x27;, &#x27;filename&#x27;, &#x27;maxsize&#x27;);
+    throwIf('stream', 'filename', 'maxsize');
     this._stream = options.stream;
     this._isStreams2 = isWritable(this._stream);
-    this._stream.on(&#x27;error&#x27;, function(error){
-      self.emit(&#x27;error&#x27;, error);
+    this._stream.on('error', function(error){
+      self.emit('error', error);
     });
     //
     // We need to listen for drain events when
@@ -4585,7 +4577,7 @@ var logger = new winston.Logger({
     this._stream.setMaxListeners(Infinity);
   }
   else {
-    throw new Error(&#x27;Cannot log to file without filename or stream.&#x27;);
+    throw new Error('Cannot log to file without filename or stream.');
   }
 
   this.json        = options.json !== false;
@@ -4629,15 +4621,15 @@ If you want to use this feature with the default logger simply call `.handleExce
 //
 // You can add a separate exception logger by passing it to `.handleExceptions`
 //
-winston.handleExceptions(new winston.<span class="apidocCodeKeywordSpan">transports.File</span>({ filename: &#x27;path/to/exceptions
-.log&#x27; }))
+winston.handleExceptions(new winston.<span class="apidocCodeKeywordSpan">transports.File</span>({ filename: 'path/to/exceptions
+.log' }))
 
 //
 // Alternatively you can set `.handleExceptions` to true when adding transports to winston.
 // You can use the `.humanReadableUnhandledException` option to get more readable exceptions.
 //
 winston.add(winston.transports.File, {
-  filename: &#x27;path/to/all-logs.log&#x27;,
+  filename: 'path/to/all-logs.log',
 ...</pre></li>
     </ul>
 
@@ -4656,19 +4648,19 @@ winston.add(winston.transports.File, {
 
   if (self.zippedArchive) {
     self._archive = path.join(self.dirname, basename +
-        ((self._created === 1) ? &#x27;&#x27; : self._created-1) +
+        ((self._created === 1) ? '' : self._created-1) +
         ext);
   }
 
 
   // Check for maxFiles option and delete file
-  if (!self.maxFiles || self._created &#x3c; self.maxFiles) {
+  if (!self.maxFiles || self._created &lt; self.maxFiles) {
     return callback();
   }
 
   oldest = self._created - self.maxFiles;
-  target = path.join(self.dirname, basename + (oldest !== 0 ? oldest : &#x27;&#x27;) + ext +
-    (self.zippedArchive ? &#x27;.gz&#x27; : &#x27;&#x27;));
+  target = path.join(self.dirname, basename + (oldest !== 0 ? oldest : '') + ext +
+    (self.zippedArchive ? '.gz' : ''));
   fs.unlink(target, callback);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -4690,18 +4682,18 @@ winston.add(winston.transports.File, {
   if (!this.maxFiles)
     return;
 
-  for (var x = this.maxFiles - 1; x &#x3e; 0; x--) {
+  for (var x = this.maxFiles - 1; x &gt; 0; x--) {
     tasks.push(function (i) {
       return function (cb) {
         var tmppath = path.join(self.dirname, basename + (i - 1) + ext +
-          (self.zippedArchive ? &#x27;.gz&#x27; : &#x27;&#x27;));
+          (self.zippedArchive ? '.gz' : ''));
         fs.exists(tmppath, function (exists) {
           if (!exists) {
             return cb(null);
           }
 
           fs.rename(tmppath, path.join(self.dirname, basename + i + ext +
-            (self.zippedArchive ? &#x27;.gz&#x27; : &#x27;&#x27;)), cb);
+            (self.zippedArchive ? '.gz' : '')), cb);
         });
       };
     }(x));
@@ -4751,13 +4743,13 @@ winston.add(winston.transports.File, {
       self.filename = target;
       self._stream = fs.createWriteStream(fullname, self.options);
       self._isStreams2 = isWritable(self._stream);
-      self._stream.on(&#x27;error&#x27;, function(error){
-        if (self._failures &#x3c; self.maxRetries) {
+      self._stream.on('error', function(error){
+        if (self._failures &lt; self.maxRetries) {
           self._createStream();
           self._failures++;
         }
         else {
-          self.emit(&#x27;error&#x27;, error);
+          self.emit('error', error);
         }
       });
       //
@@ -4772,14 +4764,14 @@ winston.add(winston.transports.File, {
       // then we can be sure we have finished opening
       // and thus can emit the `open` event.
       //
-      self.once(&#x27;flush&#x27;, function () {
-        // Because &#x22;flush&#x22; event is based on native stream &#x22;drain&#x22; event,
-        // logs could be written inbetween &#x22;self.flush()&#x22; and here
+      self.once('flush', function () {
+        // Because "flush" event is based on native stream "drain" event,
+        // logs could be written inbetween "self.flush()" and here
         // Therefore, we need to flush again to make sure everything is flushed
         self.flush();
 
         self.opening = false;
-        self.emit(&#x27;open&#x27;, fullname);
+        self.emit('open', fullname);
       });
       //
       // Remark: It is possible that in the time it has taken to find the
@@ -4796,24 +4788,24 @@ winston.add(winston.transports.File, {
         var gzip = zlib.createGzip();
 
         var inp = fs.createReadStream(String(self._archive));
-        var out = fs.createWriteStream(self._archive + &#x27;.gz&#x27;);
+        var out = fs.createWriteStream(self._archive + '.gz');
 
         inp.pipe(gzip).pipe(out);
 
         fs.unlink(String(self._archive));
-        self._archive = &#x27;&#x27;;
+        self._archive = '';
       }
     }
 
     fs.stat(fullname, function (err, stats) {
       if (err) {
-        if (err.code !== &#x27;ENOENT&#x27;) {
-          return self.emit(&#x27;error&#x27;, err);
+        if (err.code !== 'ENOENT') {
+          return self.emit('error', err);
         }
         return createAndFlush(0);
       }
 
-      if (!stats || (self.maxsize &#x26;&#x26; stats.size &#x3e;= self.maxsize)) {
+      if (!stats || (self.maxsize &amp;&amp; stats.size &gt;= self.maxsize)) {
         //
         // If `stats.size` is greater than the `maxsize` for
         // this instance then try again
@@ -4848,7 +4840,7 @@ winston.add(winston.transports.File, {
   // when combined with max files because the set of files to unlink
   // is never stored.
   //
-  return !this.tailable &#x26;&#x26; this._created
+  return !this.tailable &amp;&amp; this._created
     ? basename + (this.rotationFormat ? this.rotationFormat() : this._created) + ext
     : basename + ext;
 }</pre></li>
@@ -4893,12 +4885,12 @@ winston.add(winston.transports.File, {
     <li>description and source-code<pre class="apidocCodePre">transports.File.prototype._lazyDrain = function () {
   var self = this;
 
-  if (!this._draining &#x26;&#x26; this._stream) {
+  if (!this._draining &amp;&amp; this._stream) {
     this._draining = true;
 
-    this._stream.once(&#x27;drain&#x27;, function () {
+    this._stream.once('drain', function () {
       this._draining = false;
-      self.emit(&#x27;logged&#x27;);
+      self.emit('logged');
     });
   }
 }</pre></li>
@@ -4917,7 +4909,7 @@ winston.add(winston.transports.File, {
     <li>description and source-code<pre class="apidocCodePre">transports.File.prototype._write = function (data, callback) {
   if (this._isStreams2) {
     this._stream.write(data);
-    return callback &#x26;&#x26; process.nextTick(function () {
+    return callback &amp;&amp; process.nextTick(function () {
       callback(null, true);
     });
   }
@@ -4928,7 +4920,7 @@ winston.add(winston.transports.File, {
   var ret = this._stream.write(data);
   if (!callback) return;
   if (ret === false) {
-    return this._stream.once(&#x27;drain&#x27;, function() {
+    return this._stream.once('drain', function() {
       callback(null, true);
     });
   }
@@ -4955,9 +4947,9 @@ winston.add(winston.transports.File, {
     this._stream.end();
     this._stream.destroySoon();
 
-    this._stream.once(&#x27;finish&#x27;, function () {
-      self.emit(&#x27;flush&#x27;);
-      self.emit(&#x27;closed&#x27;);
+    this._stream.once('finish', function () {
+      self.emit('flush');
+      self.emit('closed');
     });
   }
 }</pre></li>
@@ -4976,11 +4968,11 @@ winston.add(winston.transports.File, {
     <li>description and source-code<pre class="apidocCodePre">transports.File.prototype.flush = function () {
   var self = this;
 
-  // If nothing to flush, there will be no &#x22;flush&#x22; event from native stream
-  // Thus, the &#x22;open&#x22; event will never be fired (see _createStream.createAndFlush function)
+  // If nothing to flush, there will be no "flush" event from native stream
+  // Thus, the "open" event will never be fired (see _createStream.createAndFlush function)
   // That means, self.opening will never set to false and no logs will be written to disk
   if (!this._buffer.length) {
-    return self.emit(&#x27;flush&#x27;);
+    return self.emit('flush');
   }
 
   //
@@ -5007,9 +4999,9 @@ winston.add(winston.transports.File, {
   // When the stream has drained we have flushed
   // our buffer.
   //
-  self._stream.once(&#x27;drain&#x27;, function () {
-    self.emit(&#x27;flush&#x27;);
-    self.emit(&#x27;logged&#x27;);
+  self._stream.once('drain', function () {
+    self.emit('flush');
+    self.emit('logged');
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -5030,18 +5022,18 @@ winston.add(winston.transports.File, {
   }
 
   //
-  // If failures exceeds maxRetries then we can&#x27;t access the
+  // If failures exceeds maxRetries then we can't access the
   // stream. In this case we need to perform a noop and return
   // an error.
   //
-  if (this._failures &#x3e;= this.maxRetries) {
-    return callback(new Error(&#x27;Transport is in a failed state.&#x27;));
+  if (this._failures &gt;= this.maxRetries) {
+    return callback(new Error('Transport is in a failed state.'));
   }
 
   var self = this;
 
-  if (typeof msg !== &#x27;string&#x27;) {
-    msg = &#x27;&#x27; + msg;
+  if (typeof msg !== 'string') {
+    msg = '' + msg;
   }
 
   var output = common.log({
@@ -5061,7 +5053,7 @@ winston.add(winston.transports.File, {
     humanReadableUnhandledException: this.humanReadableUnhandledException
   });
 
-  if (typeof output === &#x27;string&#x27;) {
+  if (typeof output === 'string') {
     output += this.eol;
   }
 
@@ -5111,7 +5103,7 @@ winston.add(winston.transports.File, {
     //
     return callback(true);
   }
-  else if (!this._stream || (this.maxsize &#x26;&#x26; this._size &#x3e;= this.maxsize)) {
+  else if (!this._stream || (this.maxsize &amp;&amp; this._size &gt;= this.maxsize)) {
     //
     // If we dont have a stream or have exceeded our size, then create
     // the next stream and respond with a value indicating that
@@ -5141,38 +5133,38 @@ winston.add(winston.transports.File, {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">transports.File.prototype.query = function (options, callback) {
-  if (typeof options === &#x27;function&#x27;) {
+  if (typeof options === 'function') {
     callback = options;
     options = {};
   }
 
   var file = path.join(this.dirname, this.filename),
       options = this.normalizeQuery(options),
-      buff = &#x27;&#x27;,
+      buff = '',
       results = [],
       row = 0;
 
   var stream = fs.createReadStream(file, {
-    encoding: &#x27;utf8&#x27;
+    encoding: 'utf8'
   });
 
-  stream.on(&#x27;error&#x27;, function (err) {
+  stream.on('error', function (err) {
     if (stream.readable) {
       stream.destroy();
     }
     if (!callback) return;
-    return err.code !== &#x27;ENOENT&#x27;
+    return err.code !== 'ENOENT'
       ? callback(err)
       : callback(null, results);
   });
 
-  stream.on(&#x27;data&#x27;, function (data) {
+  stream.on('data', function (data) {
     var data = (buff + data).split(/\n+/),
         l = data.length - 1,
         i = 0;
 
-    for (; i &#x3c; l; i++) {
-      if (!options.start || row &#x3e;= options.start) {
+    for (; i &lt; l; i++) {
+      if (!options.start || row &gt;= options.start) {
         add(data[i]);
       }
       row++;
@@ -5181,9 +5173,9 @@ winston.add(winston.transports.File, {
     buff = data[l];
   });
 
-  stream.on(&#x27;close&#x27;, function () {
+  stream.on('close', function () {
     if (buff) add(buff, true);
-    if (options.order === &#x27;desc&#x27;) {
+    if (options.order === 'desc') {
       results = results.reverse();
     }
     if (callback) callback(null, results);
@@ -5195,14 +5187,14 @@ winston.add(winston.transports.File, {
       if (check(log)) push(log);
     } catch (e) {
       if (!attempt) {
-        stream.emit(&#x27;error&#x27;, e);
+        stream.emit('error', e);
       }
     }
   }
 
   function push(log) {
-    if (options.rows &#x26;&#x26; results.length &#x3e;= options.rows
-        &#x26;&#x26; options.order != &#x27;desc&#x27;) {
+    if (options.rows &amp;&amp; results.length &gt;= options.rows
+        &amp;&amp; options.order != 'desc') {
       if (stream.readable) {
         stream.destroy();
       }
@@ -5217,8 +5209,8 @@ winston.add(winston.transports.File, {
       log = obj;
     }
 
-    if (options.order === &#x27;desc&#x27;) {
-      if (results.length &#x3e;= options.rows) {
+    if (options.order === 'desc') {
+      if (results.length &gt;= options.rows) {
         results.shift();
       }
     }
@@ -5228,11 +5220,11 @@ winston.add(winston.transports.File, {
   function check(log) {
     if (!log) return;
 
-    if (typeof log !== &#x27;object&#x27;) return;
+    if (typeof log !== 'object') return;
 
     var time = new Date(log.timestamp);
-    if ((options.from &#x26;&#x26; time &#x3c; options.from)
-        || (options.until &#x26;&#x26; time &#x3e; options.until)) {
+    if ((options.from &amp;&amp; time &lt; options.from)
+        || (options.until &amp;&amp; time &gt; options.until)) {
       return;
     }
 
@@ -5264,15 +5256,15 @@ winston.add(winston.transports.File, {
   stream.destroy = common.tailFile(tail, function (err, line) {
 
     if(err){
-      return stream.emit(&#x27;error&#x27;,err);
+      return stream.emit('error',err);
     }
 
     try {
-      stream.emit(&#x27;data&#x27;, line);
+      stream.emit('data', line);
       line = JSON.parse(line);
-      stream.emit(&#x27;log&#x27;, line);
+      stream.emit('log', line);
     } catch (e) {
-      stream.emit(&#x27;error&#x27;, e);
+      stream.emit('error', e);
     }
   });
 
@@ -5294,12 +5286,12 @@ winston.add(winston.transports.File, {
   Transport.call(this, options);
   options = options || {};
 
-  this.name = &#x27;http&#x27;;
+  this.name = 'http';
   this.ssl = !!options.ssl;
-  this.host = options.host || &#x27;localhost&#x27;;
+  this.host = options.host || 'localhost';
   this.port = options.port;
   this.auth = options.auth;
-  this.path = options.path || &#x27;&#x27;;
+  this.path = options.path || '';
   this.agent = options.agent;
 
   if (!this.port) {
@@ -5322,7 +5314,7 @@ winston.add(winston.transports.File, {
   options = options || {};
 
   var auth = options.auth || this.auth,
-      path = options.path || this.path || &#x27;&#x27;,
+      path = options.path || this.path || '',
       req;
 
   delete options.auth;
@@ -5332,29 +5324,29 @@ winston.add(winston.transports.File, {
   req = (this.ssl ? https : http).request({
     host: this.host,
     port: this.port,
-    path: &#x27;/&#x27; + path.replace(/^\//, &#x27;&#x27;),
-    method: &#x27;POST&#x27;,
-    headers: { &#x27;Content-Type&#x27;: &#x27;application/json&#x27; },
+    path: '/' + path.replace(/^\//, ''),
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     agent: this.agent,
-    auth: (auth) ? auth.username + &#x27;:&#x27; + auth.password : &#x27;&#x27;
+    auth: (auth) ? auth.username + ':' + auth.password : ''
   });
 
-  req.on(&#x27;error&#x27;, callback);
-  req.on(&#x27;response&#x27;, function (res) {
-    var body = &#x27;&#x27;;
+  req.on('error', callback);
+  req.on('response', function (res) {
+    var body = '';
 
-    res.on(&#x27;data&#x27;, function (chunk) {
+    res.on('data', function (chunk) {
       body += chunk;
     });
 
-    res.on(&#x27;end&#x27;, function () {
+    res.on('end', function () {
       callback(null, res, body);
     });
 
     res.resume();
   });
 
-  req.end(new Buffer(JSON.stringify(options), &#x27;utf8&#x27;));
+  req.end(new Buffer(JSON.stringify(options), 'utf8'));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -5371,13 +5363,13 @@ winston.add(winston.transports.File, {
     <li>description and source-code<pre class="apidocCodePre">transports.Http.prototype.log = function (level, msg, meta, callback) {
   var self = this;
 
-  if (typeof meta === &#x27;function&#x27;) {
+  if (typeof meta === 'function') {
     callback = meta;
     meta = {};
   }
 
   var options = {
-    method: &#x27;collect&#x27;,
+    method: 'collect',
     params: {
       level: level,
       message: msg,
@@ -5398,15 +5390,15 @@ winston.add(winston.transports.File, {
   }
 
   this._request(options, function (err, res) {
-    if (res &#x26;&#x26; res.statusCode !== 200) {
-      err = new Error(&#x27;HTTP Status Code: &#x27; + res.statusCode);
+    if (res &amp;&amp; res.statusCode !== 200) {
+      err = new Error('HTTP Status Code: ' + res.statusCode);
     }
 
     if (err) return callback(err);
 
-    // TODO: emit &#x27;logged&#x27; correctly,
+    // TODO: emit 'logged' correctly,
     // keep track of pending logs.
-    self.emit(&#x27;logged&#x27;);
+    self.emit('logged');
 
     if (callback) callback(null, true);
   });
@@ -5424,7 +5416,7 @@ winston.add(winston.transports.File, {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">transports.Http.prototype.query = function (options, callback) {
-  if (typeof options === &#x27;function&#x27;) {
+  if (typeof options === 'function') {
     callback = options;
     options = {};
   }
@@ -5433,7 +5425,7 @@ winston.add(winston.transports.File, {
       options = this.normalizeQuery(options);
 
   options = {
-    method: &#x27;query&#x27;,
+    method: 'query',
     params: options
   };
 
@@ -5448,13 +5440,13 @@ winston.add(winston.transports.File, {
   }
 
   this._request(options, function (err, res, body) {
-    if (res &#x26;&#x26; res.statusCode !== 200) {
-      err = new Error(&#x27;HTTP Status Code: &#x27; + res.statusCode);
+    if (res &amp;&amp; res.statusCode !== 200) {
+      err = new Error('HTTP Status Code: ' + res.statusCode);
     }
 
     if (err) return callback(err);
 
-    if (typeof body === &#x27;string&#x27;) {
+    if (typeof body === 'string') {
       try {
         body = JSON.parse(body);
       } catch (e) {
@@ -5490,7 +5482,7 @@ winston.add(winston.transports.File, {
   };
 
   options = {
-    method: &#x27;stream&#x27;,
+    method: 'stream',
     params: options
   };
 
@@ -5505,26 +5497,26 @@ winston.add(winston.transports.File, {
   }
 
   req = this._request(options);
-  buff = &#x27;&#x27;;
+  buff = '';
 
-  req.on(&#x27;data&#x27;, function (data) {
+  req.on('data', function (data) {
     var data = (buff + data).split(/\n+/),
         l = data.length - 1,
         i = 0;
 
-    for (; i &#x3c; l; i++) {
+    for (; i &lt; l; i++) {
       try {
-        stream.emit(&#x27;log&#x27;, JSON.parse(data[i]));
+        stream.emit('log', JSON.parse(data[i]));
       } catch (e) {
-        stream.emit(&#x27;error&#x27;, e);
+        stream.emit('error', e);
       }
     }
 
     buff = data[l];
   });
 
-  req.on(&#x27;error&#x27;, function (err) {
-    stream.emit(&#x27;error&#x27;, err);
+  req.on('error', function (err) {
+    stream.emit('error', err);
   });
 
   return stream;
@@ -5551,7 +5543,7 @@ winston.add(winston.transports.File, {
   this.json        = options.json        || false;
   this.colorize    = options.colorize    || false;
   this.prettyPrint = options.prettyPrint || false;
-  this.timestamp   = typeof options.timestamp !== &#x27;undefined&#x27; ? options.timestamp : false;
+  this.timestamp   = typeof options.timestamp !== 'undefined' ? options.timestamp : false;
   this.showLevel   = options.showLevel === undefined ? true : options.showLevel;
   this.label       = options.label       || null;
   this.depth       = options.depth       || null;
@@ -5614,13 +5606,13 @@ winston.add(winston.transports.File, {
     humanReadableUnhandledException: this.humanReadableUnhandledException
   });
 
-  if (level === &#x27;error&#x27; || level === &#x27;debug&#x27;) {
+  if (level === 'error' || level === 'debug') {
     this.errorOutput.push(output);
   } else {
     this.writeOutput.push(output);
   }
 
-  self.emit(&#x27;logged&#x27;);
+  self.emit('logged');
   callback(null, true);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -5656,14 +5648,14 @@ winston.add(winston.transports.File, {
   target.log.apply(target, args);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    new (winston.transports.Console)({ level: &#x27;warn&#x27; }),
-    new (winston.transports.File)({ filename: &#x27;somefile.log&#x27;, level: &#x27;error&#x27; })
+    new (winston.transports.Console)({ level: 'warn' }),
+    new (winston.transports.File)({ filename: 'somefile.log', level: 'error' })
   ]
 });
-logger.debug(&#x22;Will not be logged in either transport!&#x22;);
-logger.transports.console.level = &#x27;debug&#x27;;
-logger.transports.file.level = &#x27;verbose&#x27;;
-logger.<span class="apidocCodeKeywordSpan">verbose</span>(&#x22;Will be logged in both transports!&#x22;);
+logger.debug("Will not be logged in either transport!");
+logger.transports.console.level = 'debug';
+logger.transports.file.level = 'verbose';
+logger.<span class="apidocCodeKeywordSpan">verbose</span>("Will be logged in both transports!");
 ```
 
 As of 0.2.0, winston supports customizable logging levels, defaulting to [npm][0] style logging levels. Changing logging levels
@@ -5690,21 +5682,21 @@ is easy:
   target.log.apply(target, args);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-logger.log(&#x27;silly&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-logger.log(&#x27;debug&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-logger.log(&#x27;verbose&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-logger.log(&#x27;info&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-logger.log(&#x27;warn&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-logger.log(&#x27;error&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-logger.info(&#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-logger.<span class="apidocCodeKeywordSpan">warn</span>(&#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-logger.error(&#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
+logger.log('silly', "127.0.0.1 - there's no place like home");
+logger.log('debug', "127.0.0.1 - there's no place like home");
+logger.log('verbose', "127.0.0.1 - there's no place like home");
+logger.log('info', "127.0.0.1 - there's no place like home");
+logger.log('warn', "127.0.0.1 - there's no place like home");
+logger.log('error', "127.0.0.1 - there's no place like home");
+logger.info("127.0.0.1 - there's no place like home");
+logger.<span class="apidocCodeKeywordSpan">warn</span>("127.0.0.1 - there's no place like home");
+logger.error("127.0.0.1 - there's no place like home");
 
 //
 // Default logger
 //
-winston.log(&#x27;info&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-winston.info(&#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
+winston.log('info', "127.0.0.1 - there's no place like home");
+winston.info("127.0.0.1 - there's no place like home");
 ...</pre></li>
     </ul>
 
@@ -5754,25 +5746,25 @@ winston.info(&#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
   this.default = {
     transports: [
       new winston.transports.Console({
-        level: &#x27;silly&#x27;,
+        level: 'silly',
         colorize: false
       })
     ]
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-category1.info(&#x27;logging from your IoC container-based logger&#x27;);
+category1.info('logging from your IoC container-based logger');
 ```
 
 If you prefer to manage the `Container` yourself you can simply instantiate one:
 
 ``` js
-var winston = require(&#x27;winston&#x27;),
+var winston = require('winston'),
     container = new winston.<span class="apidocCodeKeywordSpan">Container</span>();
 
-container.add(&#x27;category1&#x27;, {
+container.add('category1', {
   console: {
-    level: &#x27;silly&#x27;,
+    level: 'silly',
     colorize: true
   },
   file: {
@@ -5825,19 +5817,19 @@ container.add(&#x27;category1&#x27;, {
     //
     options.transports = existing ? existing.slice() : [];
 
-    if (options.transports.length === 0 &#x26;&#x26; (!options || !options[&#x27;console&#x27;])) {
+    if (options.transports.length === 0 &amp;&amp; (!options || !options['console'])) {
       options.transports.push(this.default.transports[0]);
     }
 
     Object.keys(options).forEach(function (key) {
-      if (key === &#x27;transports&#x27;) {
+      if (key === 'transports') {
         return;
       }
 
       var name = common.capitalize(key);
 
       if (!winston.transports[name]) {
-        throw new Error(&#x27;Cannot add unknown transport: &#x27; + name);
+        throw new Error('Cannot add unknown transport: ' + name);
       }
 
       var namedOptions = options[key];
@@ -5848,7 +5840,7 @@ container.add(&#x27;category1&#x27;, {
     options.id = id;
     this.loggers[id] = new winston.Logger(options);
 
-    this.loggers[id].on(&#x27;close&#x27;, function () {
+    this.loggers[id].on('close', function () {
         self._delete(id);
     });
   }
@@ -5856,15 +5848,15 @@ container.add(&#x27;category1&#x27;, {
   return this.loggers[id];
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-winston.level = &#x27;debug&#x27;;
-winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
+winston.level = 'debug';
+winston.log('debug', 'Now my debug messages are written to console!');
 ```
 
 By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
 methods:
 
 ``` js
-winston.<span class="apidocCodeKeywordSpan">add</span>(winston.transports.File, { filename: &#x27;somefile.log&#x27; });
+winston.<span class="apidocCodeKeywordSpan">add</span>(winston.transports.File, { filename: 'somefile.log' });
 winston.remove(winston.transports.Console);
 ```
 
@@ -5929,19 +5921,19 @@ winston.configure({
     //
     options.transports = existing ? existing.slice() : [];
 
-    if (options.transports.length === 0 &#x26;&#x26; (!options || !options[&#x27;console&#x27;])) {
+    if (options.transports.length === 0 &amp;&amp; (!options || !options['console'])) {
       options.transports.push(this.default.transports[0]);
     }
 
     Object.keys(options).forEach(function (key) {
-      if (key === &#x27;transports&#x27;) {
+      if (key === 'transports') {
         return;
       }
 
       var name = common.capitalize(key);
 
       if (!winston.transports[name]) {
-        throw new Error(&#x27;Cannot add unknown transport: &#x27; + name);
+        throw new Error('Cannot add unknown transport: ' + name);
       }
 
       var namedOptions = options[key];
@@ -5952,7 +5944,7 @@ winston.configure({
     options.id = id;
     this.loggers[id] = new winston.Logger(options);
 
-    this.loggers[id].on(&#x27;close&#x27;, function () {
+    this.loggers[id].on('close', function () {
         self._delete(id);
     });
   }
@@ -5962,14 +5954,14 @@ winston.configure({
     <li>example usage<pre class="apidocCodePre">...
 
 ``` js
-  var winston = require(&#x27;winston&#x27;);
+  var winston = require('winston');
 
   //
   // Grab your preconfigured logger
   //
-  var category1 = winston.loggers.<span class="apidocCodeKeywordSpan">get</span>(&#x27;category1&#x27;);
+  var category1 = winston.loggers.<span class="apidocCodeKeywordSpan">get</span>('category1');
 
-  category1.info(&#x27;logging from your IoC container-based logger&#x27;);
+  category1.info('logging from your IoC container-based logger');
 ```
 
 If you prefer to manage the `Container` yourself you can simply instantiate one:
@@ -6044,19 +6036,19 @@ If you prefer to manage the `Container` yourself you can simply instantiate one:
     //
     options.transports = existing ? existing.slice() : [];
 
-    if (options.transports.length === 0 &#x26;&#x26; (!options || !options[&#x27;console&#x27;])) {
+    if (options.transports.length === 0 &amp;&amp; (!options || !options['console'])) {
       options.transports.push(this.default.transports[0]);
     }
 
     Object.keys(options).forEach(function (key) {
-      if (key === &#x27;transports&#x27;) {
+      if (key === 'transports') {
         return;
       }
 
       var name = common.capitalize(key);
 
       if (!winston.transports[name]) {
-        throw new Error(&#x27;Cannot add unknown transport: &#x27; + name);
+        throw new Error('Cannot add unknown transport: ' + name);
       }
 
       var namedOptions = options[key];
@@ -6067,7 +6059,7 @@ If you prefer to manage the `Container` yourself you can simply instantiate one:
     options.id = id;
     this.loggers[id] = new winston.Logger(options);
 
-    this.loggers[id].on(&#x27;close&#x27;, function () {
+    this.loggers[id].on('close', function () {
         self._delete(id);
     });
   }
@@ -6075,15 +6067,15 @@ If you prefer to manage the `Container` yourself you can simply instantiate one:
   return this.loggers[id];
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-winston.level = &#x27;debug&#x27;;
-winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
+winston.level = 'debug';
+winston.log('debug', 'Now my debug messages are written to console!');
 ```
 
 By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
 methods:
 
 ``` js
-winston.<span class="apidocCodeKeywordSpan">add</span>(winston.transports.File, { filename: &#x27;somefile.log&#x27; });
+winston.<span class="apidocCodeKeywordSpan">add</span>(winston.transports.File, { filename: 'somefile.log' });
 winston.remove(winston.transports.Console);
 ```
 
@@ -6174,10 +6166,10 @@ You can also wholesale reconfigure a `winston.Logger` instance using the `config
 
 ``` js
 var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
-  level: &#x27;info&#x27;,
+  level: 'info',
   transports: [
     new (winston.transports.Console)(),
-    new (winston.transports.File)({ filename: &#x27;somefile.log&#x27; })
+    new (winston.transports.File)({ filename: 'somefile.log' })
   ]
 });
 ...</pre></li>
@@ -6218,7 +6210,7 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
   return this._hnames.map(function (name) {
     return self.exceptionHandlers[name];
   }).concat(this._names.map(function (name) {
-    return self.transports[name].handleExceptions &#x26;&#x26; self.transports[name];
+    return self.transports[name].handleExceptions &amp;&amp; self.transports[name];
   })).filter(Boolean);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -6235,7 +6227,7 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_onError = function (transport, err) {
   if (this.emitErrs) {
-    this.emit(&#x27;error&#x27;, err, transport);
+    this.emit('error', err, transport);
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -6261,16 +6253,16 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
   //
   // Calculate if we should exit on this error
   //
-  doExit = typeof this.exitOnError === &#x27;function&#x27;
+  doExit = typeof this.exitOnError === 'function'
     ? this.exitOnError(err)
     : this.exitOnError;
 
   function logAndWait(transport, next) {
-    transport.logException(&#x27;uncaughtException: &#x27; + (err.message || err), info, next, err);
+    transport.logException('uncaughtException: ' + (err.message || err), info, next, err);
   }
 
   function gracefulExit() {
-    if (doExit &#x26;&#x26; !responded) {
+    if (doExit &amp;&amp; !responded) {
       //
       // Remark: Currently ignoring any exceptions from transports
       //         when catching uncaught exceptions.
@@ -6309,11 +6301,11 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
     <li>description and source-code<pre class="apidocCodePre">add = function (transport, options, created) {
   var instance = created ? transport : (new (transport)(options));
 
-  if (!instance.name &#x26;&#x26; !instance.log) {
-    throw new Error(&#x27;Unknown transport with no log() method&#x27;);
+  if (!instance.name &amp;&amp; !instance.log) {
+    throw new Error('Unknown transport with no log() method');
   }
   else if (this.transports[instance.name]) {
-    throw new Error(&#x27;Transport already attached: &#x27; + instance.name + &#x22;, assign a different name&#x22;);
+    throw new Error('Transport already attached: ' + instance.name + ", assign a different name");
   }
 
   this.transports[instance.name] = instance;
@@ -6324,29 +6316,29 @@ var logger = new winston.<span class="apidocCodeKeywordSpan">Logger</span>({
   //
   instance._onError = this._onError.bind(this, instance)
   if (!created) {
-    instance.on(&#x27;error&#x27;, instance._onError);
+    instance.on('error', instance._onError);
   }
 
   //
   // If this transport has `handleExceptions` set to `true`
   // and we are not already handling exceptions, do so.
   //
-  if (instance.handleExceptions &#x26;&#x26; !this.catchExceptions) {
+  if (instance.handleExceptions &amp;&amp; !this.catchExceptions) {
     this.handleExceptions();
   }
 
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-winston.level = &#x27;debug&#x27;;
-winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
+winston.level = 'debug';
+winston.log('debug', 'Now my debug messages are written to console!');
 ```
 
 By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
 methods:
 
 ``` js
-winston.<span class="apidocCodeKeywordSpan">add</span>(winston.transports.File, { filename: &#x27;somefile.log&#x27; });
+winston.<span class="apidocCodeKeywordSpan">add</span>(winston.transports.File, { filename: 'somefile.log' });
 winston.remove(winston.transports.Console);
 ```
 
@@ -6407,7 +6399,7 @@ Configuring output for this style is easy, just use the `.<span class="apidocCod
 or an instance of `winston.Logger`:
 
 ``` js
-var winston = require(&#x27;winston&#x27;);
+var winston = require('winston');
 
 //
 // Configure CLI output on the default logger
@@ -6429,12 +6421,12 @@ var winston = require(&#x27;winston&#x27;);
 
   this._names.forEach(function (name) {
     var transport = self.transports[name];
-    if (transport &#x26;&#x26; transport.close) {
+    if (transport &amp;&amp; transport.close) {
       transport.close();
     }
   });
 
-  this.emit(&#x27;close&#x27;);
+  this.emit('close');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -6455,7 +6447,7 @@ var winston = require(&#x27;winston&#x27;);
   // If we have already been setup with transports
   // then remove them before proceeding.
   //
-  if (Array.isArray(this._names) &#x26;&#x26; this._names.length) {
+  if (Array.isArray(this._names) &amp;&amp; this._names.length) {
     this.clear();
   }
 
@@ -6482,10 +6474,10 @@ var winston = require(&#x27;winston&#x27;);
   // Hoist other options onto this instance.
   //
   this.id          = options.id || null;
-  this.level       = options.level || &#x27;info&#x27;;
+  this.level       = options.level || 'info';
   this.emitErrs    = options.emitErrs || false;
   this.stripColors = options.stripColors || false;
-  this.exitOnError = typeof options.exitOnError !== &#x27;undefined&#x27;
+  this.exitOnError = typeof options.exitOnError !== 'undefined'
     ? options.exitOnError
     : true;
 
@@ -6496,7 +6488,7 @@ var winston = require(&#x27;winston&#x27;);
   this.exceptionHandlers = {};
   this.profilers         = {};
 
-  [&#x27;rewriters&#x27;, &#x27;filters&#x27;].forEach(function (kind) {
+  ['rewriters', 'filters'].forEach(function (kind) {
     self[kind] = Array.isArray(options[kind])
       ? options[kind]
       : [];
@@ -6507,7 +6499,7 @@ var winston = require(&#x27;winston&#x27;);
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  winston.add(winston.transports.File, { filename: &#x27;somefile.log&#x27; });
+  winston.add(winston.transports.File, { filename: 'somefile.log' });
   winston.remove(winston.transports.Console);
 ```
 
@@ -6516,7 +6508,7 @@ Or do it with one call to configure():
 ``` js
   winston.<span class="apidocCodeKeywordSpan">configure</span>({
     transports: [
-      new (winston.transports.File)({ filename: &#x27;somefile.log&#x27; })
+      new (winston.transports.File)({ filename: 'somefile.log' })
     ]
   });
 ```
@@ -6558,7 +6550,7 @@ For more documentation about working with each individual transport supported by
 
   if (!this.catchExceptions) {
     this.catchExceptions = this._uncaughtException.bind(this);
-    process.on(&#x27;uncaughtException&#x27;, this.catchExceptions);
+    process.on('uncaughtException', this.catchExceptions);
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -6570,14 +6562,13 @@ For more documentation about working with each individual transport supported by
 With `winston`, it is possible to catch and log `uncaughtException` events from your process. There are two distinct ways of enabling
  this functionality either through the default winston logger or your own logger instance.
 
-If you want to use this feature with the default logger simply call `.<span class="apidocCodeKeywordSpan">handleExceptions</span
->()` with a transport instance.
+If you want to use this feature with the default logger simply call `.<span class="apidocCodeKeywordSpan">handleExceptions</span>()` with a transport instance.
 
 ``` js
 //
 // You can add a separate exception logger by passing it to `.handleExceptions`
 //
-winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/exceptions.log&#x27; }))
+winston.handleExceptions(new winston.transports.File({ filename: 'path/to/exceptions.log' }))
 ...</pre></li>
     </ul>
 
@@ -6603,9 +6594,9 @@ winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/e
   // Determining what is `meta` and what are arguments for string interpolation
   // turns out to be VERY tricky. e.g. in the cases like this:
   //
-  //    logger.info(&#x27;No interpolation symbols&#x27;, &#x27;ok&#x27;, &#x27;why&#x27;, { meta: &#x27;is-this&#x27; });
+  //    logger.info('No interpolation symbols', 'ok', 'why', { meta: 'is-this' });
   //
-  var callback  = typeof args[args.length - 1] === &#x27;function&#x27;
+  var callback  = typeof args[args.length - 1] === 'function'
     ? args.pop()
     : null;
 
@@ -6617,15 +6608,15 @@ winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/e
       callback(err);
     }
     else if (self.emitErrs) {
-      self.emit(&#x27;error&#x27;, err);
+      self.emit('error', err);
     }
   }
 
   if (this._names.length === 0) {
-    return onError(new Error(&#x27;Cannot log with no transports.&#x27;));
+    return onError(new Error('Cannot log with no transports.'));
   }
-  else if (typeof self.levels[level] === &#x27;undefined&#x27;) {
-    return onError(new Error(&#x27;Unknown log level: &#x27; + level));
+  else if (typeof self.levels[level] === 'undefined') {
+    return onError(new Error('Unknown log level: ' + level));
   }
 
   //
@@ -6635,8 +6626,8 @@ winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/e
   //
   var targets = this._names.filter(function (name) {
     var transport = self.transports[name];
-    return (transport.level &#x26;&#x26; self.levels[transport.level] &#x3e;= self.levels[level])
-      || (!transport.level &#x26;&#x26; self.levels[self.level] &#x3e;= self.levels[level]);
+    return (transport.level &amp;&amp; self.levels[transport.level] &gt;= self.levels[level])
+      || (!transport.level &amp;&amp; self.levels[self.level] &gt;= self.levels[level]);
   });
 
   if (!targets.length) {
@@ -6648,18 +6639,18 @@ winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/e
   // Determining what is `meta` and what are arguments for string interpolation
   // turns out to be VERY tricky. e.g. in the cases like this:
   //
-  //    logger.info(&#x27;No interpolation symbols&#x27;, &#x27;ok&#x27;, &#x27;why&#x27;, { meta: &#x27;is-this&#x27; });
+  //    logger.info('No interpolation symbols', 'ok', 'why', { meta: 'is-this' });
   //
   var msg, meta = {}, validMeta = false;
-  var hasFormat = args &#x26;&#x26; args[0] &#x26;&#x26; args[0].match &#x26;&#x26; args[0].match(formatRegExp) !== null;
+  var hasFormat = args &amp;&amp; args[0] &amp;&amp; args[0].match &amp;&amp; args[0].match(formatRegExp) !== null;
   var tokens = (hasFormat) ? args[0].match(formatRegExp) : [];
-  var ptokens = tokens.filter(function(t) { return t === &#x27;%%&#x27; });
-  if (((args.length - 1) - (tokens.length - ptokens.length)) &#x3e; 0 || args.length === 1) {
+  var ptokens = tokens.filter(function(t) { return t === '%%' });
+  if (((args.length - 1) - (tokens.length - ptokens.length)) &gt; 0 || args.length === 1) {
     // last arg is meta
     meta = args[args.length - 1] || args;
     var metaType = Object.prototype.toString.call(meta);
-    validMeta = metaType === &#x27;[object Object]&#x27; ||
-      metaType === &#x27;[object Error]&#x27; || metaType === &#x27;[object Array]&#x27;;
+    validMeta = metaType === '[object Object]' ||
+      metaType === '[object Error]' || metaType === '[object Array]';
     meta = validMeta ? args.pop() : {};
   }
   msg = util.format.apply(null, args);
@@ -6675,13 +6666,13 @@ winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/e
 
     callback = null;
     if (!err) {
-      self.emit(&#x27;logged&#x27;, level, msg, meta);
+      self.emit('logged', level, msg, meta);
     }
   }
 
   // If we should pad for levels, do so
   if (this.padLevels) {
-    msg = new Array(this.levelLength - level.length + 1).join(&#x27; &#x27;) + msg;
+    msg = new Array(this.levelLength - level.length + 1).join(' ') + msg;
   }
 
   this.rewriters.forEach(function (rewriter) {
@@ -6690,7 +6681,7 @@ winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/e
 
   this.filters.forEach(function(filter) {
     var filtered = filter(level, msg, meta, self);
-    if (typeof filtered === &#x27;string&#x27;)
+    if (typeof filtered === 'string')
       msg = filtered;
     else {
       msg = filtered.msg;
@@ -6699,7 +6690,7 @@ winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/e
   });
 
   //
-  // For consideration of terminal &#x27;color&#x22; programs like colors.js,
+  // For consideration of terminal 'color" programs like colors.js,
   // which can add ANSI escape color codes to strings, we destyle the
   // ANSI color escape codes when `this.stripColors` is set.
   //
@@ -6707,11 +6698,11 @@ winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/e
   //
   if (this.stripColors) {
     var code = /\u001b\[(\d+(;\d+)*)?m/g;
-    msg = (&#x27;&#x27; + msg).replace(code, &#x27;&#x27;);
+    msg = ('' + msg).replace(code, '');
   }
 
   //
-  // Log for each transport and emit &#x27;logging&#x27; event
+  // Log for each transport and emit 'logging' event
   //
   function transportLog(name, next) {
     var transport = self.transports[name];
@@ -6722,7 +6713,7 @@ winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/e
         return next();
       }
 
-      self.emit(&#x27;logging&#x27;, transport, level, msg, meta);
+      self.emit('logging', transport, level, msg, meta);
       next();
     });
   }
@@ -6737,13 +6728,13 @@ The default logger is accessible through the winston module directly. Any method
 is available on the default logger:
 
 ``` js
-  var winston = require(&#x27;winston&#x27;);
+  var winston = require('winston');
 
-  winston.<span class="apidocCodeKeywordSpan">log</span>(&#x27;info&#x27;, &#x27;Hello distributed log files!&#x27;);
-  winston.info(&#x27;Hello again distributed logs&#x27;);
+  winston.<span class="apidocCodeKeywordSpan">log</span>('info', 'Hello distributed log files!');
+  winston.info('Hello again distributed logs');
 
-  winston.level = &#x27;debug&#x27;;
-  winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
+  winston.level = 'debug';
+  winston.log('debug', 'Now my debug messages are written to console!');
 ```
 
 By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
@@ -6770,8 +6761,8 @@ methods:
 
     // Support variable arguments: msg, meta, callback
     args     = Array.prototype.slice.call(arguments);
-    callback = typeof args[args.length - 1] === &#x27;function&#x27; ? args.pop() : null;
-    meta     = typeof args[args.length - 1] === &#x27;object&#x27; ? args.pop() : {};
+    callback = typeof args[args.length - 1] === 'function' ? args.pop() : null;
+    meta     = typeof args[args.length - 1] === 'object' ? args.pop() : {};
     msg      = args.length === 2 ? args[1] : id;
 
     // Set the duration property of the metadata
@@ -6789,17 +6780,17 @@ In addition to logging messages and metadata, winston also has a simple profilin
 
 ``` js
 //
-// Start profile of &#x27;test&#x27;
+// Start profile of 'test'
 // Remark: Consider using Date.now() with async operations
 //
-winston.<span class="apidocCodeKeywordSpan">profile</span>(&#x27;test&#x27;);
+winston.<span class="apidocCodeKeywordSpan">profile</span>('test');
 
 setTimeout(function () {
   //
-  // Stop profile of &#x27;test&#x27;. Logging will now take place:
-  //   &#x22;17 Jan 21:00:00 - info: test duration=1000ms&#x22;
+  // Stop profile of 'test'. Logging will now take place:
+  //   "17 Jan 21:00:00 - info: test duration=1000ms"
   //
-  winston.profile(&#x27;test&#x27;);
+  winston.profile('test');
 ...</pre></li>
     </ul>
 
@@ -6813,7 +6804,7 @@ setTimeout(function () {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">query = function (options, callback) {
-  if (typeof options === &#x27;function&#x27;) {
+  if (typeof options === 'function') {
     callback = options;
     options = {};
   }
@@ -6891,8 +6882,8 @@ setTimeout(function () {
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    order: &#x27;desc&#x27;,
-    fields: [&#x27;message&#x27;]
+    order: 'desc',
+    fields: ['message']
   };
 
   //
@@ -6919,12 +6910,12 @@ setTimeout(function () {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">remove = function (transport) {
-  var name = typeof transport !== &#x27;string&#x27;
+  var name = typeof transport !== 'string'
     ? transport.name || transport.prototype.name
     : transport;
 
   if (!this.transports[name]) {
-    throw new Error(&#x27;Transport &#x27; + name + &#x27; not attached to this instance&#x27;);
+    throw new Error('Transport ' + name + ' not attached to this instance');
   }
 
   var instance = this.transports[name];
@@ -6936,19 +6927,19 @@ setTimeout(function () {
   }
 
   if (instance._onError) {
-    instance.removeListener(&#x27;error&#x27;, instance._onError);
+    instance.removeListener('error', instance._onError);
   }
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
+winston.log('debug', 'Now my debug messages are written to console!');
 ```
 
 By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
 methods:
 
 ``` js
-winston.add(winston.transports.File, { filename: &#x27;somefile.log&#x27; });
+winston.add(winston.transports.File, { filename: 'somefile.log' });
 winston.<span class="apidocCodeKeywordSpan">remove</span>(winston.transports.Console);
 ```
 
@@ -7025,7 +7016,7 @@ is easy:
   if (options.transport) {
     var transport = this.transports[options.transport];
     delete options.transport;
-    if (transport &#x26;&#x26; transport.stream) {
+    if (transport &amp;&amp; transport.stream) {
       return transport.stream(options);
     }
   }
@@ -7051,16 +7042,16 @@ is easy:
 
     streams.push(stream);
 
-    stream.on(&#x27;log&#x27;, function (log) {
+    stream.on('log', function (log) {
       log.transport = log.transport || [];
       log.transport.push(transport.name);
-      out.emit(&#x27;log&#x27;, log);
+      out.emit('log', log);
     });
 
-    stream.on(&#x27;error&#x27;, function (err) {
+    stream.on('error', function (err) {
       err.transport = err.transport || [];
       err.transport.push(transport.name);
-      out.emit(&#x27;error&#x27;, err);
+      out.emit('error', err);
     });
   });
 
@@ -7074,7 +7065,7 @@ Streaming allows you to stream your logs back from your chosen transport.
   //
   // Start at the end.
   //
-  winston.<span class="apidocCodeKeywordSpan">stream</span>({ start: -1 }).on(&#x27;log&#x27;, function(log) {
+  winston.<span class="apidocCodeKeywordSpan">stream</span>({ start: -1 }).on('log', function(log) {
     console.log(log);
   });
 ```
@@ -7113,7 +7104,7 @@ Streaming allows you to stream your logs back from your chosen transport.
       }
     })
 
-    process.removeListener(&#x27;uncaughtException&#x27;, this.catchExceptions);
+    process.removeListener('uncaughtException', this.catchExceptions);
     this.catchExceptions = false;
   }
 }</pre></li>
@@ -7140,7 +7131,7 @@ Streaming allows you to stream your logs back from your chosen transport.
   return this._hnames.map(function (name) {
     return self.exceptionHandlers[name];
   }).concat(this._names.map(function (name) {
-    return self.transports[name].handleExceptions &#x26;&#x26; self.transports[name];
+    return self.transports[name].handleExceptions &amp;&amp; self.transports[name];
   })).filter(Boolean);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -7162,7 +7153,7 @@ Streaming allows you to stream your logs back from your chosen transport.
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_onError = function (transport, err) {
   if (this.emitErrs) {
-    this.emit(&#x27;error&#x27;, err, transport);
+    this.emit('error', err, transport);
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -7193,16 +7184,16 @@ Streaming allows you to stream your logs back from your chosen transport.
   //
   // Calculate if we should exit on this error
   //
-  doExit = typeof this.exitOnError === &#x27;function&#x27;
+  doExit = typeof this.exitOnError === 'function'
     ? this.exitOnError(err)
     : this.exitOnError;
 
   function logAndWait(transport, next) {
-    transport.logException(&#x27;uncaughtException: &#x27; + (err.message || err), info, next, err);
+    transport.logException('uncaughtException: ' + (err.message || err), info, next, err);
   }
 
   function gracefulExit() {
-    if (doExit &#x26;&#x26; !responded) {
+    if (doExit &amp;&amp; !responded) {
       //
       // Remark: Currently ignoring any exceptions from transports
       //         when catching uncaught exceptions.
@@ -7246,11 +7237,11 @@ Streaming allows you to stream your logs back from your chosen transport.
     <li>description and source-code<pre class="apidocCodePre">add = function (transport, options, created) {
   var instance = created ? transport : (new (transport)(options));
 
-  if (!instance.name &#x26;&#x26; !instance.log) {
-    throw new Error(&#x27;Unknown transport with no log() method&#x27;);
+  if (!instance.name &amp;&amp; !instance.log) {
+    throw new Error('Unknown transport with no log() method');
   }
   else if (this.transports[instance.name]) {
-    throw new Error(&#x27;Transport already attached: &#x27; + instance.name + &#x22;, assign a different name&#x22;);
+    throw new Error('Transport already attached: ' + instance.name + ", assign a different name");
   }
 
   this.transports[instance.name] = instance;
@@ -7261,29 +7252,29 @@ Streaming allows you to stream your logs back from your chosen transport.
   //
   instance._onError = this._onError.bind(this, instance)
   if (!created) {
-    instance.on(&#x27;error&#x27;, instance._onError);
+    instance.on('error', instance._onError);
   }
 
   //
   // If this transport has `handleExceptions` set to `true`
   // and we are not already handling exceptions, do so.
   //
-  if (instance.handleExceptions &#x26;&#x26; !this.catchExceptions) {
+  if (instance.handleExceptions &amp;&amp; !this.catchExceptions) {
     this.handleExceptions();
   }
 
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-winston.level = &#x27;debug&#x27;;
-winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
+winston.level = 'debug';
+winston.log('debug', 'Now my debug messages are written to console!');
 ```
 
 By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
 methods:
 
 ``` js
-winston.<span class="apidocCodeKeywordSpan">add</span>(winston.transports.File, { filename: &#x27;somefile.log&#x27; });
+winston.<span class="apidocCodeKeywordSpan">add</span>(winston.transports.File, { filename: 'somefile.log' });
 winston.remove(winston.transports.Console);
 ```
 
@@ -7354,7 +7345,7 @@ Configuring output for this style is easy, just use the `.<span class="apidocCod
 or an instance of `winston.Logger`:
 
 ``` js
-var winston = require(&#x27;winston&#x27;);
+var winston = require('winston');
 
 //
 // Configure CLI output on the default logger
@@ -7381,12 +7372,12 @@ var winston = require(&#x27;winston&#x27;);
 
   this._names.forEach(function (name) {
     var transport = self.transports[name];
-    if (transport &#x26;&#x26; transport.close) {
+    if (transport &amp;&amp; transport.close) {
       transport.close();
     }
   });
 
-  this.emit(&#x27;close&#x27;);
+  this.emit('close');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -7412,7 +7403,7 @@ var winston = require(&#x27;winston&#x27;);
   // If we have already been setup with transports
   // then remove them before proceeding.
   //
-  if (Array.isArray(this._names) &#x26;&#x26; this._names.length) {
+  if (Array.isArray(this._names) &amp;&amp; this._names.length) {
     this.clear();
   }
 
@@ -7439,10 +7430,10 @@ var winston = require(&#x27;winston&#x27;);
   // Hoist other options onto this instance.
   //
   this.id          = options.id || null;
-  this.level       = options.level || &#x27;info&#x27;;
+  this.level       = options.level || 'info';
   this.emitErrs    = options.emitErrs || false;
   this.stripColors = options.stripColors || false;
-  this.exitOnError = typeof options.exitOnError !== &#x27;undefined&#x27;
+  this.exitOnError = typeof options.exitOnError !== 'undefined'
     ? options.exitOnError
     : true;
 
@@ -7453,7 +7444,7 @@ var winston = require(&#x27;winston&#x27;);
   this.exceptionHandlers = {};
   this.profilers         = {};
 
-  [&#x27;rewriters&#x27;, &#x27;filters&#x27;].forEach(function (kind) {
+  ['rewriters', 'filters'].forEach(function (kind) {
     self[kind] = Array.isArray(options[kind])
       ? options[kind]
       : [];
@@ -7464,7 +7455,7 @@ var winston = require(&#x27;winston&#x27;);
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  winston.add(winston.transports.File, { filename: &#x27;somefile.log&#x27; });
+  winston.add(winston.transports.File, { filename: 'somefile.log' });
   winston.remove(winston.transports.Console);
 ```
 
@@ -7473,7 +7464,7 @@ Or do it with one call to configure():
 ``` js
   winston.<span class="apidocCodeKeywordSpan">configure</span>({
     transports: [
-      new (winston.transports.File)({ filename: &#x27;somefile.log&#x27; })
+      new (winston.transports.File)({ filename: 'somefile.log' })
     ]
   });
 ```
@@ -7520,7 +7511,7 @@ For more documentation about working with each individual transport supported by
 
   if (!this.catchExceptions) {
     this.catchExceptions = this._uncaughtException.bind(this);
-    process.on(&#x27;uncaughtException&#x27;, this.catchExceptions);
+    process.on('uncaughtException', this.catchExceptions);
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -7532,14 +7523,13 @@ For more documentation about working with each individual transport supported by
 With `winston`, it is possible to catch and log `uncaughtException` events from your process. There are two distinct ways of enabling
  this functionality either through the default winston logger or your own logger instance.
 
-If you want to use this feature with the default logger simply call `.<span class="apidocCodeKeywordSpan">handleExceptions</span
->()` with a transport instance.
+If you want to use this feature with the default logger simply call `.<span class="apidocCodeKeywordSpan">handleExceptions</span>()` with a transport instance.
 
 ``` js
 //
 // You can add a separate exception logger by passing it to `.handleExceptions`
 //
-winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/exceptions.log&#x27; }))
+winston.handleExceptions(new winston.transports.File({ filename: 'path/to/exceptions.log' }))
 ...</pre></li>
     </ul>
 
@@ -7570,9 +7560,9 @@ winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/e
   // Determining what is `meta` and what are arguments for string interpolation
   // turns out to be VERY tricky. e.g. in the cases like this:
   //
-  //    logger.info(&#x27;No interpolation symbols&#x27;, &#x27;ok&#x27;, &#x27;why&#x27;, { meta: &#x27;is-this&#x27; });
+  //    logger.info('No interpolation symbols', 'ok', 'why', { meta: 'is-this' });
   //
-  var callback  = typeof args[args.length - 1] === &#x27;function&#x27;
+  var callback  = typeof args[args.length - 1] === 'function'
     ? args.pop()
     : null;
 
@@ -7584,15 +7574,15 @@ winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/e
       callback(err);
     }
     else if (self.emitErrs) {
-      self.emit(&#x27;error&#x27;, err);
+      self.emit('error', err);
     }
   }
 
   if (this._names.length === 0) {
-    return onError(new Error(&#x27;Cannot log with no transports.&#x27;));
+    return onError(new Error('Cannot log with no transports.'));
   }
-  else if (typeof self.levels[level] === &#x27;undefined&#x27;) {
-    return onError(new Error(&#x27;Unknown log level: &#x27; + level));
+  else if (typeof self.levels[level] === 'undefined') {
+    return onError(new Error('Unknown log level: ' + level));
   }
 
   //
@@ -7602,8 +7592,8 @@ winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/e
   //
   var targets = this._names.filter(function (name) {
     var transport = self.transports[name];
-    return (transport.level &#x26;&#x26; self.levels[transport.level] &#x3e;= self.levels[level])
-      || (!transport.level &#x26;&#x26; self.levels[self.level] &#x3e;= self.levels[level]);
+    return (transport.level &amp;&amp; self.levels[transport.level] &gt;= self.levels[level])
+      || (!transport.level &amp;&amp; self.levels[self.level] &gt;= self.levels[level]);
   });
 
   if (!targets.length) {
@@ -7615,18 +7605,18 @@ winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/e
   // Determining what is `meta` and what are arguments for string interpolation
   // turns out to be VERY tricky. e.g. in the cases like this:
   //
-  //    logger.info(&#x27;No interpolation symbols&#x27;, &#x27;ok&#x27;, &#x27;why&#x27;, { meta: &#x27;is-this&#x27; });
+  //    logger.info('No interpolation symbols', 'ok', 'why', { meta: 'is-this' });
   //
   var msg, meta = {}, validMeta = false;
-  var hasFormat = args &#x26;&#x26; args[0] &#x26;&#x26; args[0].match &#x26;&#x26; args[0].match(formatRegExp) !== null;
+  var hasFormat = args &amp;&amp; args[0] &amp;&amp; args[0].match &amp;&amp; args[0].match(formatRegExp) !== null;
   var tokens = (hasFormat) ? args[0].match(formatRegExp) : [];
-  var ptokens = tokens.filter(function(t) { return t === &#x27;%%&#x27; });
-  if (((args.length - 1) - (tokens.length - ptokens.length)) &#x3e; 0 || args.length === 1) {
+  var ptokens = tokens.filter(function(t) { return t === '%%' });
+  if (((args.length - 1) - (tokens.length - ptokens.length)) &gt; 0 || args.length === 1) {
     // last arg is meta
     meta = args[args.length - 1] || args;
     var metaType = Object.prototype.toString.call(meta);
-    validMeta = metaType === &#x27;[object Object]&#x27; ||
-      metaType === &#x27;[object Error]&#x27; || metaType === &#x27;[object Array]&#x27;;
+    validMeta = metaType === '[object Object]' ||
+      metaType === '[object Error]' || metaType === '[object Array]';
     meta = validMeta ? args.pop() : {};
   }
   msg = util.format.apply(null, args);
@@ -7642,13 +7632,13 @@ winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/e
 
     callback = null;
     if (!err) {
-      self.emit(&#x27;logged&#x27;, level, msg, meta);
+      self.emit('logged', level, msg, meta);
     }
   }
 
   // If we should pad for levels, do so
   if (this.padLevels) {
-    msg = new Array(this.levelLength - level.length + 1).join(&#x27; &#x27;) + msg;
+    msg = new Array(this.levelLength - level.length + 1).join(' ') + msg;
   }
 
   this.rewriters.forEach(function (rewriter) {
@@ -7657,7 +7647,7 @@ winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/e
 
   this.filters.forEach(function(filter) {
     var filtered = filter(level, msg, meta, self);
-    if (typeof filtered === &#x27;string&#x27;)
+    if (typeof filtered === 'string')
       msg = filtered;
     else {
       msg = filtered.msg;
@@ -7666,7 +7656,7 @@ winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/e
   });
 
   //
-  // For consideration of terminal &#x27;color&#x22; programs like colors.js,
+  // For consideration of terminal 'color" programs like colors.js,
   // which can add ANSI escape color codes to strings, we destyle the
   // ANSI color escape codes when `this.stripColors` is set.
   //
@@ -7674,11 +7664,11 @@ winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/e
   //
   if (this.stripColors) {
     var code = /\u001b\[(\d+(;\d+)*)?m/g;
-    msg = (&#x27;&#x27; + msg).replace(code, &#x27;&#x27;);
+    msg = ('' + msg).replace(code, '');
   }
 
   //
-  // Log for each transport and emit &#x27;logging&#x27; event
+  // Log for each transport and emit 'logging' event
   //
   function transportLog(name, next) {
     var transport = self.transports[name];
@@ -7689,7 +7679,7 @@ winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/e
         return next();
       }
 
-      self.emit(&#x27;logging&#x27;, transport, level, msg, meta);
+      self.emit('logging', transport, level, msg, meta);
       next();
     });
   }
@@ -7704,13 +7694,13 @@ The default logger is accessible through the winston module directly. Any method
 is available on the default logger:
 
 ``` js
-  var winston = require(&#x27;winston&#x27;);
+  var winston = require('winston');
 
-  winston.<span class="apidocCodeKeywordSpan">log</span>(&#x27;info&#x27;, &#x27;Hello distributed log files!&#x27;);
-  winston.info(&#x27;Hello again distributed logs&#x27;);
+  winston.<span class="apidocCodeKeywordSpan">log</span>('info', 'Hello distributed log files!');
+  winston.info('Hello again distributed logs');
 
-  winston.level = &#x27;debug&#x27;;
-  winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
+  winston.level = 'debug';
+  winston.log('debug', 'Now my debug messages are written to console!');
 ```
 
 By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
@@ -7742,8 +7732,8 @@ methods:
 
     // Support variable arguments: msg, meta, callback
     args     = Array.prototype.slice.call(arguments);
-    callback = typeof args[args.length - 1] === &#x27;function&#x27; ? args.pop() : null;
-    meta     = typeof args[args.length - 1] === &#x27;object&#x27; ? args.pop() : {};
+    callback = typeof args[args.length - 1] === 'function' ? args.pop() : null;
+    meta     = typeof args[args.length - 1] === 'object' ? args.pop() : {};
     msg      = args.length === 2 ? args[1] : id;
 
     // Set the duration property of the metadata
@@ -7761,17 +7751,17 @@ In addition to logging messages and metadata, winston also has a simple profilin
 
 ``` js
 //
-// Start profile of &#x27;test&#x27;
+// Start profile of 'test'
 // Remark: Consider using Date.now() with async operations
 //
-winston.<span class="apidocCodeKeywordSpan">profile</span>(&#x27;test&#x27;);
+winston.<span class="apidocCodeKeywordSpan">profile</span>('test');
 
 setTimeout(function () {
   //
-  // Stop profile of &#x27;test&#x27;. Logging will now take place:
-  //   &#x22;17 Jan 21:00:00 - info: test duration=1000ms&#x22;
+  // Stop profile of 'test'. Logging will now take place:
+  //   "17 Jan 21:00:00 - info: test duration=1000ms"
   //
-  winston.profile(&#x27;test&#x27;);
+  winston.profile('test');
 ...</pre></li>
     </ul>
 
@@ -7790,7 +7780,7 @@ setTimeout(function () {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">query = function (options, callback) {
-  if (typeof options === &#x27;function&#x27;) {
+  if (typeof options === 'function') {
     callback = options;
     options = {};
   }
@@ -7868,8 +7858,8 @@ setTimeout(function () {
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    order: &#x27;desc&#x27;,
-    fields: [&#x27;message&#x27;]
+    order: 'desc',
+    fields: ['message']
   };
 
   //
@@ -7901,12 +7891,12 @@ setTimeout(function () {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">remove = function (transport) {
-  var name = typeof transport !== &#x27;string&#x27;
+  var name = typeof transport !== 'string'
     ? transport.name || transport.prototype.name
     : transport;
 
   if (!this.transports[name]) {
-    throw new Error(&#x27;Transport &#x27; + name + &#x27; not attached to this instance&#x27;);
+    throw new Error('Transport ' + name + ' not attached to this instance');
   }
 
   var instance = this.transports[name];
@@ -7918,19 +7908,19 @@ setTimeout(function () {
   }
 
   if (instance._onError) {
-    instance.removeListener(&#x27;error&#x27;, instance._onError);
+    instance.removeListener('error', instance._onError);
   }
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
+winston.log('debug', 'Now my debug messages are written to console!');
 ```
 
 By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
 methods:
 
 ``` js
-winston.add(winston.transports.File, { filename: &#x27;somefile.log&#x27; });
+winston.add(winston.transports.File, { filename: 'somefile.log' });
 winston.<span class="apidocCodeKeywordSpan">remove</span>(winston.transports.Console);
 ```
 
@@ -8022,7 +8012,7 @@ is easy:
   if (options.transport) {
     var transport = this.transports[options.transport];
     delete options.transport;
-    if (transport &#x26;&#x26; transport.stream) {
+    if (transport &amp;&amp; transport.stream) {
       return transport.stream(options);
     }
   }
@@ -8048,16 +8038,16 @@ is easy:
 
     streams.push(stream);
 
-    stream.on(&#x27;log&#x27;, function (log) {
+    stream.on('log', function (log) {
       log.transport = log.transport || [];
       log.transport.push(transport.name);
-      out.emit(&#x27;log&#x27;, log);
+      out.emit('log', log);
     });
 
-    stream.on(&#x27;error&#x27;, function (err) {
+    stream.on('error', function (err) {
       err.transport = err.transport || [];
       err.transport.push(transport.name);
-      out.emit(&#x27;error&#x27;, err);
+      out.emit('error', err);
     });
   });
 
@@ -8071,7 +8061,7 @@ Streaming allows you to stream your logs back from your chosen transport.
   //
   // Start at the end.
   //
-  winston.<span class="apidocCodeKeywordSpan">stream</span>({ start: -1 }).on(&#x27;log&#x27;, function(log) {
+  winston.<span class="apidocCodeKeywordSpan">stream</span>({ start: -1 }).on('log', function(log) {
     console.log(log);
   });
 ```
@@ -8115,7 +8105,7 @@ Streaming allows you to stream your logs back from your chosen transport.
       }
     })
 
-    process.removeListener(&#x27;uncaughtException&#x27;, this.catchExceptions);
+    process.removeListener('uncaughtException', this.catchExceptions);
     this.catchExceptions = false;
   }
 }</pre></li>
@@ -8153,7 +8143,7 @@ Streaming allows you to stream your logs back from your chosen transport.
   this.level = options.level;
 
   this.handleExceptions = options.handleExceptions || false;
-  this.exceptionsLevel  = options.exceptionsLevel || &#x27;error&#x27;;
+  this.exceptionsLevel  = options.exceptionsLevel || 'error';
   this.humanReadableUnhandledException = options.humanReadableUnhandledException || false;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -8229,14 +8219,14 @@ Streaming allows you to stream your logs back from your chosen transport.
   function onComplete () {
     if (!called) {
       called = true;
-      self.removeListener(&#x27;logged&#x27;, onComplete);
-      self.removeListener(&#x27;error&#x27;, onComplete);
+      self.removeListener('logged', onComplete);
+      self.removeListener('error', onComplete);
       callback();
     }
   }
 
-  this.once(&#x27;logged&#x27;, onComplete);
-  this.once(&#x27;error&#x27;, onComplete);
+  this.once('logged', onComplete);
+  this.once('error', onComplete);
   this.log(self.exceptionsLevel, msg, meta, function () { });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -8267,19 +8257,19 @@ Streaming allows you to stream your logs back from your chosen transport.
 
   // now
   options.until = options.until || new Date;
-  if (typeof options.until !== &#x27;object&#x27;) {
+  if (typeof options.until !== 'object') {
     options.until = new Date(options.until);
   }
 
   // now - 24
   options.from = options.from || (options.until - (24 * 60 * 60 * 1000));
-  if (typeof options.from !== &#x27;object&#x27;) {
+  if (typeof options.from !== 'object') {
     options.from = new Date(options.from);
   }
 
 
-  // &#x27;asc&#x27; or &#x27;desc&#x27;
-  options.order = options.order || &#x27;desc&#x27;;
+  // 'asc' or 'desc'
+  options.order = options.order || 'desc';
 
   // which fields to select
   options.fields = options.fields;
@@ -8354,14 +8344,14 @@ Streaming allows you to stream your logs back from your chosen transport.
   function onComplete () {
     if (!called) {
       called = true;
-      self.removeListener(&#x27;logged&#x27;, onComplete);
-      self.removeListener(&#x27;error&#x27;, onComplete);
+      self.removeListener('logged', onComplete);
+      self.removeListener('error', onComplete);
       callback();
     }
   }
 
-  this.once(&#x27;logged&#x27;, onComplete);
-  this.once(&#x27;error&#x27;, onComplete);
+  this.once('logged', onComplete);
+  this.once('error', onComplete);
   this.log(self.exceptionsLevel, msg, meta, function () { });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -8397,19 +8387,19 @@ Streaming allows you to stream your logs back from your chosen transport.
 
   // now
   options.until = options.until || new Date;
-  if (typeof options.until !== &#x27;object&#x27;) {
+  if (typeof options.until !== 'object') {
     options.until = new Date(options.until);
   }
 
   // now - 24
   options.from = options.from || (options.until - (24 * 60 * 60 * 1000));
-  if (typeof options.from !== &#x27;object&#x27;) {
+  if (typeof options.from !== 'object') {
     options.from = new Date(options.from);
   }
 
 
-  // &#x27;asc&#x27; or &#x27;desc&#x27;
-  options.order = options.order || &#x27;desc&#x27;;
+  // 'asc' or 'desc'
+  options.order = options.order || 'desc';
 
   // which fields to select
   options.fields = options.fields;
@@ -8437,15 +8427,15 @@ Streaming allows you to stream your logs back from your chosen transport.
   return defaultLogger[method].apply(defaultLogger, arguments);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-winston.level = &#x27;debug&#x27;;
-winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
+winston.level = 'debug';
+winston.log('debug', 'Now my debug messages are written to console!');
 ```
 
 By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
 methods:
 
 ``` js
-winston.<span class="apidocCodeKeywordSpan">add</span>(winston.transports.File, { filename: &#x27;somefile.log&#x27; });
+winston.<span class="apidocCodeKeywordSpan">add</span>(winston.transports.File, { filename: 'somefile.log' });
 winston.remove(winston.transports.Console);
 ```
 
@@ -8485,7 +8475,7 @@ Although there is slight repetition in this data structure, it enables simple en
   winston.<span class="apidocCodeKeywordSpan">addColors</span>(myCustomLevels.colors);
 ```
 
-This enables transports with the &#x27;colorize&#x27; option set to appropriately color the output of custom levels.
+This enables transports with the 'colorize' option set to appropriately color the output of custom levels.
 
 ## Further Reading
 
@@ -8552,7 +8542,7 @@ Configuring output for this style is easy, just use the `.<span class="apidocCod
 or an instance of `winston.Logger`:
 
 ``` js
-var winston = require(&#x27;winston&#x27;);
+var winston = require('winston');
 
 //
 // Configure CLI output on the default logger
@@ -8604,10 +8594,10 @@ var winston = require(&#x27;winston&#x27;);
     else if (obj[i] instanceof Buffer) {
         copy[i] = obj[i].slice(0);
     }
-    else if (typeof obj[i] != &#x27;function&#x27;) {
+    else if (typeof obj[i] != 'function') {
       copy[i] = obj[i] instanceof Object ? exports.clone(obj[i]) : obj[i];
     }
-    else if (typeof obj[i] === &#x27;function&#x27;) {
+    else if (typeof obj[i] === 'function') {
       copy[i] = obj[i];
     }
   }
@@ -8646,7 +8636,7 @@ Although there is slight repetition in this data structure, it enables simple en
   winston.<span class="apidocCodeKeywordSpan">addColors</span>(myCustomLevels.colors);
 ```
 
-This enables transports with the &#x27;colorize&#x27; option set to appropriately color the output of custom levels.
+This enables transports with the 'colorize' option set to appropriately color the output of custom levels.
 
 ## Further Reading
 
@@ -8664,17 +8654,17 @@ This enables transports with the &#x27;colorize&#x27; option set to appropriatel
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">colorize = function (level, message) {
-  if (typeof message === &#x27;undefined&#x27;) message = level;
+  if (typeof message === 'undefined') message = level;
 
   var colorized = message;
   if (allColors[level] instanceof Array) {
-    for (var i = 0, l = allColors[level].length; i &#x3c; l; ++i) {
+    for (var i = 0, l = allColors[level].length; i &lt; l; ++i) {
       colorized = colors[allColors[level][i]](colorized);
     }
   }
   else if (allColors[level].match(/\s/)) {
     var colorArr = allColors[level].split(/\s+/);
-    for (var i = 0; i &#x3c; colorArr.length; ++i) {
+    for (var i = 0; i &lt; colorArr.length; ++i) {
       colorized = colors[colorArr[i]](colorized);
     }
     allColors[level] = colorArr;
@@ -8711,17 +8701,17 @@ This enables transports with the &#x27;colorize&#x27; option set to appropriatel
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">colorize = function (level, message) {
-  if (typeof message === &#x27;undefined&#x27;) message = level;
+  if (typeof message === 'undefined') message = level;
 
   var colorized = message;
   if (allColors[level] instanceof Array) {
-    for (var i = 0, l = allColors[level].length; i &#x3c; l; ++i) {
+    for (var i = 0, l = allColors[level].length; i &lt; l; ++i) {
       colorized = colors[allColors[level][i]](colorized);
     }
   }
   else if (allColors[level].match(/\s/)) {
     var colorArr = allColors[level].split(/\s+/);
-    for (var i = 0; i &#x3c; colorArr.length; ++i) {
+    for (var i = 0; i &lt; colorArr.length; ++i) {
       colorized = colors[colorArr[i]](colorized);
     }
     allColors[level] = colorArr;
@@ -8753,7 +8743,7 @@ This enables transports with the &#x27;colorize&#x27; option set to appropriatel
   return defaultLogger[method].apply(defaultLogger, arguments);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  winston.add(winston.transports.File, { filename: &#x27;somefile.log&#x27; });
+  winston.add(winston.transports.File, { filename: 'somefile.log' });
   winston.remove(winston.transports.Console);
 ```
 
@@ -8762,7 +8752,7 @@ Or do it with one call to configure():
 ``` js
   winston.<span class="apidocCodeKeywordSpan">configure</span>({
     transports: [
-      new (winston.transports.File)({ filename: &#x27;somefile.log&#x27; })
+      new (winston.transports.File)({ filename: 'somefile.log' })
     ]
   });
 ```
@@ -8795,14 +8785,14 @@ For more documentation about working with each individual transport supported by
 ``` js
   var logger = new (winston.Logger)({
     transports: [
-      new (winston.transports.Console)({ level: &#x27;warn&#x27; }),
-      new (winston.transports.File)({ filename: &#x27;somefile.log&#x27;, level: &#x27;error&#x27; })
+      new (winston.transports.Console)({ level: 'warn' }),
+      new (winston.transports.File)({ filename: 'somefile.log', level: 'error' })
     ]
   });
-  logger.<span class="apidocCodeKeywordSpan">debug</span>(&#x22;Will not be logged in either transport!&#x22;);
-  logger.transports.console.level = &#x27;debug&#x27;;
-  logger.transports.file.level = &#x27;verbose&#x27;;
-  logger.verbose(&#x22;Will be logged in both transports!&#x22;);
+  logger.<span class="apidocCodeKeywordSpan">debug</span>("Will not be logged in either transport!");
+  logger.transports.console.level = 'debug';
+  logger.transports.file.level = 'verbose';
+  logger.verbose("Will be logged in both transports!");
 ```
 
 As of 0.2.0, winston supports customizable logging levels, defaulting to [npm][0] style logging levels. Changing logging levels
@@ -8830,20 +8820,20 @@ is easy:
   target.log.apply(target, args);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  logger.log(&#x27;debug&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-  logger.log(&#x27;verbose&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-  logger.log(&#x27;info&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-  logger.log(&#x27;warn&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-  logger.log(&#x27;error&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-  logger.info(&#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-  logger.warn(&#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-  logger.<span class="apidocCodeKeywordSpan">error</span>(&#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
+  logger.log('debug', "127.0.0.1 - there's no place like home");
+  logger.log('verbose', "127.0.0.1 - there's no place like home");
+  logger.log('info', "127.0.0.1 - there's no place like home");
+  logger.log('warn', "127.0.0.1 - there's no place like home");
+  logger.log('error', "127.0.0.1 - there's no place like home");
+  logger.info("127.0.0.1 - there's no place like home");
+  logger.warn("127.0.0.1 - there's no place like home");
+  logger.<span class="apidocCodeKeywordSpan">error</span>("127.0.0.1 - there's no place like home");
 
   //
   // Default logger
   //
-  winston.log(&#x27;info&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-  winston.info(&#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
+  winston.log('info', "127.0.0.1 - there's no place like home");
+  winston.info("127.0.0.1 - there's no place like home");
 ```
 ...</pre></li>
     </ul>
@@ -8868,7 +8858,7 @@ is easy:
     process: exception.getProcessInfo(),
     os:      exception.getOsInfo(),
     trace:   exception.getTrace(err),
-    stack:   err.stack &#x26;&#x26; err.stack.split(&#x27;\n&#x27;)
+    stack:   err.stack &amp;&amp; err.stack.split('\n')
   };
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -8961,7 +8951,7 @@ is easy:
     process: exception.getProcessInfo(),
     os:      exception.getOsInfo(),
     trace:   exception.getTrace(err),
-    stack:   err.stack &#x26;&#x26; err.stack.split(&#x27;\n&#x27;)
+    stack:   err.stack &amp;&amp; err.stack.split('\n')
   };
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -9095,14 +9085,13 @@ is easy:
 With `winston`, it is possible to catch and log `uncaughtException` events from your process. There are two distinct ways of enabling
  this functionality either through the default winston logger or your own logger instance.
 
-If you want to use this feature with the default logger simply call `.<span class="apidocCodeKeywordSpan">handleExceptions</span
->()` with a transport instance.
+If you want to use this feature with the default logger simply call `.<span class="apidocCodeKeywordSpan">handleExceptions</span>()` with a transport instance.
 
 ``` js
 //
 // You can add a separate exception logger by passing it to `.handleExceptions`
 //
-winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/exceptions.log&#x27; }))
+winston.handleExceptions(new winston.transports.File({ filename: 'path/to/exceptions.log' }))
 ...</pre></li>
     </ul>
 
@@ -9121,7 +9110,7 @@ winston.handleExceptions(new winston.transports.File({ filename: &#x27;path/to/e
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">hash = function (str) {
-  return crypto.createHash(&#x27;sha1&#x27;).update(str).digest(&#x27;hex&#x27;);
+  return crypto.createHash('sha1').update(str).digest('hex');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -9151,13 +9140,13 @@ The default logger is accessible through the winston module directly. Any method
 is available on the default logger:
 
 ``` js
-  var winston = require(&#x27;winston&#x27;);
+  var winston = require('winston');
 
-  winston.log(&#x27;info&#x27;, &#x27;Hello distributed log files!&#x27;);
-  winston.<span class="apidocCodeKeywordSpan">info</span>(&#x27;Hello again distributed logs&#x27;);
+  winston.log('info', 'Hello distributed log files!');
+  winston.<span class="apidocCodeKeywordSpan">info</span>('Hello again distributed logs');
 
-  winston.level = &#x27;debug&#x27;;
-  winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
+  winston.level = 'debug';
+  winston.log('debug', 'Now my debug messages are written to console!');
 ```
 
 By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
@@ -9189,13 +9178,13 @@ The default logger is accessible through the winston module directly. Any method
 is available on the default logger:
 
 ``` js
-  var winston = require(&#x27;winston&#x27;);
+  var winston = require('winston');
 
-  winston.<span class="apidocCodeKeywordSpan">log</span>(&#x27;info&#x27;, &#x27;Hello distributed log files!&#x27;);
-  winston.info(&#x27;Hello again distributed logs&#x27;);
+  winston.<span class="apidocCodeKeywordSpan">log</span>('info', 'Hello distributed log files!');
+  winston.info('Hello again distributed logs');
 
-  winston.level = &#x27;debug&#x27;;
-  winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
+  winston.level = 'debug';
+  winston.log('debug', 'Now my debug messages are written to console!');
 ```
 
 By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
@@ -9248,17 +9237,17 @@ In addition to logging messages and metadata, winston also has a simple profilin
 
 ``` js
 //
-// Start profile of &#x27;test&#x27;
+// Start profile of 'test'
 // Remark: Consider using Date.now() with async operations
 //
-winston.<span class="apidocCodeKeywordSpan">profile</span>(&#x27;test&#x27;);
+winston.<span class="apidocCodeKeywordSpan">profile</span>('test');
 
 setTimeout(function () {
   //
-  // Stop profile of &#x27;test&#x27;. Logging will now take place:
-  //   &#x22;17 Jan 21:00:00 - info: test duration=1000ms&#x22;
+  // Stop profile of 'test'. Logging will now take place:
+  //   "17 Jan 21:00:00 - info: test duration=1000ms"
   //
-  winston.profile(&#x27;test&#x27;);
+  winston.profile('test');
 ...</pre></li>
     </ul>
 
@@ -9280,8 +9269,8 @@ setTimeout(function () {
   return defaultLogger[method].apply(defaultLogger, arguments);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    order: &#x27;desc&#x27;,
-    fields: [&#x27;message&#x27;]
+    order: 'desc',
+    fields: ['message']
   };
 
   //
@@ -9316,14 +9305,14 @@ setTimeout(function () {
   return defaultLogger[method].apply(defaultLogger, arguments);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
+winston.log('debug', 'Now my debug messages are written to console!');
 ```
 
 By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
 methods:
 
 ``` js
-winston.add(winston.transports.File, { filename: &#x27;somefile.log&#x27; });
+winston.add(winston.transports.File, { filename: 'somefile.log' });
 winston.<span class="apidocCodeKeywordSpan">remove</span>(winston.transports.Console);
 ```
 
@@ -9399,9 +9388,9 @@ this code after changing to the syslog levels:
 
 ``` js
 //
-// Logger does not have &#x27;silly&#x27; defined since that level is not in the syslog levels
+// Logger does not have 'silly' defined since that level is not in the syslog levels
 //
-logger.<span class="apidocCodeKeywordSpan">silly</span>(&#x27;some silly message&#x27;);
+logger.<span class="apidocCodeKeywordSpan">silly</span>('some silly message');
 ```
 
 ### Using Custom Logging Levels
@@ -9457,7 +9446,7 @@ Streaming allows you to stream your logs back from your chosen transport.
   //
   // Start at the end.
   //
-  winston.<span class="apidocCodeKeywordSpan">stream</span>({ start: -1 }).on(&#x27;log&#x27;, function(log) {
+  winston.<span class="apidocCodeKeywordSpan">stream</span>({ start: -1 }).on('log', function(log) {
     console.log(log);
   });
 ```
@@ -9489,7 +9478,7 @@ Streaming allows you to stream your logs back from your chosen transport.
   this.json         = options.json        || false;
   this.colorize     = options.colorize    || false;
   this.prettyPrint  = options.prettyPrint || false;
-  this.timestamp    = typeof options.timestamp !== &#x27;undefined&#x27; ? options.timestamp : false;
+  this.timestamp    = typeof options.timestamp !== 'undefined' ? options.timestamp : false;
   this.showLevel    = options.showLevel === undefined ? true : options.showLevel;
   this.label        = options.label       || null;
   this.logstash     = options.logstash    || false;
@@ -9507,27 +9496,27 @@ Streaming allows you to stream your logs back from your chosen transport.
   //
   // Convert stderrLevels into an Object for faster key-lookup times than an Array.
   //
-  // For backwards compatibility, stderrLevels defaults to [&#x27;error&#x27;, &#x27;debug&#x27;]
-  // or [&#x27;error&#x27;] depending on whether options.debugStdout is true.
+  // For backwards compatibility, stderrLevels defaults to ['error', 'debug']
+  // or ['error'] depending on whether options.debugStdout is true.
   //
   function setStderrLevels (levels, debugStdout) {
-    var defaultMsg = &#x27;Cannot have non-string elements in stderrLevels Array&#x27;;
+    var defaultMsg = 'Cannot have non-string elements in stderrLevels Array';
     if (debugStdout) {
       if (levels) {
         //
-        // Don&#x27;t allow setting both debugStdout and stderrLevels together,
+        // Don't allow setting both debugStdout and stderrLevels together,
         // since this could cause behaviour a programmer might not expect.
         //
-        throw new Error(&#x27;Cannot set debugStdout and stderrLevels together&#x27;);
+        throw new Error('Cannot set debugStdout and stderrLevels together');
       }
 
-      return common.stringArrayToSet([&#x27;error&#x27;], defaultMsg);
+      return common.stringArrayToSet(['error'], defaultMsg);
     }
 
     if (!levels) {
-      return common.stringArrayToSet([&#x27;error&#x27;, &#x27;debug&#x27;], defaultMsg);
+      return common.stringArrayToSet(['error', 'debug'], defaultMsg);
     } else if (!(Array.isArray(levels))) {
-      throw new Error(&#x27;Cannot set stderrLevels to type other than Array&#x27;);
+      throw new Error('Cannot set stderrLevels to type other than Array');
     }
 
     return common.stringArrayToSet(levels, defaultMsg);
@@ -9572,31 +9561,31 @@ var logger = new winston.Logger({
   function throwIf (target /*, illegal... */) {
     Array.prototype.slice.call(arguments, 1).forEach(function (name) {
       if (options[name]) {
-        throw new Error(&#x27;Cannot set &#x27; + name + &#x27; and &#x27; + target + &#x27;together&#x27;);
+        throw new Error('Cannot set ' + name + ' and ' + target + 'together');
       }
     });
   }
 
   if (options.filename || options.dirname) {
-    throwIf(&#x27;filename or dirname&#x27;, &#x27;stream&#x27;);
+    throwIf('filename or dirname', 'stream');
     this._basename = this.filename = options.filename
       ? path.basename(options.filename)
-      : &#x27;winston.log&#x27;;
+      : 'winston.log';
 
     this.dirname = options.dirname || path.dirname(options.filename);
-    this.options = options.options || { flags: &#x27;a&#x27; };
+    this.options = options.options || { flags: 'a' };
 
     //
-    // &#x22;24 bytes&#x22; is maybe a good value for logging lines.
+    // "24 bytes" is maybe a good value for logging lines.
     //
     this.options.highWaterMark = this.options.highWaterMark || 24;
   }
   else if (options.stream) {
-    throwIf(&#x27;stream&#x27;, &#x27;filename&#x27;, &#x27;maxsize&#x27;);
+    throwIf('stream', 'filename', 'maxsize');
     this._stream = options.stream;
     this._isStreams2 = isWritable(this._stream);
-    this._stream.on(&#x27;error&#x27;, function(error){
-      self.emit(&#x27;error&#x27;, error);
+    this._stream.on('error', function(error){
+      self.emit('error', error);
     });
     //
     // We need to listen for drain events when
@@ -9606,7 +9595,7 @@ var logger = new winston.Logger({
     this._stream.setMaxListeners(Infinity);
   }
   else {
-    throw new Error(&#x27;Cannot log to file without filename or stream.&#x27;);
+    throw new Error('Cannot log to file without filename or stream.');
   }
 
   this.json        = options.json !== false;
@@ -9650,15 +9639,15 @@ If you want to use this feature with the default logger simply call `.handleExce
 //
 // You can add a separate exception logger by passing it to `.handleExceptions`
 //
-winston.handleExceptions(new winston.transports.<span class="apidocCodeKeywordSpan">File</span>({ filename: &#x27;path/to/exceptions
-.log&#x27; }))
+winston.handleExceptions(new winston.transports.<span class="apidocCodeKeywordSpan">File</span>({ filename: 'path/to/exceptions
+.log' }))
 
 //
 // Alternatively you can set `.handleExceptions` to true when adding transports to winston.
 // You can use the `.humanReadableUnhandledException` option to get more readable exceptions.
 //
 winston.add(winston.transports.File, {
-  filename: &#x27;path/to/all-logs.log&#x27;,
+  filename: 'path/to/all-logs.log',
 ...</pre></li>
     </ul>
 
@@ -9675,12 +9664,12 @@ winston.add(winston.transports.File, {
   Transport.call(this, options);
   options = options || {};
 
-  this.name = &#x27;http&#x27;;
+  this.name = 'http';
   this.ssl = !!options.ssl;
-  this.host = options.host || &#x27;localhost&#x27;;
+  this.host = options.host || 'localhost';
   this.port = options.port;
   this.auth = options.auth;
-  this.path = options.path || &#x27;&#x27;;
+  this.path = options.path || '';
   this.agent = options.agent;
 
   if (!this.port) {
@@ -9709,7 +9698,7 @@ winston.add(winston.transports.File, {
   this.json        = options.json        || false;
   this.colorize    = options.colorize    || false;
   this.prettyPrint = options.prettyPrint || false;
-  this.timestamp   = typeof options.timestamp !== &#x27;undefined&#x27; ? options.timestamp : false;
+  this.timestamp   = typeof options.timestamp !== 'undefined' ? options.timestamp : false;
   this.showLevel   = options.showLevel === undefined ? true : options.showLevel;
   this.label       = options.label       || null;
   this.depth       = options.depth       || null;
@@ -9744,7 +9733,7 @@ winston.add(winston.transports.File, {
   this.json         = options.json        || false;
   this.colorize     = options.colorize    || false;
   this.prettyPrint  = options.prettyPrint || false;
-  this.timestamp    = typeof options.timestamp !== &#x27;undefined&#x27; ? options.timestamp : false;
+  this.timestamp    = typeof options.timestamp !== 'undefined' ? options.timestamp : false;
   this.showLevel    = options.showLevel === undefined ? true : options.showLevel;
   this.label        = options.label       || null;
   this.logstash     = options.logstash    || false;
@@ -9762,27 +9751,27 @@ winston.add(winston.transports.File, {
   //
   // Convert stderrLevels into an Object for faster key-lookup times than an Array.
   //
-  // For backwards compatibility, stderrLevels defaults to [&#x27;error&#x27;, &#x27;debug&#x27;]
-  // or [&#x27;error&#x27;] depending on whether options.debugStdout is true.
+  // For backwards compatibility, stderrLevels defaults to ['error', 'debug']
+  // or ['error'] depending on whether options.debugStdout is true.
   //
   function setStderrLevels (levels, debugStdout) {
-    var defaultMsg = &#x27;Cannot have non-string elements in stderrLevels Array&#x27;;
+    var defaultMsg = 'Cannot have non-string elements in stderrLevels Array';
     if (debugStdout) {
       if (levels) {
         //
-        // Don&#x27;t allow setting both debugStdout and stderrLevels together,
+        // Don't allow setting both debugStdout and stderrLevels together,
         // since this could cause behaviour a programmer might not expect.
         //
-        throw new Error(&#x27;Cannot set debugStdout and stderrLevels together&#x27;);
+        throw new Error('Cannot set debugStdout and stderrLevels together');
       }
 
-      return common.stringArrayToSet([&#x27;error&#x27;], defaultMsg);
+      return common.stringArrayToSet(['error'], defaultMsg);
     }
 
     if (!levels) {
-      return common.stringArrayToSet([&#x27;error&#x27;, &#x27;debug&#x27;], defaultMsg);
+      return common.stringArrayToSet(['error', 'debug'], defaultMsg);
     } else if (!(Array.isArray(levels))) {
-      throw new Error(&#x27;Cannot set stderrLevels to type other than Array&#x27;);
+      throw new Error('Cannot set stderrLevels to type other than Array');
     }
 
     return common.stringArrayToSet(levels, defaultMsg);
@@ -9833,7 +9822,7 @@ var logger = new winston.Logger({
   this.level = options.level;
 
   this.handleExceptions = options.handleExceptions || false;
-  this.exceptionsLevel  = options.exceptionsLevel || &#x27;error&#x27;;
+  this.exceptionsLevel  = options.exceptionsLevel || 'error';
   this.humanReadableUnhandledException = options.humanReadableUnhandledException || false;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -9890,7 +9879,7 @@ var logger = new winston.Logger({
   // Emit the `logged` event immediately because the event loop
   // will not exit until `process.stdout` has drained anyway.
   //
-  self.emit(&#x27;logged&#x27;);
+  self.emit('logged');
   callback(null, true);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -9900,13 +9889,13 @@ The default logger is accessible through the winston module directly. Any method
 is available on the default logger:
 
 ``` js
-  var winston = require(&#x27;winston&#x27;);
+  var winston = require('winston');
 
-  winston.<span class="apidocCodeKeywordSpan">log</span>(&#x27;info&#x27;, &#x27;Hello distributed log files!&#x27;);
-  winston.info(&#x27;Hello again distributed logs&#x27;);
+  winston.<span class="apidocCodeKeywordSpan">log</span>('info', 'Hello distributed log files!');
+  winston.info('Hello again distributed logs');
 
-  winston.level = &#x27;debug&#x27;;
-  winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
+  winston.level = 'debug';
+  winston.log('debug', 'Now my debug messages are written to console!');
 ```
 
 By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
@@ -9967,7 +9956,7 @@ methods:
   // Emit the `logged` event immediately because the event loop
   // will not exit until `process.stdout` has drained anyway.
   //
-  self.emit(&#x27;logged&#x27;);
+  self.emit('logged');
   callback(null, true);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -9977,13 +9966,13 @@ The default logger is accessible through the winston module directly. Any method
 is available on the default logger:
 
 ``` js
-  var winston = require(&#x27;winston&#x27;);
+  var winston = require('winston');
 
-  winston.<span class="apidocCodeKeywordSpan">log</span>(&#x27;info&#x27;, &#x27;Hello distributed log files!&#x27;);
-  winston.info(&#x27;Hello again distributed logs&#x27;);
+  winston.<span class="apidocCodeKeywordSpan">log</span>('info', 'Hello distributed log files!');
+  winston.info('Hello again distributed logs');
 
-  winston.level = &#x27;debug&#x27;;
-  winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
+  winston.level = 'debug';
+  winston.log('debug', 'Now my debug messages are written to console!');
 ```
 
 By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
@@ -10016,31 +10005,31 @@ methods:
   function throwIf (target /*, illegal... */) {
     Array.prototype.slice.call(arguments, 1).forEach(function (name) {
       if (options[name]) {
-        throw new Error(&#x27;Cannot set &#x27; + name + &#x27; and &#x27; + target + &#x27;together&#x27;);
+        throw new Error('Cannot set ' + name + ' and ' + target + 'together');
       }
     });
   }
 
   if (options.filename || options.dirname) {
-    throwIf(&#x27;filename or dirname&#x27;, &#x27;stream&#x27;);
+    throwIf('filename or dirname', 'stream');
     this._basename = this.filename = options.filename
       ? path.basename(options.filename)
-      : &#x27;winston.log&#x27;;
+      : 'winston.log';
 
     this.dirname = options.dirname || path.dirname(options.filename);
-    this.options = options.options || { flags: &#x27;a&#x27; };
+    this.options = options.options || { flags: 'a' };
 
     //
-    // &#x22;24 bytes&#x22; is maybe a good value for logging lines.
+    // "24 bytes" is maybe a good value for logging lines.
     //
     this.options.highWaterMark = this.options.highWaterMark || 24;
   }
   else if (options.stream) {
-    throwIf(&#x27;stream&#x27;, &#x27;filename&#x27;, &#x27;maxsize&#x27;);
+    throwIf('stream', 'filename', 'maxsize');
     this._stream = options.stream;
     this._isStreams2 = isWritable(this._stream);
-    this._stream.on(&#x27;error&#x27;, function(error){
-      self.emit(&#x27;error&#x27;, error);
+    this._stream.on('error', function(error){
+      self.emit('error', error);
     });
     //
     // We need to listen for drain events when
@@ -10050,7 +10039,7 @@ methods:
     this._stream.setMaxListeners(Infinity);
   }
   else {
-    throw new Error(&#x27;Cannot log to file without filename or stream.&#x27;);
+    throw new Error('Cannot log to file without filename or stream.');
   }
 
   this.json        = options.json !== false;
@@ -10094,15 +10083,15 @@ If you want to use this feature with the default logger simply call `.handleExce
 //
 // You can add a separate exception logger by passing it to `.handleExceptions`
 //
-winston.handleExceptions(new winston.transports.<span class="apidocCodeKeywordSpan">File</span>({ filename: &#x27;path/to/exceptions
-.log&#x27; }))
+winston.handleExceptions(new winston.transports.<span class="apidocCodeKeywordSpan">File</span>({ filename: 'path/to/exceptions
+.log' }))
 
 //
 // Alternatively you can set `.handleExceptions` to true when adding transports to winston.
 // You can use the `.humanReadableUnhandledException` option to get more readable exceptions.
 //
 winston.add(winston.transports.File, {
-  filename: &#x27;path/to/all-logs.log&#x27;,
+  filename: 'path/to/all-logs.log',
 ...</pre></li>
     </ul>
 
@@ -10132,7 +10121,7 @@ winston.add(winston.transports.File, {
   this.level = options.level;
 
   this.handleExceptions = options.handleExceptions || false;
-  this.exceptionsLevel  = options.exceptionsLevel || &#x27;error&#x27;;
+  this.exceptionsLevel  = options.exceptionsLevel || 'error';
   this.humanReadableUnhandledException = options.humanReadableUnhandledException || false;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -10158,19 +10147,19 @@ winston.add(winston.transports.File, {
 
   if (self.zippedArchive) {
     self._archive = path.join(self.dirname, basename +
-        ((self._created === 1) ? &#x27;&#x27; : self._created-1) +
+        ((self._created === 1) ? '' : self._created-1) +
         ext);
   }
 
 
   // Check for maxFiles option and delete file
-  if (!self.maxFiles || self._created &#x3c; self.maxFiles) {
+  if (!self.maxFiles || self._created &lt; self.maxFiles) {
     return callback();
   }
 
   oldest = self._created - self.maxFiles;
-  target = path.join(self.dirname, basename + (oldest !== 0 ? oldest : &#x27;&#x27;) + ext +
-    (self.zippedArchive ? &#x27;.gz&#x27; : &#x27;&#x27;));
+  target = path.join(self.dirname, basename + (oldest !== 0 ? oldest : '') + ext +
+    (self.zippedArchive ? '.gz' : ''));
   fs.unlink(target, callback);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -10192,18 +10181,18 @@ winston.add(winston.transports.File, {
   if (!this.maxFiles)
     return;
 
-  for (var x = this.maxFiles - 1; x &#x3e; 0; x--) {
+  for (var x = this.maxFiles - 1; x &gt; 0; x--) {
     tasks.push(function (i) {
       return function (cb) {
         var tmppath = path.join(self.dirname, basename + (i - 1) + ext +
-          (self.zippedArchive ? &#x27;.gz&#x27; : &#x27;&#x27;));
+          (self.zippedArchive ? '.gz' : ''));
         fs.exists(tmppath, function (exists) {
           if (!exists) {
             return cb(null);
           }
 
           fs.rename(tmppath, path.join(self.dirname, basename + i + ext +
-            (self.zippedArchive ? &#x27;.gz&#x27; : &#x27;&#x27;)), cb);
+            (self.zippedArchive ? '.gz' : '')), cb);
         });
       };
     }(x));
@@ -10253,13 +10242,13 @@ winston.add(winston.transports.File, {
       self.filename = target;
       self._stream = fs.createWriteStream(fullname, self.options);
       self._isStreams2 = isWritable(self._stream);
-      self._stream.on(&#x27;error&#x27;, function(error){
-        if (self._failures &#x3c; self.maxRetries) {
+      self._stream.on('error', function(error){
+        if (self._failures &lt; self.maxRetries) {
           self._createStream();
           self._failures++;
         }
         else {
-          self.emit(&#x27;error&#x27;, error);
+          self.emit('error', error);
         }
       });
       //
@@ -10274,14 +10263,14 @@ winston.add(winston.transports.File, {
       // then we can be sure we have finished opening
       // and thus can emit the `open` event.
       //
-      self.once(&#x27;flush&#x27;, function () {
-        // Because &#x22;flush&#x22; event is based on native stream &#x22;drain&#x22; event,
-        // logs could be written inbetween &#x22;self.flush()&#x22; and here
+      self.once('flush', function () {
+        // Because "flush" event is based on native stream "drain" event,
+        // logs could be written inbetween "self.flush()" and here
         // Therefore, we need to flush again to make sure everything is flushed
         self.flush();
 
         self.opening = false;
-        self.emit(&#x27;open&#x27;, fullname);
+        self.emit('open', fullname);
       });
       //
       // Remark: It is possible that in the time it has taken to find the
@@ -10298,24 +10287,24 @@ winston.add(winston.transports.File, {
         var gzip = zlib.createGzip();
 
         var inp = fs.createReadStream(String(self._archive));
-        var out = fs.createWriteStream(self._archive + &#x27;.gz&#x27;);
+        var out = fs.createWriteStream(self._archive + '.gz');
 
         inp.pipe(gzip).pipe(out);
 
         fs.unlink(String(self._archive));
-        self._archive = &#x27;&#x27;;
+        self._archive = '';
       }
     }
 
     fs.stat(fullname, function (err, stats) {
       if (err) {
-        if (err.code !== &#x27;ENOENT&#x27;) {
-          return self.emit(&#x27;error&#x27;, err);
+        if (err.code !== 'ENOENT') {
+          return self.emit('error', err);
         }
         return createAndFlush(0);
       }
 
-      if (!stats || (self.maxsize &#x26;&#x26; stats.size &#x3e;= self.maxsize)) {
+      if (!stats || (self.maxsize &amp;&amp; stats.size &gt;= self.maxsize)) {
         //
         // If `stats.size` is greater than the `maxsize` for
         // this instance then try again
@@ -10350,7 +10339,7 @@ winston.add(winston.transports.File, {
   // when combined with max files because the set of files to unlink
   // is never stored.
   //
-  return !this.tailable &#x26;&#x26; this._created
+  return !this.tailable &amp;&amp; this._created
     ? basename + (this.rotationFormat ? this.rotationFormat() : this._created) + ext
     : basename + ext;
 }</pre></li>
@@ -10395,12 +10384,12 @@ winston.add(winston.transports.File, {
     <li>description and source-code<pre class="apidocCodePre">_lazyDrain = function () {
   var self = this;
 
-  if (!this._draining &#x26;&#x26; this._stream) {
+  if (!this._draining &amp;&amp; this._stream) {
     this._draining = true;
 
-    this._stream.once(&#x27;drain&#x27;, function () {
+    this._stream.once('drain', function () {
       this._draining = false;
-      self.emit(&#x27;logged&#x27;);
+      self.emit('logged');
     });
   }
 }</pre></li>
@@ -10419,7 +10408,7 @@ winston.add(winston.transports.File, {
     <li>description and source-code<pre class="apidocCodePre">_write = function (data, callback) {
   if (this._isStreams2) {
     this._stream.write(data);
-    return callback &#x26;&#x26; process.nextTick(function () {
+    return callback &amp;&amp; process.nextTick(function () {
       callback(null, true);
     });
   }
@@ -10430,7 +10419,7 @@ winston.add(winston.transports.File, {
   var ret = this._stream.write(data);
   if (!callback) return;
   if (ret === false) {
-    return this._stream.once(&#x27;drain&#x27;, function() {
+    return this._stream.once('drain', function() {
       callback(null, true);
     });
   }
@@ -10457,9 +10446,9 @@ winston.add(winston.transports.File, {
     this._stream.end();
     this._stream.destroySoon();
 
-    this._stream.once(&#x27;finish&#x27;, function () {
-      self.emit(&#x27;flush&#x27;);
-      self.emit(&#x27;closed&#x27;);
+    this._stream.once('finish', function () {
+      self.emit('flush');
+      self.emit('closed');
     });
   }
 }</pre></li>
@@ -10478,11 +10467,11 @@ winston.add(winston.transports.File, {
     <li>description and source-code<pre class="apidocCodePre">flush = function () {
   var self = this;
 
-  // If nothing to flush, there will be no &#x22;flush&#x22; event from native stream
-  // Thus, the &#x22;open&#x22; event will never be fired (see _createStream.createAndFlush function)
+  // If nothing to flush, there will be no "flush" event from native stream
+  // Thus, the "open" event will never be fired (see _createStream.createAndFlush function)
   // That means, self.opening will never set to false and no logs will be written to disk
   if (!this._buffer.length) {
-    return self.emit(&#x27;flush&#x27;);
+    return self.emit('flush');
   }
 
   //
@@ -10509,9 +10498,9 @@ winston.add(winston.transports.File, {
   // When the stream has drained we have flushed
   // our buffer.
   //
-  self._stream.once(&#x27;drain&#x27;, function () {
-    self.emit(&#x27;flush&#x27;);
-    self.emit(&#x27;logged&#x27;);
+  self._stream.once('drain', function () {
+    self.emit('flush');
+    self.emit('logged');
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -10532,18 +10521,18 @@ winston.add(winston.transports.File, {
   }
 
   //
-  // If failures exceeds maxRetries then we can&#x27;t access the
+  // If failures exceeds maxRetries then we can't access the
   // stream. In this case we need to perform a noop and return
   // an error.
   //
-  if (this._failures &#x3e;= this.maxRetries) {
-    return callback(new Error(&#x27;Transport is in a failed state.&#x27;));
+  if (this._failures &gt;= this.maxRetries) {
+    return callback(new Error('Transport is in a failed state.'));
   }
 
   var self = this;
 
-  if (typeof msg !== &#x27;string&#x27;) {
-    msg = &#x27;&#x27; + msg;
+  if (typeof msg !== 'string') {
+    msg = '' + msg;
   }
 
   var output = common.log({
@@ -10563,7 +10552,7 @@ winston.add(winston.transports.File, {
     humanReadableUnhandledException: this.humanReadableUnhandledException
   });
 
-  if (typeof output === &#x27;string&#x27;) {
+  if (typeof output === 'string') {
     output += this.eol;
   }
 
@@ -10599,13 +10588,13 @@ The default logger is accessible through the winston module directly. Any method
 is available on the default logger:
 
 ``` js
-  var winston = require(&#x27;winston&#x27;);
+  var winston = require('winston');
 
-  winston.<span class="apidocCodeKeywordSpan">log</span>(&#x27;info&#x27;, &#x27;Hello distributed log files!&#x27;);
-  winston.info(&#x27;Hello again distributed logs&#x27;);
+  winston.<span class="apidocCodeKeywordSpan">log</span>('info', 'Hello distributed log files!');
+  winston.info('Hello again distributed logs');
 
-  winston.level = &#x27;debug&#x27;;
-  winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
+  winston.level = 'debug';
+  winston.log('debug', 'Now my debug messages are written to console!');
 ```
 
 By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
@@ -10631,7 +10620,7 @@ methods:
     //
     return callback(true);
   }
-  else if (!this._stream || (this.maxsize &#x26;&#x26; this._size &#x3e;= this.maxsize)) {
+  else if (!this._stream || (this.maxsize &amp;&amp; this._size &gt;= this.maxsize)) {
     //
     // If we dont have a stream or have exceeded our size, then create
     // the next stream and respond with a value indicating that
@@ -10661,38 +10650,38 @@ methods:
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">query = function (options, callback) {
-  if (typeof options === &#x27;function&#x27;) {
+  if (typeof options === 'function') {
     callback = options;
     options = {};
   }
 
   var file = path.join(this.dirname, this.filename),
       options = this.normalizeQuery(options),
-      buff = &#x27;&#x27;,
+      buff = '',
       results = [],
       row = 0;
 
   var stream = fs.createReadStream(file, {
-    encoding: &#x27;utf8&#x27;
+    encoding: 'utf8'
   });
 
-  stream.on(&#x27;error&#x27;, function (err) {
+  stream.on('error', function (err) {
     if (stream.readable) {
       stream.destroy();
     }
     if (!callback) return;
-    return err.code !== &#x27;ENOENT&#x27;
+    return err.code !== 'ENOENT'
       ? callback(err)
       : callback(null, results);
   });
 
-  stream.on(&#x27;data&#x27;, function (data) {
+  stream.on('data', function (data) {
     var data = (buff + data).split(/\n+/),
         l = data.length - 1,
         i = 0;
 
-    for (; i &#x3c; l; i++) {
-      if (!options.start || row &#x3e;= options.start) {
+    for (; i &lt; l; i++) {
+      if (!options.start || row &gt;= options.start) {
         add(data[i]);
       }
       row++;
@@ -10701,9 +10690,9 @@ methods:
     buff = data[l];
   });
 
-  stream.on(&#x27;close&#x27;, function () {
+  stream.on('close', function () {
     if (buff) add(buff, true);
-    if (options.order === &#x27;desc&#x27;) {
+    if (options.order === 'desc') {
       results = results.reverse();
     }
     if (callback) callback(null, results);
@@ -10715,14 +10704,14 @@ methods:
       if (check(log)) push(log);
     } catch (e) {
       if (!attempt) {
-        stream.emit(&#x27;error&#x27;, e);
+        stream.emit('error', e);
       }
     }
   }
 
   function push(log) {
-    if (options.rows &#x26;&#x26; results.length &#x3e;= options.rows
-        &#x26;&#x26; options.order != &#x27;desc&#x27;) {
+    if (options.rows &amp;&amp; results.length &gt;= options.rows
+        &amp;&amp; options.order != 'desc') {
       if (stream.readable) {
         stream.destroy();
       }
@@ -10737,8 +10726,8 @@ methods:
       log = obj;
     }
 
-    if (options.order === &#x27;desc&#x27;) {
-      if (results.length &#x3e;= options.rows) {
+    if (options.order === 'desc') {
+      if (results.length &gt;= options.rows) {
         results.shift();
       }
     }
@@ -10748,11 +10737,11 @@ methods:
   function check(log) {
     if (!log) return;
 
-    if (typeof log !== &#x27;object&#x27;) return;
+    if (typeof log !== 'object') return;
 
     var time = new Date(log.timestamp);
-    if ((options.from &#x26;&#x26; time &#x3c; options.from)
-        || (options.until &#x26;&#x26; time &#x3e; options.until)) {
+    if ((options.from &amp;&amp; time &lt; options.from)
+        || (options.until &amp;&amp; time &gt; options.until)) {
       return;
     }
 
@@ -10760,8 +10749,8 @@ methods:
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    order: &#x27;desc&#x27;,
-    fields: [&#x27;message&#x27;]
+    order: 'desc',
+    fields: ['message']
   };
 
   //
@@ -10800,15 +10789,15 @@ methods:
   stream.destroy = common.tailFile(tail, function (err, line) {
 
     if(err){
-      return stream.emit(&#x27;error&#x27;,err);
+      return stream.emit('error',err);
     }
 
     try {
-      stream.emit(&#x27;data&#x27;, line);
+      stream.emit('data', line);
       line = JSON.parse(line);
-      stream.emit(&#x27;log&#x27;, line);
+      stream.emit('log', line);
     } catch (e) {
-      stream.emit(&#x27;error&#x27;, e);
+      stream.emit('error', e);
     }
   });
 
@@ -10822,7 +10811,7 @@ Streaming allows you to stream your logs back from your chosen transport.
   //
   // Start at the end.
   //
-  winston.<span class="apidocCodeKeywordSpan">stream</span>({ start: -1 }).on(&#x27;log&#x27;, function(log) {
+  winston.<span class="apidocCodeKeywordSpan">stream</span>({ start: -1 }).on('log', function(log) {
     console.log(log);
   });
 ```
@@ -10855,19 +10844,19 @@ Streaming allows you to stream your logs back from your chosen transport.
 
   if (self.zippedArchive) {
     self._archive = path.join(self.dirname, basename +
-        ((self._created === 1) ? &#x27;&#x27; : self._created-1) +
+        ((self._created === 1) ? '' : self._created-1) +
         ext);
   }
 
 
   // Check for maxFiles option and delete file
-  if (!self.maxFiles || self._created &#x3c; self.maxFiles) {
+  if (!self.maxFiles || self._created &lt; self.maxFiles) {
     return callback();
   }
 
   oldest = self._created - self.maxFiles;
-  target = path.join(self.dirname, basename + (oldest !== 0 ? oldest : &#x27;&#x27;) + ext +
-    (self.zippedArchive ? &#x27;.gz&#x27; : &#x27;&#x27;));
+  target = path.join(self.dirname, basename + (oldest !== 0 ? oldest : '') + ext +
+    (self.zippedArchive ? '.gz' : ''));
   fs.unlink(target, callback);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -10894,18 +10883,18 @@ Streaming allows you to stream your logs back from your chosen transport.
   if (!this.maxFiles)
     return;
 
-  for (var x = this.maxFiles - 1; x &#x3e; 0; x--) {
+  for (var x = this.maxFiles - 1; x &gt; 0; x--) {
     tasks.push(function (i) {
       return function (cb) {
         var tmppath = path.join(self.dirname, basename + (i - 1) + ext +
-          (self.zippedArchive ? &#x27;.gz&#x27; : &#x27;&#x27;));
+          (self.zippedArchive ? '.gz' : ''));
         fs.exists(tmppath, function (exists) {
           if (!exists) {
             return cb(null);
           }
 
           fs.rename(tmppath, path.join(self.dirname, basename + i + ext +
-            (self.zippedArchive ? &#x27;.gz&#x27; : &#x27;&#x27;)), cb);
+            (self.zippedArchive ? '.gz' : '')), cb);
         });
       };
     }(x));
@@ -10960,13 +10949,13 @@ Streaming allows you to stream your logs back from your chosen transport.
       self.filename = target;
       self._stream = fs.createWriteStream(fullname, self.options);
       self._isStreams2 = isWritable(self._stream);
-      self._stream.on(&#x27;error&#x27;, function(error){
-        if (self._failures &#x3c; self.maxRetries) {
+      self._stream.on('error', function(error){
+        if (self._failures &lt; self.maxRetries) {
           self._createStream();
           self._failures++;
         }
         else {
-          self.emit(&#x27;error&#x27;, error);
+          self.emit('error', error);
         }
       });
       //
@@ -10981,14 +10970,14 @@ Streaming allows you to stream your logs back from your chosen transport.
       // then we can be sure we have finished opening
       // and thus can emit the `open` event.
       //
-      self.once(&#x27;flush&#x27;, function () {
-        // Because &#x22;flush&#x22; event is based on native stream &#x22;drain&#x22; event,
-        // logs could be written inbetween &#x22;self.flush()&#x22; and here
+      self.once('flush', function () {
+        // Because "flush" event is based on native stream "drain" event,
+        // logs could be written inbetween "self.flush()" and here
         // Therefore, we need to flush again to make sure everything is flushed
         self.flush();
 
         self.opening = false;
-        self.emit(&#x27;open&#x27;, fullname);
+        self.emit('open', fullname);
       });
       //
       // Remark: It is possible that in the time it has taken to find the
@@ -11005,24 +10994,24 @@ Streaming allows you to stream your logs back from your chosen transport.
         var gzip = zlib.createGzip();
 
         var inp = fs.createReadStream(String(self._archive));
-        var out = fs.createWriteStream(self._archive + &#x27;.gz&#x27;);
+        var out = fs.createWriteStream(self._archive + '.gz');
 
         inp.pipe(gzip).pipe(out);
 
         fs.unlink(String(self._archive));
-        self._archive = &#x27;&#x27;;
+        self._archive = '';
       }
     }
 
     fs.stat(fullname, function (err, stats) {
       if (err) {
-        if (err.code !== &#x27;ENOENT&#x27;) {
-          return self.emit(&#x27;error&#x27;, err);
+        if (err.code !== 'ENOENT') {
+          return self.emit('error', err);
         }
         return createAndFlush(0);
       }
 
-      if (!stats || (self.maxsize &#x26;&#x26; stats.size &#x3e;= self.maxsize)) {
+      if (!stats || (self.maxsize &amp;&amp; stats.size &gt;= self.maxsize)) {
         //
         // If `stats.size` is greater than the `maxsize` for
         // this instance then try again
@@ -11062,7 +11051,7 @@ Streaming allows you to stream your logs back from your chosen transport.
   // when combined with max files because the set of files to unlink
   // is never stored.
   //
-  return !this.tailable &#x26;&#x26; this._created
+  return !this.tailable &amp;&amp; this._created
     ? basename + (this.rotationFormat ? this.rotationFormat() : this._created) + ext
     : basename + ext;
 }</pre></li>
@@ -11117,12 +11106,12 @@ Streaming allows you to stream your logs back from your chosen transport.
     <li>description and source-code<pre class="apidocCodePre">_lazyDrain = function () {
   var self = this;
 
-  if (!this._draining &#x26;&#x26; this._stream) {
+  if (!this._draining &amp;&amp; this._stream) {
     this._draining = true;
 
-    this._stream.once(&#x27;drain&#x27;, function () {
+    this._stream.once('drain', function () {
       this._draining = false;
-      self.emit(&#x27;logged&#x27;);
+      self.emit('logged');
     });
   }
 }</pre></li>
@@ -11146,7 +11135,7 @@ Streaming allows you to stream your logs back from your chosen transport.
     <li>description and source-code<pre class="apidocCodePre">_write = function (data, callback) {
   if (this._isStreams2) {
     this._stream.write(data);
-    return callback &#x26;&#x26; process.nextTick(function () {
+    return callback &amp;&amp; process.nextTick(function () {
       callback(null, true);
     });
   }
@@ -11157,7 +11146,7 @@ Streaming allows you to stream your logs back from your chosen transport.
   var ret = this._stream.write(data);
   if (!callback) return;
   if (ret === false) {
-    return this._stream.once(&#x27;drain&#x27;, function() {
+    return this._stream.once('drain', function() {
       callback(null, true);
     });
   }
@@ -11189,9 +11178,9 @@ Streaming allows you to stream your logs back from your chosen transport.
     this._stream.end();
     this._stream.destroySoon();
 
-    this._stream.once(&#x27;finish&#x27;, function () {
-      self.emit(&#x27;flush&#x27;);
-      self.emit(&#x27;closed&#x27;);
+    this._stream.once('finish', function () {
+      self.emit('flush');
+      self.emit('closed');
     });
   }
 }</pre></li>
@@ -11215,11 +11204,11 @@ Streaming allows you to stream your logs back from your chosen transport.
     <li>description and source-code<pre class="apidocCodePre">flush = function () {
   var self = this;
 
-  // If nothing to flush, there will be no &#x22;flush&#x22; event from native stream
-  // Thus, the &#x22;open&#x22; event will never be fired (see _createStream.createAndFlush function)
+  // If nothing to flush, there will be no "flush" event from native stream
+  // Thus, the "open" event will never be fired (see _createStream.createAndFlush function)
   // That means, self.opening will never set to false and no logs will be written to disk
   if (!this._buffer.length) {
-    return self.emit(&#x27;flush&#x27;);
+    return self.emit('flush');
   }
 
   //
@@ -11246,9 +11235,9 @@ Streaming allows you to stream your logs back from your chosen transport.
   // When the stream has drained we have flushed
   // our buffer.
   //
-  self._stream.once(&#x27;drain&#x27;, function () {
-    self.emit(&#x27;flush&#x27;);
-    self.emit(&#x27;logged&#x27;);
+  self._stream.once('drain', function () {
+    self.emit('flush');
+    self.emit('logged');
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -11274,18 +11263,18 @@ Streaming allows you to stream your logs back from your chosen transport.
   }
 
   //
-  // If failures exceeds maxRetries then we can&#x27;t access the
+  // If failures exceeds maxRetries then we can't access the
   // stream. In this case we need to perform a noop and return
   // an error.
   //
-  if (this._failures &#x3e;= this.maxRetries) {
-    return callback(new Error(&#x27;Transport is in a failed state.&#x27;));
+  if (this._failures &gt;= this.maxRetries) {
+    return callback(new Error('Transport is in a failed state.'));
   }
 
   var self = this;
 
-  if (typeof msg !== &#x27;string&#x27;) {
-    msg = &#x27;&#x27; + msg;
+  if (typeof msg !== 'string') {
+    msg = '' + msg;
   }
 
   var output = common.log({
@@ -11305,7 +11294,7 @@ Streaming allows you to stream your logs back from your chosen transport.
     humanReadableUnhandledException: this.humanReadableUnhandledException
   });
 
-  if (typeof output === &#x27;string&#x27;) {
+  if (typeof output === 'string') {
     output += this.eol;
   }
 
@@ -11341,13 +11330,13 @@ The default logger is accessible through the winston module directly. Any method
 is available on the default logger:
 
 ``` js
-  var winston = require(&#x27;winston&#x27;);
+  var winston = require('winston');
 
-  winston.<span class="apidocCodeKeywordSpan">log</span>(&#x27;info&#x27;, &#x27;Hello distributed log files!&#x27;);
-  winston.info(&#x27;Hello again distributed logs&#x27;);
+  winston.<span class="apidocCodeKeywordSpan">log</span>('info', 'Hello distributed log files!');
+  winston.info('Hello again distributed logs');
 
-  winston.level = &#x27;debug&#x27;;
-  winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
+  winston.level = 'debug';
+  winston.log('debug', 'Now my debug messages are written to console!');
 ```
 
 By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
@@ -11378,7 +11367,7 @@ methods:
     //
     return callback(true);
   }
-  else if (!this._stream || (this.maxsize &#x26;&#x26; this._size &#x3e;= this.maxsize)) {
+  else if (!this._stream || (this.maxsize &amp;&amp; this._size &gt;= this.maxsize)) {
     //
     // If we dont have a stream or have exceeded our size, then create
     // the next stream and respond with a value indicating that
@@ -11413,38 +11402,38 @@ methods:
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">query = function (options, callback) {
-  if (typeof options === &#x27;function&#x27;) {
+  if (typeof options === 'function') {
     callback = options;
     options = {};
   }
 
   var file = path.join(this.dirname, this.filename),
       options = this.normalizeQuery(options),
-      buff = &#x27;&#x27;,
+      buff = '',
       results = [],
       row = 0;
 
   var stream = fs.createReadStream(file, {
-    encoding: &#x27;utf8&#x27;
+    encoding: 'utf8'
   });
 
-  stream.on(&#x27;error&#x27;, function (err) {
+  stream.on('error', function (err) {
     if (stream.readable) {
       stream.destroy();
     }
     if (!callback) return;
-    return err.code !== &#x27;ENOENT&#x27;
+    return err.code !== 'ENOENT'
       ? callback(err)
       : callback(null, results);
   });
 
-  stream.on(&#x27;data&#x27;, function (data) {
+  stream.on('data', function (data) {
     var data = (buff + data).split(/\n+/),
         l = data.length - 1,
         i = 0;
 
-    for (; i &#x3c; l; i++) {
-      if (!options.start || row &#x3e;= options.start) {
+    for (; i &lt; l; i++) {
+      if (!options.start || row &gt;= options.start) {
         add(data[i]);
       }
       row++;
@@ -11453,9 +11442,9 @@ methods:
     buff = data[l];
   });
 
-  stream.on(&#x27;close&#x27;, function () {
+  stream.on('close', function () {
     if (buff) add(buff, true);
-    if (options.order === &#x27;desc&#x27;) {
+    if (options.order === 'desc') {
       results = results.reverse();
     }
     if (callback) callback(null, results);
@@ -11467,14 +11456,14 @@ methods:
       if (check(log)) push(log);
     } catch (e) {
       if (!attempt) {
-        stream.emit(&#x27;error&#x27;, e);
+        stream.emit('error', e);
       }
     }
   }
 
   function push(log) {
-    if (options.rows &#x26;&#x26; results.length &#x3e;= options.rows
-        &#x26;&#x26; options.order != &#x27;desc&#x27;) {
+    if (options.rows &amp;&amp; results.length &gt;= options.rows
+        &amp;&amp; options.order != 'desc') {
       if (stream.readable) {
         stream.destroy();
       }
@@ -11489,8 +11478,8 @@ methods:
       log = obj;
     }
 
-    if (options.order === &#x27;desc&#x27;) {
-      if (results.length &#x3e;= options.rows) {
+    if (options.order === 'desc') {
+      if (results.length &gt;= options.rows) {
         results.shift();
       }
     }
@@ -11500,11 +11489,11 @@ methods:
   function check(log) {
     if (!log) return;
 
-    if (typeof log !== &#x27;object&#x27;) return;
+    if (typeof log !== 'object') return;
 
     var time = new Date(log.timestamp);
-    if ((options.from &#x26;&#x26; time &#x3c; options.from)
-        || (options.until &#x26;&#x26; time &#x3e; options.until)) {
+    if ((options.from &amp;&amp; time &lt; options.from)
+        || (options.until &amp;&amp; time &gt; options.until)) {
       return;
     }
 
@@ -11512,8 +11501,8 @@ methods:
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    order: &#x27;desc&#x27;,
-    fields: [&#x27;message&#x27;]
+    order: 'desc',
+    fields: ['message']
   };
 
   //
@@ -11557,15 +11546,15 @@ methods:
   stream.destroy = common.tailFile(tail, function (err, line) {
 
     if(err){
-      return stream.emit(&#x27;error&#x27;,err);
+      return stream.emit('error',err);
     }
 
     try {
-      stream.emit(&#x27;data&#x27;, line);
+      stream.emit('data', line);
       line = JSON.parse(line);
-      stream.emit(&#x27;log&#x27;, line);
+      stream.emit('log', line);
     } catch (e) {
-      stream.emit(&#x27;error&#x27;, e);
+      stream.emit('error', e);
     }
   });
 
@@ -11579,7 +11568,7 @@ Streaming allows you to stream your logs back from your chosen transport.
   //
   // Start at the end.
   //
-  winston.<span class="apidocCodeKeywordSpan">stream</span>({ start: -1 }).on(&#x27;log&#x27;, function(log) {
+  winston.<span class="apidocCodeKeywordSpan">stream</span>({ start: -1 }).on('log', function(log) {
     console.log(log);
   });
 ```
@@ -11608,12 +11597,12 @@ Streaming allows you to stream your logs back from your chosen transport.
   Transport.call(this, options);
   options = options || {};
 
-  this.name = &#x27;http&#x27;;
+  this.name = 'http';
   this.ssl = !!options.ssl;
-  this.host = options.host || &#x27;localhost&#x27;;
+  this.host = options.host || 'localhost';
   this.port = options.port;
   this.auth = options.auth;
-  this.path = options.path || &#x27;&#x27;;
+  this.path = options.path || '';
   this.agent = options.agent;
 
   if (!this.port) {
@@ -11649,7 +11638,7 @@ Streaming allows you to stream your logs back from your chosen transport.
   this.level = options.level;
 
   this.handleExceptions = options.handleExceptions || false;
-  this.exceptionsLevel  = options.exceptionsLevel || &#x27;error&#x27;;
+  this.exceptionsLevel  = options.exceptionsLevel || 'error';
   this.humanReadableUnhandledException = options.humanReadableUnhandledException || false;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -11673,7 +11662,7 @@ Streaming allows you to stream your logs back from your chosen transport.
   options = options || {};
 
   var auth = options.auth || this.auth,
-      path = options.path || this.path || &#x27;&#x27;,
+      path = options.path || this.path || '',
       req;
 
   delete options.auth;
@@ -11683,29 +11672,29 @@ Streaming allows you to stream your logs back from your chosen transport.
   req = (this.ssl ? https : http).request({
     host: this.host,
     port: this.port,
-    path: &#x27;/&#x27; + path.replace(/^\//, &#x27;&#x27;),
-    method: &#x27;POST&#x27;,
-    headers: { &#x27;Content-Type&#x27;: &#x27;application/json&#x27; },
+    path: '/' + path.replace(/^\//, ''),
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     agent: this.agent,
-    auth: (auth) ? auth.username + &#x27;:&#x27; + auth.password : &#x27;&#x27;
+    auth: (auth) ? auth.username + ':' + auth.password : ''
   });
 
-  req.on(&#x27;error&#x27;, callback);
-  req.on(&#x27;response&#x27;, function (res) {
-    var body = &#x27;&#x27;;
+  req.on('error', callback);
+  req.on('response', function (res) {
+    var body = '';
 
-    res.on(&#x27;data&#x27;, function (chunk) {
+    res.on('data', function (chunk) {
       body += chunk;
     });
 
-    res.on(&#x27;end&#x27;, function () {
+    res.on('end', function () {
       callback(null, res, body);
     });
 
     res.resume();
   });
 
-  req.end(new Buffer(JSON.stringify(options), &#x27;utf8&#x27;));
+  req.end(new Buffer(JSON.stringify(options), 'utf8'));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -11722,13 +11711,13 @@ Streaming allows you to stream your logs back from your chosen transport.
     <li>description and source-code<pre class="apidocCodePre">log = function (level, msg, meta, callback) {
   var self = this;
 
-  if (typeof meta === &#x27;function&#x27;) {
+  if (typeof meta === 'function') {
     callback = meta;
     meta = {};
   }
 
   var options = {
-    method: &#x27;collect&#x27;,
+    method: 'collect',
     params: {
       level: level,
       message: msg,
@@ -11749,15 +11738,15 @@ Streaming allows you to stream your logs back from your chosen transport.
   }
 
   this._request(options, function (err, res) {
-    if (res &#x26;&#x26; res.statusCode !== 200) {
-      err = new Error(&#x27;HTTP Status Code: &#x27; + res.statusCode);
+    if (res &amp;&amp; res.statusCode !== 200) {
+      err = new Error('HTTP Status Code: ' + res.statusCode);
     }
 
     if (err) return callback(err);
 
-    // TODO: emit &#x27;logged&#x27; correctly,
+    // TODO: emit 'logged' correctly,
     // keep track of pending logs.
-    self.emit(&#x27;logged&#x27;);
+    self.emit('logged');
 
     if (callback) callback(null, true);
   });
@@ -11769,13 +11758,13 @@ The default logger is accessible through the winston module directly. Any method
 is available on the default logger:
 
 ``` js
-  var winston = require(&#x27;winston&#x27;);
+  var winston = require('winston');
 
-  winston.<span class="apidocCodeKeywordSpan">log</span>(&#x27;info&#x27;, &#x27;Hello distributed log files!&#x27;);
-  winston.info(&#x27;Hello again distributed logs&#x27;);
+  winston.<span class="apidocCodeKeywordSpan">log</span>('info', 'Hello distributed log files!');
+  winston.info('Hello again distributed logs');
 
-  winston.level = &#x27;debug&#x27;;
-  winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
+  winston.level = 'debug';
+  winston.log('debug', 'Now my debug messages are written to console!');
 ```
 
 By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
@@ -11793,7 +11782,7 @@ methods:
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">query = function (options, callback) {
-  if (typeof options === &#x27;function&#x27;) {
+  if (typeof options === 'function') {
     callback = options;
     options = {};
   }
@@ -11802,7 +11791,7 @@ methods:
       options = this.normalizeQuery(options);
 
   options = {
-    method: &#x27;query&#x27;,
+    method: 'query',
     params: options
   };
 
@@ -11817,13 +11806,13 @@ methods:
   }
 
   this._request(options, function (err, res, body) {
-    if (res &#x26;&#x26; res.statusCode !== 200) {
-      err = new Error(&#x27;HTTP Status Code: &#x27; + res.statusCode);
+    if (res &amp;&amp; res.statusCode !== 200) {
+      err = new Error('HTTP Status Code: ' + res.statusCode);
     }
 
     if (err) return callback(err);
 
-    if (typeof body === &#x27;string&#x27;) {
+    if (typeof body === 'string') {
       try {
         body = JSON.parse(body);
       } catch (e) {
@@ -11835,8 +11824,8 @@ methods:
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    order: &#x27;desc&#x27;,
-    fields: [&#x27;message&#x27;]
+    order: 'desc',
+    fields: ['message']
   };
 
   //
@@ -11875,7 +11864,7 @@ methods:
   };
 
   options = {
-    method: &#x27;stream&#x27;,
+    method: 'stream',
     params: options
   };
 
@@ -11890,26 +11879,26 @@ methods:
   }
 
   req = this._request(options);
-  buff = &#x27;&#x27;;
+  buff = '';
 
-  req.on(&#x27;data&#x27;, function (data) {
+  req.on('data', function (data) {
     var data = (buff + data).split(/\n+/),
         l = data.length - 1,
         i = 0;
 
-    for (; i &#x3c; l; i++) {
+    for (; i &lt; l; i++) {
       try {
-        stream.emit(&#x27;log&#x27;, JSON.parse(data[i]));
+        stream.emit('log', JSON.parse(data[i]));
       } catch (e) {
-        stream.emit(&#x27;error&#x27;, e);
+        stream.emit('error', e);
       }
     }
 
     buff = data[l];
   });
 
-  req.on(&#x27;error&#x27;, function (err) {
-    stream.emit(&#x27;error&#x27;, err);
+  req.on('error', function (err) {
+    stream.emit('error', err);
   });
 
   return stream;
@@ -11922,7 +11911,7 @@ Streaming allows you to stream your logs back from your chosen transport.
   //
   // Start at the end.
   //
-  winston.<span class="apidocCodeKeywordSpan">stream</span>({ start: -1 }).on(&#x27;log&#x27;, function(log) {
+  winston.<span class="apidocCodeKeywordSpan">stream</span>({ start: -1 }).on('log', function(log) {
     console.log(log);
   });
 ```
@@ -11953,7 +11942,7 @@ Streaming allows you to stream your logs back from your chosen transport.
   options = options || {};
 
   var auth = options.auth || this.auth,
-      path = options.path || this.path || &#x27;&#x27;,
+      path = options.path || this.path || '',
       req;
 
   delete options.auth;
@@ -11963,29 +11952,29 @@ Streaming allows you to stream your logs back from your chosen transport.
   req = (this.ssl ? https : http).request({
     host: this.host,
     port: this.port,
-    path: &#x27;/&#x27; + path.replace(/^\//, &#x27;&#x27;),
-    method: &#x27;POST&#x27;,
-    headers: { &#x27;Content-Type&#x27;: &#x27;application/json&#x27; },
+    path: '/' + path.replace(/^\//, ''),
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     agent: this.agent,
-    auth: (auth) ? auth.username + &#x27;:&#x27; + auth.password : &#x27;&#x27;
+    auth: (auth) ? auth.username + ':' + auth.password : ''
   });
 
-  req.on(&#x27;error&#x27;, callback);
-  req.on(&#x27;response&#x27;, function (res) {
-    var body = &#x27;&#x27;;
+  req.on('error', callback);
+  req.on('response', function (res) {
+    var body = '';
 
-    res.on(&#x27;data&#x27;, function (chunk) {
+    res.on('data', function (chunk) {
       body += chunk;
     });
 
-    res.on(&#x27;end&#x27;, function () {
+    res.on('end', function () {
       callback(null, res, body);
     });
 
     res.resume();
   });
 
-  req.end(new Buffer(JSON.stringify(options), &#x27;utf8&#x27;));
+  req.end(new Buffer(JSON.stringify(options), 'utf8'));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -12007,13 +11996,13 @@ Streaming allows you to stream your logs back from your chosen transport.
     <li>description and source-code<pre class="apidocCodePre">log = function (level, msg, meta, callback) {
   var self = this;
 
-  if (typeof meta === &#x27;function&#x27;) {
+  if (typeof meta === 'function') {
     callback = meta;
     meta = {};
   }
 
   var options = {
-    method: &#x27;collect&#x27;,
+    method: 'collect',
     params: {
       level: level,
       message: msg,
@@ -12034,15 +12023,15 @@ Streaming allows you to stream your logs back from your chosen transport.
   }
 
   this._request(options, function (err, res) {
-    if (res &#x26;&#x26; res.statusCode !== 200) {
-      err = new Error(&#x27;HTTP Status Code: &#x27; + res.statusCode);
+    if (res &amp;&amp; res.statusCode !== 200) {
+      err = new Error('HTTP Status Code: ' + res.statusCode);
     }
 
     if (err) return callback(err);
 
-    // TODO: emit &#x27;logged&#x27; correctly,
+    // TODO: emit 'logged' correctly,
     // keep track of pending logs.
-    self.emit(&#x27;logged&#x27;);
+    self.emit('logged');
 
     if (callback) callback(null, true);
   });
@@ -12054,13 +12043,13 @@ The default logger is accessible through the winston module directly. Any method
 is available on the default logger:
 
 ``` js
-  var winston = require(&#x27;winston&#x27;);
+  var winston = require('winston');
 
-  winston.<span class="apidocCodeKeywordSpan">log</span>(&#x27;info&#x27;, &#x27;Hello distributed log files!&#x27;);
-  winston.info(&#x27;Hello again distributed logs&#x27;);
+  winston.<span class="apidocCodeKeywordSpan">log</span>('info', 'Hello distributed log files!');
+  winston.info('Hello again distributed logs');
 
-  winston.level = &#x27;debug&#x27;;
-  winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
+  winston.level = 'debug';
+  winston.log('debug', 'Now my debug messages are written to console!');
 ```
 
 By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
@@ -12083,7 +12072,7 @@ methods:
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">query = function (options, callback) {
-  if (typeof options === &#x27;function&#x27;) {
+  if (typeof options === 'function') {
     callback = options;
     options = {};
   }
@@ -12092,7 +12081,7 @@ methods:
       options = this.normalizeQuery(options);
 
   options = {
-    method: &#x27;query&#x27;,
+    method: 'query',
     params: options
   };
 
@@ -12107,13 +12096,13 @@ methods:
   }
 
   this._request(options, function (err, res, body) {
-    if (res &#x26;&#x26; res.statusCode !== 200) {
-      err = new Error(&#x27;HTTP Status Code: &#x27; + res.statusCode);
+    if (res &amp;&amp; res.statusCode !== 200) {
+      err = new Error('HTTP Status Code: ' + res.statusCode);
     }
 
     if (err) return callback(err);
 
-    if (typeof body === &#x27;string&#x27;) {
+    if (typeof body === 'string') {
       try {
         body = JSON.parse(body);
       } catch (e) {
@@ -12125,8 +12114,8 @@ methods:
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    order: &#x27;desc&#x27;,
-    fields: [&#x27;message&#x27;]
+    order: 'desc',
+    fields: ['message']
   };
 
   //
@@ -12170,7 +12159,7 @@ methods:
   };
 
   options = {
-    method: &#x27;stream&#x27;,
+    method: 'stream',
     params: options
   };
 
@@ -12185,26 +12174,26 @@ methods:
   }
 
   req = this._request(options);
-  buff = &#x27;&#x27;;
+  buff = '';
 
-  req.on(&#x27;data&#x27;, function (data) {
+  req.on('data', function (data) {
     var data = (buff + data).split(/\n+/),
         l = data.length - 1,
         i = 0;
 
-    for (; i &#x3c; l; i++) {
+    for (; i &lt; l; i++) {
       try {
-        stream.emit(&#x27;log&#x27;, JSON.parse(data[i]));
+        stream.emit('log', JSON.parse(data[i]));
       } catch (e) {
-        stream.emit(&#x27;error&#x27;, e);
+        stream.emit('error', e);
       }
     }
 
     buff = data[l];
   });
 
-  req.on(&#x27;error&#x27;, function (err) {
-    stream.emit(&#x27;error&#x27;, err);
+  req.on('error', function (err) {
+    stream.emit('error', err);
   });
 
   return stream;
@@ -12217,7 +12206,7 @@ Streaming allows you to stream your logs back from your chosen transport.
   //
   // Start at the end.
   //
-  winston.<span class="apidocCodeKeywordSpan">stream</span>({ start: -1 }).on(&#x27;log&#x27;, function(log) {
+  winston.<span class="apidocCodeKeywordSpan">stream</span>({ start: -1 }).on('log', function(log) {
     console.log(log);
   });
 ```
@@ -12252,7 +12241,7 @@ Streaming allows you to stream your logs back from your chosen transport.
   this.json        = options.json        || false;
   this.colorize    = options.colorize    || false;
   this.prettyPrint = options.prettyPrint || false;
-  this.timestamp   = typeof options.timestamp !== &#x27;undefined&#x27; ? options.timestamp : false;
+  this.timestamp   = typeof options.timestamp !== 'undefined' ? options.timestamp : false;
   this.showLevel   = options.showLevel === undefined ? true : options.showLevel;
   this.label       = options.label       || null;
   this.depth       = options.depth       || null;
@@ -12292,7 +12281,7 @@ Streaming allows you to stream your logs back from your chosen transport.
   this.level = options.level;
 
   this.handleExceptions = options.handleExceptions || false;
-  this.exceptionsLevel  = options.exceptionsLevel || &#x27;error&#x27;;
+  this.exceptionsLevel  = options.exceptionsLevel || 'error';
   this.humanReadableUnhandledException = options.humanReadableUnhandledException || false;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -12352,13 +12341,13 @@ Streaming allows you to stream your logs back from your chosen transport.
     humanReadableUnhandledException: this.humanReadableUnhandledException
   });
 
-  if (level === &#x27;error&#x27; || level === &#x27;debug&#x27;) {
+  if (level === 'error' || level === 'debug') {
     this.errorOutput.push(output);
   } else {
     this.writeOutput.push(output);
   }
 
-  self.emit(&#x27;logged&#x27;);
+  self.emit('logged');
   callback(null, true);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -12368,13 +12357,13 @@ The default logger is accessible through the winston module directly. Any method
 is available on the default logger:
 
 ``` js
-  var winston = require(&#x27;winston&#x27;);
+  var winston = require('winston');
 
-  winston.<span class="apidocCodeKeywordSpan">log</span>(&#x27;info&#x27;, &#x27;Hello distributed log files!&#x27;);
-  winston.info(&#x27;Hello again distributed logs&#x27;);
+  winston.<span class="apidocCodeKeywordSpan">log</span>('info', 'Hello distributed log files!');
+  winston.info('Hello again distributed logs');
 
-  winston.level = &#x27;debug&#x27;;
-  winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
+  winston.level = 'debug';
+  winston.log('debug', 'Now my debug messages are written to console!');
 ```
 
 By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
@@ -12443,13 +12432,13 @@ methods:
     humanReadableUnhandledException: this.humanReadableUnhandledException
   });
 
-  if (level === &#x27;error&#x27; || level === &#x27;debug&#x27;) {
+  if (level === 'error' || level === 'debug') {
     this.errorOutput.push(output);
   } else {
     this.writeOutput.push(output);
   }
 
-  self.emit(&#x27;logged&#x27;);
+  self.emit('logged');
   callback(null, true);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -12459,13 +12448,13 @@ The default logger is accessible through the winston module directly. Any method
 is available on the default logger:
 
 ``` js
-  var winston = require(&#x27;winston&#x27;);
+  var winston = require('winston');
 
-  winston.<span class="apidocCodeKeywordSpan">log</span>(&#x27;info&#x27;, &#x27;Hello distributed log files!&#x27;);
-  winston.info(&#x27;Hello again distributed logs&#x27;);
+  winston.<span class="apidocCodeKeywordSpan">log</span>('info', 'Hello distributed log files!');
+  winston.info('Hello again distributed logs');
 
-  winston.level = &#x27;debug&#x27;;
-  winston.log(&#x27;debug&#x27;, &#x27;Now my debug messages are written to console!&#x27;);
+  winston.level = 'debug';
+  winston.log('debug', 'Now my debug messages are written to console!');
 ```
 
 By default, only the Console transport is set on the default logger. You can add or remove transports via the add() and remove()
@@ -12513,14 +12502,14 @@ methods:
   target.log.apply(target, args);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    new (winston.transports.Console)({ level: &#x27;warn&#x27; }),
-    new (winston.transports.File)({ filename: &#x27;somefile.log&#x27;, level: &#x27;error&#x27; })
+    new (winston.transports.Console)({ level: 'warn' }),
+    new (winston.transports.File)({ filename: 'somefile.log', level: 'error' })
   ]
 });
-logger.debug(&#x22;Will not be logged in either transport!&#x22;);
-logger.transports.console.level = &#x27;debug&#x27;;
-logger.transports.file.level = &#x27;verbose&#x27;;
-logger.<span class="apidocCodeKeywordSpan">verbose</span>(&#x22;Will be logged in both transports!&#x22;);
+logger.debug("Will not be logged in either transport!");
+logger.transports.console.level = 'debug';
+logger.transports.file.level = 'verbose';
+logger.<span class="apidocCodeKeywordSpan">verbose</span>("Will be logged in both transports!");
 ```
 
 As of 0.2.0, winston supports customizable logging levels, defaulting to [npm][0] style logging levels. Changing logging levels
@@ -12552,21 +12541,21 @@ is easy:
   target.log.apply(target, args);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-logger.log(&#x27;silly&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-logger.log(&#x27;debug&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-logger.log(&#x27;verbose&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-logger.log(&#x27;info&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-logger.log(&#x27;warn&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-logger.log(&#x27;error&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-logger.info(&#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-logger.<span class="apidocCodeKeywordSpan">warn</span>(&#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-logger.error(&#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
+logger.log('silly', "127.0.0.1 - there's no place like home");
+logger.log('debug', "127.0.0.1 - there's no place like home");
+logger.log('verbose', "127.0.0.1 - there's no place like home");
+logger.log('info', "127.0.0.1 - there's no place like home");
+logger.log('warn', "127.0.0.1 - there's no place like home");
+logger.log('error', "127.0.0.1 - there's no place like home");
+logger.info("127.0.0.1 - there's no place like home");
+logger.<span class="apidocCodeKeywordSpan">warn</span>("127.0.0.1 - there's no place like home");
+logger.error("127.0.0.1 - there's no place like home");
 
 //
 // Default logger
 //
-winston.log(&#x27;info&#x27;, &#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
-winston.info(&#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
+winston.log('info', "127.0.0.1 - there's no place like home");
+winston.info("127.0.0.1 - there's no place like home");
 ...</pre></li>
     </ul>
 
@@ -12579,3 +12568,4 @@ winston.info(&#x22;127.0.0.1 - there&#x27;s no place like home&#x22;);
     ]
 </div>
 </div>
+</body></html>
